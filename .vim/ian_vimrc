@@ -1,0 +1,125 @@
+set nocompatible		" Funcionalidades extras
+
+set autowrite			" Salvação divina
+set completeopt=menu		" Modo de completação automática
+set cscopequickfix=s-,c-,d-,i-,t-,e-	" Resultados do cscope no quickfix
+set fillchars=vert:\|		" Remove '-' das linhas dobradas (folded)
+set grepprg=ack-grep		" Better grep!
+set guioptions=a
+set hidden			" Troca de buffers sem salvar
+set ignorecase			" Ignora caso nas buscas
+set incsearch			" Procura enquanto digita
+set laststatus=2		" status line
+set listchars+=precedes:<,extends:>
+set mouse=ai			" Habilita o mouse
+set nowrap
+set showcmd			" Mostra os comandos na linha
+set sidescroll=5
+set smartcase			" Ativa caso sensitivo se tiver maiúscula
+set smartindent			" Auto-endenta
+set spelllang=en_us		" Define o dicionário padrão
+set t_Co=256
+set tags=./tags;/home,$HOME/.vim/extratags
+set wildmenu			" Autocompletion mais intuitivo
+
+" set foldcolumn=2		" Mostra botões para expandir/fechar as dobras
+" set hlsearch			" Grifa as buscas
+" set number			" Sets the line numbering
+" set nobackup			" Não salva arquivos ~
+
+syntax on			" Habilita coloração de sintaxe
+filetype plugin indent on	" Habilita edentação e plugins
+colorscheme peachpuff
+set bg=dark
+" colorscheme desert256
+
+let mapleader = ","
+
+" Doxygen syntax
+" let load_doxygen_syntax		= 1
+
+" Python highlight
+let python_highlight_exceptions = 1
+let python_highlight_indent_errors = 1
+
+" OmniCppComplete
+let OmniCpp_DisplayMode		= 1
+let OmniCpp_GlobalScopeSearch	= 1
+let OmniCpp_LocalSearchDecl	= 1
+let OmniCpp_MayCompleteArrow	= 1
+let OmniCpp_MayCompleteDot	= 1
+let OmniCpp_MayCompleteScope	= 0
+let OmniCpp_NamespaceSearch	= 2
+let OmniCpp_SelectFirstItem	= 2
+let OmniCpp_ShowAccess		= 0
+let OmniCpp_ShowPrototypeInAbbr = 1
+let OmniCpp_ShowScopeInAbbr	= 0
+let OmniCpp_ShowScopeTypeInAbbr	= 1
+
+" Local vimrc
+let localvimrc_name = "vimrc"
+
+let my_extra_paths = [ '/usr/include/gtk-2.0/', '/usr/include/glib-2.0/' ]
+let my_ctags_options  = [ '--languages=c,c++', '--c-kinds=+p', '--fields=+iaS', '--extra=+q' ]
+
+function! UpdateExtraTags()
+	let command = ":!ctags -R -I " . join(g:my_ctags_options, ' ') . " -f- " . join(g:my_extra_paths, ' ') . " > $HOME/.vim/extratags"
+	exec command
+endfunction
+
+function! UpdateTags(path)
+	let filename = a:path . '/tags'
+	let command = ":!ctags -R -I " . join(g:my_ctags_options, ' ') . ' -f- ' . a:path . ' > ' . filename
+	exec command
+endfunction
+
+function! SimpleComplete()
+	return "\<C-P>\<C-N>\<C-R>=pumvisible() ? \"\\<down>\" : \"\"\<cr>"
+endfunction
+
+""
+ " Mapas
+ ""
+
+nmap <leader>ew :e <C-R>=expand("%:p:h")."/"<CR>
+nmap <leader>es :sp <C-R>=expand("%:p:h")."/"<CR>
+nmap <leader>ev :vsp <C-R>=expand("%:p:h")."/"<CR>
+
+" Acesso mais veloz ao command mode
+nmap ç :
+vmap ç :
+nmap Ç :!
+
+" Faz com que o zero retorne ao início da linha seguindo a edentação
+nmap 0 ^
+
+" Troca de janelas mais veloz
+" nmap <Tab> <C-W>w
+
+" Easier window movement
+nmap <C-H> <C-W>h
+nmap <C-J> <C-W>j
+nmap <C-K> <C-W>k
+nmap <C-L> <C-W>l
+
+" Habilita/desabilita hls
+nmap <F2> :set hls!<CR>
+
+" Preview da definição da tag atual
+nmap <F3> <C-W>}
+
+" Atalho para troca de buffers
+" nmap <C-j> :bn<CR>
+" nmap <C-k> :bp<CR>
+
+" Commit fast!
+nmap <F8> :VCSCommit<CR>
+
+" Remonta o ctags
+nmap <C-F6> :call UpdateTags('.')<CR>
+
+" <C-P> melhorado!
+inoremap <expr> <C-Space> SimpleComplete()
+imap <C-@> <C-Space>
+
+" source /usr/share/vim/vim72/ftplugin/man.vim

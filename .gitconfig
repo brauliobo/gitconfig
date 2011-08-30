@@ -1,0 +1,41 @@
+[user]
+	email = brauliobo@gmail.com
+	name = Braulio Bhavamitra
+
+[core]
+	pager = less -iRS
+
+[alias]
+	c = rebase --continue
+	ci = commit --cleanup=default
+	cam = commit --cleanup=default --amend
+	cundo = reset HEAD^1
+	cundoh = reset HEAD^1 --hard
+	dall = reset --hard HEAD
+	co = checkout
+
+	filech = log -p --name-only
+	s = show --color
+	sno = show --color --name-only
+	d = diff --color
+	dno = diff --color --name-only
+	lg = log --graph --pretty=format:'%Cred%h%Creset %s %Cgreen(%cr) %Cblue<%an>%Creset' --abbrev-commit --date=relative
+	st = status
+
+	chp = cherry-pick
+
+	a = add
+	ap = add -p
+
+	b = branch
+
+[apply]
+	ignorewhitespace = change
+	whitespace = nowarn
+
+[pager]
+	diff = true
+	status = true
+	show-branch = true
+[mergetool "vimdiff3"]
+	cmd = vim -u ~/.vimrc -f -d -c \"wincmd J\" \"$MERGED\" \"$LOCAL\" \"$BASE\" \"$REMOTE\"

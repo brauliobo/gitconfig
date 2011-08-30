@@ -1,0 +1,76 @@
+# =============================================================
+# ========== USER MACROS ======================================
+# =============================================================
+#
+$AUTHOR$    = Ian Liu Rodrigues
+$AUTHORREF$ = 
+$EMAIL$     = ian.liu88@gmail.com
+$COMPANY$   = 
+$COPYRIGHT$ = Copyright (c) $YEAR$, $AUTHOR$
+$sortmenus$	= no
+
+#$includefile$	= doxygen.cpp.templates
+
+#
+# =============================================================
+# ========== USER TEMPLATES  /  C-STYLE =======================
+# =============================================================
+== block,long ==
+/**
+ * <CURSOR>
+ */
+#--------------------------------------------------------------
+== block,short ==
+/** <CURSOR> */
+#--------------------------------------------------------------
+== brief,detailed ==
+/**
+ * @brief <CURSOR>
+ * 
+ * Detailed description starts here.
+ */
+#--------------------------------------------------------------
+== class ==
+/**
+ * @class $?CLASSNAME$
+ * @brief <CURSOR>
+ */
+#--------------------------------------------------------------
+== function ==
+/**
+ * @brief  <CURSOR>
+ * @param  
+ * @return 
+ */
+#--------------------------------------------------------------
+== FILE-header == start ==
+/**
+ *       @file  $FILE$
+ *      @brief  <CURSOR>
+ *
+ * Detailed description starts here.
+ *
+ *     @author  $AUTHOR$ ($AUTHORREF$), $EMAIL$
+ *
+ *   @internal
+ *     Created  $DATE$
+ *    Revision  ---
+ *    Compiler  gcc/g++
+ *     Company  $COMPANY$
+ *   Copyright  $COPYRIGHT$
+ *
+ * This source code is released for free distribution under the terms of the
+ * GNU General Public License as published by the Free Software Foundation.
+ * =====================================================================================
+ */
+
+#--------------------------------------------------------------
+== brief-after-member == append ==
+ /**< @brief <CURSOR> */
+#--------------------------------------------------------------
+== formula-in-text == insert == 
+ @f$ <CURSOR><SPLIT> @f$ 
+#--------------------------------------------------------------
+== formula-separate == below ==
+ *    @f[ <CURSOR> @f]
+#--------------------------------------------------------------

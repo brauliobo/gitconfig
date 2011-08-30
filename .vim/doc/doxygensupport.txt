@@ -1,0 +1,498 @@
+*doxygensupport.txt*            Doxygen Support                 March 22 2008
+                                                             *doxygen-support*
+                             Plugin version 2.0.2
+                        for Vim version 7.0 and above
+                       Fritz Mehner <mehner@fh-swf.de>
+
+This plugin generates a menu and Ex commands from a template file containing
+user defined comment templates to be used for source code documentation with
+Doxygen.
+
+==============================================================================
+ 0.   CONTENT                                             *doxygensupport-toc*
+==============================================================================
+
+ 1.   The template file                     |doxygensupport-template-file|
+ 1.1   Template file comments               |doxygensupport-template-comments|
+ 1.2   Template file macros                 |doxygensupport-template-macros|
+ 1.3   Predefined Control Macros            |doxygensupport-control-macros|
+ 1.4   Doxygen Templates                    |doxygensupport-doxygen-templates|
+ 2.   The Doxygen menu                      |doxygensupport-menu|
+ 3.   The Doxygen Ex commands               |doxygensupport-ex-commands|
+ 4.   Rebuilding menus and Ex commands      |doxygensupport-rebuild|
+ 5.   Customization                         |doxygensupport-customization|
+ 6.   System-wide installation              |doxygensupport-system-wide|
+
+ How to add this help file to Vim's help    |add-local-help|
+
+Doxygen is a documentation system for C++, C, Java, Objective-C, IDL and to
+some extent PHP, C#, and D (http://www.stack.nl/~dimitri/doxygen/index.html, 
+and Doxygen manual).
+Doxygen allows a variety of styles for special documentation blocks.  There is
+also a great number of Doxygen commands which can be combined freely into
+comment blocks.  For that reason it makes no sense to code these possibilities
+directly into a plugin. Therefor this plugin let you define a  file with
+templates for Doxygen documentation blocks. This file will be read when Vim
+starts or by an explicit rebuild command. The template file will then be
+analyzed and a menu item will be created on the fly for each template found
+(gVim). In parallel an Ex command will be generated for each item. For the
+console version Vim only the Ex commands are available.
+
+REMARK. Beside the name this plugin has nothing which is really Doxygen
+specific. It can be used as a versatile general purpose tool to conveniently
+manage text snippets. Even the menu name and the command leader can be changed
+(see|doxygensupport-customization|).
+
+==============================================================================
+1.  THE TEMPLATE FILE                           *doxygensupport-template-file*
+==============================================================================
+
+The template file (default is $HOME/.vim/plugin/doxygen.templates) can have
+three sorts of entries.
+
+------------------------------------------------------------------------------
+1.1  Template file comments                 *doxygensupport-template-comments*
+------------------------------------------------------------------------------
+
+Lines starting with a '#' are comments.
+
+If a line in a template body starts with a '#' (e.g. a C preprocessor
+statement) this character has to be escaped
+(|doxygensupport-doxygen-templates|).
+
+------------------------------------------------------------------------------
+1.2  Template file macros                     *doxygensupport-template-macros*
+------------------------------------------------------------------------------
+Macros are optional. The syntax is
+
+ $<macroname>$  = <macroexpansion>
+
+A <macroname> starts with a letter followed by optional letters,  digits or
+underscores.
+A <macroexpansion> is the text on the right of the equal sign, starting with
+the first non-whitespace character after the equal sign and ending with the
+last non-whitespace in this line. An example
+
+ $AUTHOR$           "Dr. Fritz Mehner" 
+
+There are a few predefined macro names:
+
+ $AUTHOR$           
+ $AUTHORREF$       
+ $EMAIL$           
+ $COMPANY$         
+ $PROJECT$         
+ $COPYRIGHTHOLDER$ 
+
+An <macroexpansion> may contain other macros to be expanded. The recursion is
+limited by the expansion algorithm to a depth of 10.  The order of the macro
+definitions does not matter. Macro names are case sensitive.
+
+There are a few other predefined macros with fixed meaning (but see also
+ |doxygentemplates-date| for date and time representation):
+
+ $DATE$          The preferred date representation for the current locale
+                 without the time.
+ $YEAR$          The year as a decimal number including the century.
+ $TIME$          The preferred time representation for the current locale
+                 without the date and the time zone or name or abbreviation.
+ $FILE$          The filename without the path.
+ $PATH$          The pathname without filename.
+ $BASENAME$      Filename without path and suffix.
+ $SUFFIX$        The filename extension.
+ 
+ $sortmenus$     Sorted menus yes/no (see below)
+ $includefile$   Include a template file (see below).
+
+REMARKS. Case of letters matters. Do not name a macro 'Id' if you want this to
+be expanded by a revision control system.
+
+ ----------------------------------------------------------------------------
+ PREDEFINED TAGS
+ ----------------------------------------------------------------------------
+ <CURSOR>           The cursor position after insertion of a template
+ <SPLIT>            The split point when inserting in visual mode
+                    (see|doxygensupport-doxygen-templates|)
+
+A dependent template file can start with its own macro section. There is no
+need to have all user defined macros in the master file.
+When the first template definition is found (see below) macro definitions are
+no longer recognized.
+
+
+------------------------------------------------------------------------------
+1.3  Predefined Control Macros                 *doxygensupport-control-macros*
+------------------------------------------------------------------------------
+
+The menu items can be sorted with the macro
+
+ $sortmenus$  = yes   
+
+Default is 'no'.
+
+This plugin has an include mechanism. The templates can be split in different
+files. These can be included, e.g.
+
+ $includefile$  = doxygen.cpp.templates
+ $includefile$  = doxygen.java.templates
+
+Each file will be included only once. The file names may not have a path. The
+path is assumed to be the same as for the main templates file (see
+|doxygensupport-template-file|).
+
+------------------------------------------------------------------------------
+1.4  Doxygen Templates                      *doxygensupport-doxygen-templates*
+------------------------------------------------------------------------------
+
+A template definition has the following form:
+
+==<templatename>==[<insert mode>==][comment]
+1. template line
+2. template line
+  ...
+
+It starts with a headline with the syntax shown above followed by a Doxygen
+comment. The insert mode part (see below) and the comment part are optional.
+Whitespaces between the parts are allowed.  The end of a definition is the
+start of a new template definition or the end of the file. 
+
+A <templatename> starts with a letter followed by optional letters, digits,
+or allowed delimiters. The allowed delimiters are
+
+  ' '     blank
+  '-'     minus
+  '+'     plus
+  '_'     underscore
+  ','     comma
+  '.'     point
+
+A template can contain empty lines. The number of templates is not limited.
+Here an example template enclosed in delimiting comments:
+
+#--------------------------------------------------------------
+==brief+detailed==
+/**
+ *  \brief  <CURSOR> 
+ *  
+ *  Detailed description starts here.
+ */
+#--------------------------------------------------------------
+
+------------------------------------------------------------------------------
+INSERT MODE SPECIFICATION
+------------------------------------------------------------------------------
+
+There are 4 insert modes: 'above', 'append', 'below', 'insert', and 'start'.
+The default is 'below' The insert mode specification is optional. A wrong
+specification will be replaced by the default.
+
+  above     insert the template before the current line
+  append    append the template to the current line 
+  below     insert the template below the current line
+  insert    insert the template at the cursor position
+  start     insert the template before the first line of the buffer
+
+Examples:
+
+#--------------------------------------------------------------
+==brief-after-member==append==
+ /**< \brief <CURSOR> */
+#--------------------------------------------------------------
+
+#--------------------------------------------------------------
+== brief,detailed ==
+/**
+ * @brief <CURSOR>
+ * 
+ * Detailed description starts here.
+ */
+#--------------------------------------------------------------
+
+INSERT. In-text formulas should be put between a pair of @f$  commands.  The
+following template will be inserted in the running text. The cursor will be
+set inside the construct.
+
+#--------------------------------------------------------------
+== formula-in-text == insert == 
+ @f$ <CURSOR> @f$ 
+#--------------------------------------------------------------
+All templates can have more than one line.
+
+Templates for the visual mode can use <SPLIT>. The text before <SPLIT> will
+than be inserted above/before the marked area, the text after <SPLIT> will be
+inserted below/behind the marked area. An example:
+
+#--------------------------------------------------------------
+== formula-in-text == insert == 
+ @f$ <CURSOR><SPLIT> @f$ 
+#--------------------------------------------------------------
+
+Templates not containing <SPLIT> do not have a visual mode.
+
+
+------------------------------------------------------------------------------
+USER INPUT
+------------------------------------------------------------------------------
+
+If the usage of a yet undefined user macro starts with a question mark the
+user will be asked for the replacement first, e.g. with the following template
+
+  == Cpp.class ==
+  ///
+  /// @class $?CLASSNAME$
+  /// @brief <CURSOR>
+  /// 
+  /// Description of class $CLASSNAME$ starts here.
+  ///
+
+The user can specify the function name which then will be applied twice. If the
+macro was already in use the old value will be suggested as default.
+
+------------------------------------------------------------------------------
+MACRO MANIPULATION
+------------------------------------------------------------------------------
+
+A macro expansion can be controlled by the following attributes
+
+  :l    change macro text to lowercase
+  :u    change macro text to uppercase
+  :c    capitalize macro text
+  :L    legalize name
+
+Legalization means:
+ - replace all whitespaces by underscores
+ - replace all non-word characters by underscores
+ - replace '+' and '-' by underscore
+
+EXAMPLE. To ask for a class name and to make sure that it will start with an uppercase
+letter write
+
+  == Cpp.class ==
+  ///
+  /// @class $?CLASSNAME:c$
+  /// @brief <CURSOR>
+  /// 
+  ///
+
+------------------------------------------------------------------------------
+HINT. According to the syntax of the headline the 'append' followed by '==' in
+the line
+
+==brief-after-member==append==
+
+is an insert mode specification. The 'append' in
+
+==brief-after-member==append
+
+is a comment. The insert mode is now 'below'.
+
+
+==============================================================================
+2.  THE DOXYGEN MENU                                     *doxygensupport-menu*
+==============================================================================
+
+The Doxygen menu will be generated when the editor starts (GUI only) or on
+demand (see|doxygensupport-rebuild|).
+
+The template names from the template definition file become menu items linked
+with the template body. The template body will be inserted below the cursor.
+
+The delimiter '.' has a special meaning: it separates a submenu name from its
+submenu items. The template names
+
+ ==block.short==
+ ==block.long==
+ ==block.special==
+
+will generate a submenu entry 'block'  with the items 'short', 'long', and
+'special' :
+
+ block --+--> long
+         |
+         +--> short
+         |
+         +--> special
+
+This feature can be used to arrange the templates into groups. The template
+names 
+
+ ==C.block-short==
+ ==C.block-long==
+ ==C.block-special==
+ ==Cpp.block-short==
+ ==Cpp.block-long==
+ ==Cpp.block-special==
+
+result in menus in which the templates are arranged according to C/C++
+commenting styles:
+
+ C   --+--> block-short
+       +--> block-long
+       +--> block-special
+ Cpp --+--> block-short
+       +--> block-long
+       +--> block-special
+
+The first group will be reached by Ex commands beginning with 'DoxyC' the
+second group by 'DoxyCpp' (see below).
+
+==============================================================================
+3.  THE DOXYGEN EX COMMANDS                       *doxygensupport-ex-commands*
+==============================================================================
+
+This plugin generates an Ex command for each Doxygen template.  These commands
+will be generated when the editor starts or on demand (see|doxygensupport-rebuild|).
+
+Vim Ex command names have to start always with an uppercase letter followed by
+letters or digits. Delimiters are not allowed.  The user defined template
+names are therefore transformed into camel case notation.  The parts separated
+by the delimiters are joined together now. The first letter of each part will
+be transformed to uppercase. The new word will be prefixed by 'Doxy'. Some
+examples:
+
+ template name           Ex command
+ ----------------------------------------
+ ==block.long==          DoxyBlockLong
+ ==block.short==         DoxyBlockShort
+ ==block.special==       DoxyBlockSpecial
+ ==file-header==         DoxyFileHeader
+ ==function==            DoxyFunction
+
+ ***  You do not need to remember the names of these Ex commands. Just type 
+ ***  'Doxy' on the command line and use the tab expansion to show the names 
+ ***  and to choose from.
+
+NAMING CONFLICTS. The template names
+
+ ==block-special==       DoxyBlockSpecial
+ ==block+special==       DoxyBlockSpecial
+
+will generate two different menu items but obviously the same Ex command name.
+Avoiding these conflicts is up to you.
+
+The Ex command leader can be changed (see|doxygensupport-customization|).
+
+==============================================================================
+4.  REBUILD MENUS AND EX COMMANDS                     *doxygensupport-rebuild*
+==============================================================================
+
+Rebuilding the menu(s) and the Ex commands is necessary after changing the
+template file.
+Local  template files: see |doxygensupport-template-file|
+Global template files: see |doxygensupport-system-wide|
+
+GUI (gVim or Vim in an xterm)
+----------------------------- 
+Edit the template file. Choosing the first menu item will reread the template
+files and rebuild the menu and the Ex commands. 
+
+Console (Vim)
+-------------
+Using the command ':Doxygen' will reread the template files and rebuild the Ex
+commands. 
+
+==============================================================================
+5.  CUSTOMIZATION                               *doxygensupport-customization*
+==============================================================================
+
+Several global variables are checked by the script to customize it:
+
+----------------------------------------------------------------------
+global variable                    default value              
+----------------------------------------------------------------------
+let g:Doxy_ExCommandLeader         'Doxy'
+let g:Doxy_LoadMenus               'yes'
+let g:Doxy_RootMenu                'Do&xy.'
+let g:Doxy_TemplateOverwrittenMsg  'no'
+
+The variable g:Doxy_ExCommandLeader can be used to change the default name of
+the Ex command leader (see|doxygensupport-ex-commands|).  The string must
+start with an uppercase letter and can contain only letters and digits.
+Everything else will be removed.
+
+The variable g:Doxy_LoadMenus controls if the Vim root menu item 'Doxy' will
+appear after start. When set to 'no' the menu item can be made visible from
+the 'tool' menu.
+
+The variable g:Doxy_RootMenu, if set (in .vimrc or in .gvimrc), gives the name
+of the single gVim root menu entry.  The default is 'Do&xy.' . Note the
+terminating dot. An empty string is not allowed. The next character after & is
+the shortcut key for this menu.
+
+If you want to set the plugin menu into another menu, e.g. 'Plugin', this is
+done by the following line in '.vimrc'
+
+  let g:Doxy_RootMenu = "&Plugin.Do&xy."
+
+If the variable g:Doxy_TemplateOverwrittenMsg is set to 'yes' all templates
+overwriten by a rebuild will be reported.
+
+There are more global variables for special purposes:
+- see |doxygensupport-system-wide|
+- see |doxygentemplates-date|
+
+ ----------------------------------------------------------------------------
+ USER DEFINED FORMATS FOR DATE AND TIME               *doxygentemplates-date*
+ ----------------------------------------------------------------------------
+The format for $DATE$ ,$TIME$ , and$YEAR$ can be set by the user. The
+defaults are
+    $DATE$        '%x'    
+    $TIME$        '%X'    
+    $YEAR$        '%Y'        
+See the manual page of the C function strftime() for the format.  The accepted
+format depends on your system, thus this is not portable!  The maximum length
+of the result is 80 characters.
+
+User defined formats can be set using the following global variables in
+~/.vimrc ,  e.g.
+    let g:Doxy_FormatDate            = '%D'
+    let g:Doxy_FormatTime            = '%H:%M'
+    let g:Doxy_FormatYear            = 'year %Y'
+
+------------------------------------------------------------------------------
+6  System-wide installation (Unix/Linux only)     *doxygensupport-system-wide*
+------------------------------------------------------------------------------
+
+A system-wide installation (one installation for all users) is done as
+follows.
+
+As *** SUPERUSER *** :
+
+(1) Find the Vim installation directory.
+The Vim ex command ':echo $VIM' gives '/usr/local/share/vim' or something like
+that. Beyond this directory you will find the Vim installation,  e.g. in
+'/usr/local/share/vim/vim71' if Vim version 7.1 has been installed.
+
+(2) Create a new subdirectory 'vimfiles', e.g. '/usr/local/share/vim/vimfiles'.
+
+(3) Install Doxygen Support
+Copy the archive doxygen-support.zip to this new directory and unpack it:
+  unzip doxygen-support.zip
+
+(4) Generate the help tags:
+  :helptags $VIM/vimfiles/doc
+
+
+As *** USER *** :
+
+Create your private snippet directory:
+
+  mkdir --parents  ~/.vim/doxygen-support/templates 
+
+In addition to the global template files you can have your own below this
+directory. After this plugin has read the global files the local ones will be
+read starting with the local file 'doxygen.templates'. This file can also have
+(local) include files.
+
+The pathnames can be changed by setting the following global variables in your
+'~/.vimrc'. 
+
+ let g:Doxy_GlobalTemplateFile = $VIM./'vimfiles/doxygen-support/templates/doxygen.templates'
+ let g:Doxy_GlobalTemplateDir  = $VIM./'vimfiles/doxygen-support/templates/'
+ let g:Doxy_LocalTemplateFile  = $HOME.'/.vim/doxygen-support/templates/doxygen.templates'
+ let g:Doxy_LocalTemplateDir   = $HOME.'/.vim/doxygen-support/templates/'
+
+The right sides above show the default values.
+
+----------------------------------------------------------------------
+vim:tw=78:noet:ts=2:ft=help:norl:
