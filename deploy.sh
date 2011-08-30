@@ -7,4 +7,4 @@ for f in $FILES; do
 done
 ln -s $HOME/.vim/ian_vimrc $HOME/.vimrc
 
-echo '. .bashmine.sh' >> ~/.bashrc
+echo '. $HOME/.bashmine.sh' >> ~/.bashrc

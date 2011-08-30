@@ -33,7 +33,13 @@
 	a = add
 	ap = add -p
 
+	amc = am --continue
+	ama = am --abort
+
+	mt = mergetool
+
 	b = branch
+	ba = branch -a
 
 [apply]
 	ignorewhitespace = change
