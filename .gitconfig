@@ -2,6 +2,12 @@
 	email = brauliobo@gmail.com
 	name = Braulio Bhavamitra
 
+[sendemail]
+	smtpencryption = tls
+	smtpserver = smtp.gmail.com
+	smtpuser = brauliobo@gmail.com
+	smtpserverport = 587
+
 [core]
 	pager = less -iRS
 
