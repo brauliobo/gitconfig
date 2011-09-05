@@ -20,10 +20,13 @@
 	dall = reset --hard HEAD
 	co = checkout
 
+	unstage = reset HEAD
+
 	filech = log -p --name-only
 	s = show --color
 	sno = show --color --name-only
 	d = diff --color
+	ds = diff --staged
 	dno = diff --color --name-only
 	lg = log --graph --pretty=format:'%Cred%h%Creset %s %Cgreen(%cr) %Cblue<%an>%Creset' --abbrev-commit --date=relative
 	st = status
