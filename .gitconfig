@@ -26,7 +26,8 @@
 	s = show --color
 	sno = show --color --name-only
 	d = diff --color
-	ds = diff --staged
+	ds = diff --color --staged
+	dsno = diff --color --staged --name-only
 	dno = diff --color --name-only
 	lg = log --graph --pretty=format:'%Cred%h%Creset %s %Cgreen(%cr) %Cblue<%an>%Creset' --abbrev-commit --date=relative
 	st = status
