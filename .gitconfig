@@ -29,7 +29,7 @@
 	ds = diff --color --staged
 	dsno = diff --color --staged --name-only
 	dno = diff --color --name-only
-	lg = log --graph --pretty=format:'%Cred%h%Creset %s %Cgreen(%cr) %Cblue<%an>%Creset' --abbrev-commit --date=relative
+	lg = log --graph --pretty=format:'%Cred%h%Creset %s %Cgreen(%cr) %Cblue%an <%ae>%Creset' --abbrev-commit --date=relative
 	st = status
 
 	chp = cherry-pick
