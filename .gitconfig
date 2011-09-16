@@ -49,6 +49,9 @@
 	ignorewhitespace = change
 	whitespace = nowarn
 
+[status]
+	color = true
+
 [pager]
 	diff = true
 	status = true
