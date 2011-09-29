@@ -32,6 +32,13 @@
 	lg = log --graph --pretty=format:'%Cred%h%Creset %s %Cgreen(%cr) %Cblue%an <%ae>%Creset' --abbrev-commit --date=relative
 	st = status
 
+	pg = diff
+	pgs = diff --staged
+	pa = apply
+
+	ash = stash
+	ashy = stash apply
+
 	chp = cherry-pick
 
 	a = add
