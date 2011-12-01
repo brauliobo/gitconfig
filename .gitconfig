@@ -36,6 +36,13 @@
 	filech = log -p --name-only
     lp = log -p
 
+	pg = diff
+	pgs = diff --staged
+	pa = apply
+
+	ash = stash
+	ashy = stash apply
+
 	chp = cherry-pick
 
 	a = add
