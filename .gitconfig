@@ -22,15 +22,19 @@
 
 	unstage = reset HEAD
 
-	filech = log -p --name-only
 	s = show --color
 	sno = show --color --name-only
+
 	d = diff --color
 	ds = diff --color --staged
 	dsno = diff --color --staged --name-only
 	dno = diff --color --name-only
-	lg = log --graph --pretty=format:'%Cred%h%Creset %s %Cgreen(%cr) %Cblue%an <%ae>%Creset' --abbrev-commit --date=relative
+
 	st = status
+
+	lg = log --graph --pretty=format:'%Cred%h%Creset %s %Cgreen(%cr) %Cblue%an <%ae>%Creset' --abbrev-commit --date=relative
+	filech = log -p --name-only
+    lp = log -p
 
 	chp = cherry-pick
 
