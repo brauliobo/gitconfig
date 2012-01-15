@@ -1,5 +1,7 @@
 #!/bin/zsh
 
+unsetopt correct_all
+
 alias vi="vim"                                                                                                                                                                                  
 alias vim='TERM="xterm-256color" vim'
 export EDITOR=vim                                                                                                                                                                               
