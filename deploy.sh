@@ -7,7 +7,7 @@ done
 ln -s $HOME/.vim/ian_vimrc $HOME/.vimrc
 
 if [[ ! -x $HOME/.rvm ]]; then
-	user$ bash -s stable < <(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer )
+	bash -s stable < <(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer )
 fi
 if [[ ! -x $HOME/.oh-my-zsh ]]; then
 	wget --no-check-certificate https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | sh
