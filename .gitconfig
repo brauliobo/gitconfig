@@ -34,7 +34,7 @@
 
 	lg = log --graph --pretty=format:'%Cred%h%Creset %s %Cgreen(%cr) %Cblue%an <%ae>%Creset' --abbrev-commit --date=relative
 	filech = log -p --name-only
-    lp = log -p
+	lp = log -p
 
 	pg = diff
 	pgs = diff --staged
@@ -60,8 +60,10 @@
 	ignorewhitespace = change
 	whitespace = nowarn
 
-[status]
-	color = true
+[color]
+	interactive = true
+	branch = true
+	status = true
 
 [pager]
 	diff = true
