@@ -1,6 +1,6 @@
 #!/bin/bash
 
-FILES=".bashmine.sh .zshmine.sh .gitconfig .vim .irbrc .screenrc"
+FILES=".commonshmine.sh .bashmine.sh .zshmine.sh .gitconfig .vim .irbrc .screenrc"
 for f in $FILES; do
 	ln -s $PWD/$f $HOME/$f
 done
