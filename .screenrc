@@ -3,3 +3,4 @@ bind ^c screen 1
 bind 0 select 10
 screen 1
 scrollback 10000
+shell -${SHELL}

@@ -1,6 +1,8 @@
 [user]
 	email = brauliobo@gmail.com
 	name = Braulio Bhavamitra
+	#name = Alan Freihof Tygel
+	#email = alantygel@gmail.com
 
 [sendemail]
 	smtpencryption = tls
@@ -50,6 +52,9 @@
 
 	amc = am --continue
 	ama = am --abort
+
+	rec = rebase --continue
+	rea = rebase --abort
 
 	mt = mergetool
 
