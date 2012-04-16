@@ -14,14 +14,14 @@
 	pager = less -iRS
 
 [alias]
-	c = rebase --continue
+	co = checkout
+
 	ci = commit --cleanup=default
 	cam = commit --cleanup=default --amend
+
 	cundo = reset HEAD^1
 	cundoh = reset HEAD^1 --hard
 	dall = reset --hard HEAD
-	co = checkout
-
 	unstage = reset HEAD
 
 	s = show --color
@@ -50,11 +50,14 @@
 	a = add
 	ap = add -p
 
+	amr = am --resolved
 	amc = am --continue
 	ama = am --abort
+	ams = am --skip
 
 	rec = rebase --continue
 	rea = rebase --abort
+	res = rebase --skip
 
 	mt = mergetool
 
