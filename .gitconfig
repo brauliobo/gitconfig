@@ -1,6 +1,8 @@
 [user]
 	email = brauliobo@gmail.com
 	name = Braulio Bhavamitra
+	#name = Alan Freihof Tygel
+	#email = alantygel@gmail.com
 
 [sendemail]
 	smtpencryption = tls
@@ -12,14 +14,14 @@
 	pager = less -iRS
 
 [alias]
-	c = rebase --continue
+	co = checkout
+
 	ci = commit --cleanup=default
 	cam = commit --cleanup=default --amend
+
 	cundo = reset HEAD^1
 	cundoh = reset HEAD^1 --hard
 	dall = reset --hard HEAD
-	co = checkout
-
 	unstage = reset HEAD
 
 	s = show --color
@@ -34,7 +36,7 @@
 
 	lg = log --graph --pretty=format:'%Cred%h%Creset %s %Cgreen(%cr) %Cblue%an <%ae>%Creset' --abbrev-commit --date=relative
 	filech = log -p --name-only
-    lp = log -p
+	lp = log -p
 
 	pg = diff
 	pgs = diff --staged
@@ -48,8 +50,14 @@
 	a = add
 	ap = add -p
 
+	amr = am --resolved
 	amc = am --continue
 	ama = am --abort
+	ams = am --skip
+
+	rec = rebase --continue
+	rea = rebase --abort
+	res = rebase --skip
 
 	mt = mergetool
 
@@ -60,8 +68,10 @@
 	ignorewhitespace = change
 	whitespace = nowarn
 
-[status]
-	color = true
+[color]
+	interactive = true
+	branch = true
+	status = true
 
 [pager]
 	diff = true
