@@ -10,6 +10,10 @@
 " Thanks to perl.vim authors, and to Reimer Behrends. :-) (MN)
 " ----------------------------------------------------------------------------
 
+set expandtab
+set tabstop=2
+set shiftwidth=2
+
 if exists("b:current_syntax")
   finish
 endif
