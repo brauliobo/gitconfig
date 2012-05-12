@@ -1,4 +1,5 @@
 #!/bin/bash
 
-. ~/.commonshmine.sh
+SOURCE="${BASH_SOURCE[0]}"
 
+. ~/.commonshmine.sh
