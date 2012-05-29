@@ -1,6 +1,6 @@
 " Vim filetype plugin
 " Language:	Cucumber
-" Maintainer:	Tim Pope <vimNOSPAM@tpope.org>
+" Maintainer:	Tim Pope <vimNOSPAM@tpope.info>
 
 " Only do this when not done yet for this buffer
 if (exists("b:did_ftplugin"))
@@ -25,7 +25,7 @@ if !exists("g:no_plugin_maps") && !exists("g:no_cucumber_maps")
 endif
 
 function! s:jump(command,count)
-  let steps = s:steps('.')
+  let steps = s:steps(getline('.'))
   if len(steps) == 0 || len(steps) < a:count
     return 'echoerr "No matching step found"'
   elseif len(steps) > 1 && !a:count
@@ -37,7 +37,7 @@ function! s:jump(command,count)
 endfunction
 
 function! s:allsteps()
-  let step_pattern = '\C^\s*\K\k*\>\s*\zs\S.\{-\}\ze\s*\%(do\|{\)\s*\%(|[^|]*|\s*\)\=\%($\|#\)'
+  let step_pattern = '\C^\s*\%(Giv\|[WT]h\)en\>\s*\zs.\{-\}\ze\s*\%(do\|{\)\s*\%(|[A-Za-z0-9_,() *]*|\s*\)\=$'
   let steps = []
   for file in split(glob(b:cucumber_root.'/**/*.rb'),"\n")
     let lines = readfile(file)
@@ -53,12 +53,8 @@ function! s:allsteps()
   return steps
 endfunction
 
-function! s:steps(lnum)
-  let c = indent(a:lnum) + 1
-  while synIDattr(synID(a:lnum,c,1),'name') !~# '^$\|Region$'
-    let c = c + 1
-  endwhile
-  let step = matchstr(getline(a:lnum)[c-1 : -1],'^\s*\zs.\{-\}\ze\s*$')
+function! s:steps(step)
+  let step = matchstr(a:step,'^\s*\k*\s*\zs.\{-\}\s*$')
   return filter(s:allsteps(),'s:stepmatch(v:val[3],step)')
 endfunction
 
@@ -108,12 +104,10 @@ function! CucumberComplete(findstart,base) abort
         let steps += [step[3][1:-2]]
       elseif step[3] =~ '^/\^.*\$/$'
         let pattern = step[3][2:-3]
-        let pattern = substitute(pattern,'\C^(?:|I )','I ','')
         let pattern = s:bsub(pattern,'\\[Sw]','w')
         let pattern = s:bsub(pattern,'\\d','1')
         let pattern = s:bsub(pattern,'\\[sWD]',' ')
-        let pattern = s:bsub(pattern,'\[\^\\\="\]','_')
-        let pattern = s:bsub(pattern,'[[:alnum:]. _-][?*]?\=','')
+        let pattern = s:bsub(pattern,'[[:alnum:]. -][?*]?\=','')
         let pattern = s:bsub(pattern,'\[\([^^]\).\{-\}\]','\1')
         let pattern = s:bsub(pattern,'+?\=','')
         let pattern = s:bsub(pattern,'(\([[:alnum:]. -]\{-\}\))','\1')
