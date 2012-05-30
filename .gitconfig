@@ -37,10 +37,10 @@
 	filech = log -p --name-only --color
     head = !git l -1
     h = !git head
-    hp = "!source ~/.githelpers && show_git_head"
+    hp = !source ~/.githelpers && show_git_head
     r = !git l -20
     ra = !git r --all
-    l = "!source ~/.githelpers && pretty_git_log"
+    l = !source ~/.githelpers && pretty_git_log
 	lg = log --graph --pretty=format:'%Cred%h%Creset %s %Cgreen(%cr) %Cblue%an <%ae>%Creset' --abbrev-commit --date=relative
 	lp = log -p --color
     la = !git l --all
@@ -67,6 +67,8 @@
 	res = rebase --skip
 
 	mt = mergetool
+
+    unmerged = !git ls-files --unmerged | cut -f2 | uniq
 
 	b = branch
 	ba = branch -a
