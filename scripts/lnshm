@@ -1,0 +1,9 @@
+#!/bin/bash
+
+for FILE in $@; do
+  mkdir -p "/dev/shm/$USER"
+  SHMFILE="/dev/shm/$USER/$RANDOM"
+
+  mv $FILE $SHMFILE
+  ln -sf $SHMFILE $FILE
+done

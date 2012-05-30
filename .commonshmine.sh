@@ -17,5 +17,5 @@ rvm 1.8.7@noosfero
 
 # add script dir to $PATH
 while [ -h "$SOURCE" ] ; do SOURCE="$(readlink "$SOURCE")"; done
-DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )/scripts"
 export PATH=$PATH:$DIR
