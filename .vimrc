@@ -111,7 +111,7 @@ imap <c-l> <space>=><space>
 " Can't be bothered to understand ESC vs <c-c> in insert mode
 imap <c-c> <esc>
 " Clear the search buffer when hitting return
-:nnoremap <CR> :nohlsearch<cr>
+" :nnoremap <CR> :nohlsearch<cr>
 nnoremap <leader><leader> <c-^>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
