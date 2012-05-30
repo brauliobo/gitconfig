@@ -69,6 +69,8 @@
 	mt = mergetool
 
     unmerged = !git ls-files --unmerged | cut -f2 | uniq
+    vim-unmerged = !vim `git unmerged`
+    resolve-unmerged = !git add `git unmerged`
 
 	b = branch
 	ba = branch -a
