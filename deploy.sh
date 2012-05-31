@@ -22,7 +22,7 @@ fi
 # Add autoload configs code
 grep zshmine.sh $HOME/.zshrc > /dev/null
 if [[ 0 -ne $? ]]; then
-	run echo '. $HOME/.zshmine.sh' >> ~/.zshrc
+    run echo '. $HOME/.zshmine.sh' >> ~/.zshrc
 fi
 grep bashmine.sh $HOME/.bashrc > /dev/null
 if [[ 0 -ne $? ]]; then

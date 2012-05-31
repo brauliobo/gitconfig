@@ -15,7 +15,7 @@ PATH=$PATH:$HOME/.rvm/bin
 # default rvm gemset
 rvm 1.8.7@noosfero
 
-# add script dir to $PATH
+# add scripts dir to $PATH
 while [ -h "$SOURCE" ] ; do SOURCE="$(readlink "$SOURCE")"; done
-DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )/scripts"
+DIR="$( cd -P "$( dirname "$SOURCE" )" && git root )/scripts"                                                                                            
 export PATH=$PATH:$DIR

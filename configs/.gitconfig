@@ -9,6 +9,8 @@
 	smtpserverport = 587
 
 [alias]
+    root = rev-parse --show-toplevel
+
 	co = checkout
 
 	ci = commit --cleanup=default
