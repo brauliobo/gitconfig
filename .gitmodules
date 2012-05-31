@@ -1,0 +1,3 @@
+[submodule "configs/.vim/bundle/vim-ruby"]
+	path = configs/.vim/bundle/vim-ruby
+	url = https://github.com/vim-ruby/vim-ruby.git
