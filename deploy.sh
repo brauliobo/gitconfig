@@ -1,9 +1,9 @@
-#!/bin/bash
+#!/bin/bash -x
 
 # Link configurations files and scripts
-FILES=".commonshmine.sh .bashmine.sh .zshmine.sh .gitconfig .githelpers .gemrc .rvmrc .vim .vimrc .irbrc .screenrc"
-for f in $FILES; do
-	ln -s $PWD/$f $HOME/$f
+for f in `ls -A configs`; do
+    rm $HOME/$f
+	ln -s $PWD/configs/$f $HOME/$f
 done
 
 # Install RVM
