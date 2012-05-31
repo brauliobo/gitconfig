@@ -1,17 +1,12 @@
 [user]
 	email = brauliobo@gmail.com
 	name = Braulio Bhavamitra
-	#name = Alan Freihof Tygel
-	#email = alantygel@gmail.com
 
 [sendemail]
 	smtpencryption = tls
 	smtpserver = smtp.gmail.com
 	smtpuser = brauliobo@gmail.com
 	smtpserverport = 587
-
-[core]
-	pager = less -iRS
 
 [alias]
 	co = checkout
@@ -75,6 +70,8 @@
 	b = branch
 	ba = branch -a
 
+    sm = submodule
+
 [apply]
 	ignorewhitespace = change
 	whitespace = nowarn
@@ -84,9 +81,13 @@
 	branch = true
 	status = true
 
+[core]
+	pager = less -iRS
+
 [pager]
 	diff = true
 	status = true
 	show-branch = true
+
 [mergetool "vimdiff3"]
 	cmd = vim -u ~/.vimrc -f -d -c \"wincmd J\" \"$MERGED\" \"$LOCAL\" \"$BASE\" \"$REMOTE\"
