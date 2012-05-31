@@ -1,5 +1,1 @@
-#!/bin/bash
-
-SOURCE="${BASH_SOURCE[0]}"
-
-. ~/.commonshmine.sh
+configs/.bashmine.sh

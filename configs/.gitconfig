@@ -1,0 +1,93 @@
+[user]
+	email = brauliobo@gmail.com
+	name = Braulio Bhavamitra
+
+[sendemail]
+	smtpencryption = tls
+	smtpserver = smtp.gmail.com
+	smtpuser = brauliobo@gmail.com
+	smtpserverport = 587
+
+[alias]
+	co = checkout
+
+	ci = commit --cleanup=default
+	cam = commit --cleanup=default --amend
+
+	cundo = reset HEAD^1
+	cundoh = reset HEAD^1 --hard
+	dall = reset --hard HEAD
+	unstage = reset HEAD
+
+	s = show --color
+	sno = show --color --name-only
+
+	d = diff --color
+	ds = diff --color --staged
+	dsno = diff --color --staged --name-only
+	dno = diff --color --name-only
+
+	st = status
+
+	filech = log -p --name-only --color
+    head = !git l -1
+    h = !git head
+    hp = !source ~/.githelpers && show_git_head
+    r = !git l -20
+    ra = !git r --all
+    l = !source ~/.githelpers && pretty_git_log
+	lg = log --graph --pretty=format:'%Cred%h%Creset %s %Cgreen(%cr) %Cblue%an <%ae>%Creset' --abbrev-commit --date=relative
+	lp = log -p --color
+    la = !git l --all
+
+	pg = diff
+	pgs = diff --staged
+	pa = apply
+
+	ash = stash
+	ashy = stash apply
+
+	chp = cherry-pick
+
+	a = add
+	ap = add -p
+
+	amr = am --resolved
+	amc = am --continue
+	ama = am --abort
+	ams = am --skip
+
+	rec = rebase --continue
+	rea = rebase --abort
+	res = rebase --skip
+
+	mt = mergetool
+
+    unmerged = !git ls-files --unmerged | cut -f2 | uniq
+    vim-unmerged = !vim `git unmerged`
+    resolve-unmerged = !git add `git unmerged`
+
+	b = branch
+	ba = branch -a
+
+    sm = submodule
+
+[apply]
+	ignorewhitespace = change
+	whitespace = nowarn
+
+[color]
+	interactive = true
+	branch = true
+	status = true
+
+[core]
+	pager = less -iRS
+
+[pager]
+	diff = true
+	status = true
+	show-branch = true
+
+[mergetool "vimdiff3"]
+	cmd = vim -u ~/.vimrc -f -d -c \"wincmd J\" \"$MERGED\" \"$LOCAL\" \"$BASE\" \"$REMOTE\"
