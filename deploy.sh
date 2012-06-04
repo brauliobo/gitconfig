@@ -10,7 +10,7 @@ for f in `ls -A configs`; do
 	run ln -s $PWD/configs/$f $HOME/$f
 done
 
-run git submodule sync
+run git sm update --init
 
 # Install RVM
 if [[ ! -x $HOME/.rvm ]]; then
