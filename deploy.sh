@@ -4,12 +4,13 @@ function run {
 	set -x; $@ ; { set +x; } 2>/dev/null
 }
 
-# Link configurations files and scripts
+# Link configurations files not overwriting existing regular files
 for f in `ls -A configs`; do
     [[ -L $HOME/$f ]] && rm $HOME/$f
 	run ln -s $PWD/configs/$f $HOME/$f
 done
 
+# Update submodules
 run git sm update --init
 
 # Install RVM

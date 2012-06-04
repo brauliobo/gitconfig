@@ -3,6 +3,8 @@
 " This is Gary Bernhardt's .vimrc file
 " vim:set ts=2 sts=2 sw=2 expandtab:
 
+call pathogen#infect()
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " BASIC EDITING CONFIGURATION
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
