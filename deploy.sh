@@ -10,6 +10,8 @@ for f in `ls -A configs`; do
 	run ln -s $PWD/configs/$f $HOME/$f
 done
 
+run git submodule sync
+
 # Install RVM
 if [[ ! -x $HOME/.rvm ]]; then
 	run bash -s stable < <(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer )
@@ -20,11 +22,11 @@ if [[ ! -x $HOME/.oh-my-zsh ]]; then
 fi
 
 # Add autoload configs code
-grep zshmine.sh $HOME/.zshrc > /dev/null
-if [[ 0 -ne $? ]]; then
+
+if ! grep zshmine.sh $HOME/.zshrc > /dev/null; then
     run echo '. $HOME/.zshmine.sh' >> ~/.zshrc
 fi
-grep bashmine.sh $HOME/.bashrc > /dev/null
-if [[ 0 -ne $? ]]; then
+
+if ! grep bashmine.sh $HOME/.bashrc > /dev/null; then
 	run echo '. $HOME/.bashmine.sh' >> ~/.bashrc
 fi
