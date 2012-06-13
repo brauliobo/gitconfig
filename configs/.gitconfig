@@ -29,7 +29,16 @@
 	dsno = diff --color --staged --name-only
 	dno = diff --color --name-only
 
+    f = fetch
+    fa = fetch --all
+
+    m = merge
+    unm = reset --merge
+
 	st = status
+
+    ig = update-index --assume-unchanged
+    ignore = update-index --assume-unchanged
 
 	filech = log -p --name-only --color
     head = !git l -1
