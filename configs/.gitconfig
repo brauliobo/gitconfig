@@ -35,10 +35,15 @@
     m = merge
     unm = reset --merge
 
+    ps = push
+
+    pl = pull
+
 	st = status
 
     ig = update-index --assume-unchanged
     ignore = update-index --assume-unchanged
+    sig = !git ls-files -v | grep "^[[:lower:]]"
 
 	filech = log -p --name-only --color
     head = !git l -1
