@@ -30,4 +30,5 @@ fi
 
 if ! grep bashmine.sh $HOME/.bashrc > /dev/null; then
 	run echo '. $HOME/.bashmine.sh' >> ~/.bashrc
+	run echo '. $HOME/.bashmine.sh' >> ~/.bash_profile
 fi
