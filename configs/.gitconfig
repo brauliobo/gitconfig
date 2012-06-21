@@ -78,6 +78,8 @@
     ama = am --abort
     ams = am --skip
 
+    fm = format-patch
+
     rec = rebase --continue
     rea = rebase --abort
     res = rebase --skip
