@@ -1,33 +1,34 @@
 [user]
-	email = brauliobo@gmail.com
-	name = Braulio Bhavamitra
+    email = brauliobo@gmail.com
+    name = Braulio Bhavamitra
 
 [sendemail]
-	smtpencryption = tls
-	smtpserver = smtp.gmail.com
-	smtpuser = brauliobo@gmail.com
-	smtpserverport = 587
+    smtpencryption = tls
+    smtpserver = smtp.gmail.com
+    smtpuser = brauliobo@gmail.com
+    smtpserverport = 587
 
 [alias]
     root = rev-parse --show-toplevel
+    cdroot = !cd `git root`
 
-	co = checkout
+    co = checkout
 
-	ci = commit --cleanup=default
-	cam = commit --cleanup=default --amend
+    ci = commit --cleanup=default
+    cam = commit --cleanup=default --amend
 
-	cundo = reset HEAD^1
-	cundoh = reset HEAD^1 --hard
-	dall = reset --hard HEAD
-	unstage = reset HEAD
+    cundo = reset HEAD^1
+    cundoh = reset HEAD^1 --hard
+    dall = reset --hard HEAD
+    unstage = reset HEAD
 
-	s = show --color
-	sno = show --color --name-only
+    s = show --color
+    sno = show --color --name-only
 
-	d = diff --color
-	ds = diff --color --staged
-	dsno = diff --color --staged --name-only
-	dno = diff --color --name-only
+    d = diff --color
+    ds = diff --color --staged
+    dsno = diff --color --staged --name-only
+    dno = diff --color --name-only
 
     f = fetch
     fa = fetch --all
@@ -39,7 +40,7 @@
 
     pl = pull
 
-	st = status
+    st = status
 
     ig = update-index --assume-unchanged
     uig = update-index --no-assume-unchanged
@@ -47,12 +48,12 @@
     sig = !git ls-files -v | grep "^[[:lower:]]"
 
     l = !source ~/.githelpers && pretty_git_log
-	lg = log --graph --pretty=format:'%Cred%h%Creset %s %Cgreen(%cr) %Cblue%an <%ae>%Creset' --abbrev-commit --date=relative
+    lg = log --graph --pretty=format:'%Cred%h%Creset %s %Cgreen(%cr) %Cblue%an <%ae>%Creset' --abbrev-commit --date=relative
     lgp = !git lg -p
-	lp = log -p --color
+    lp = log -p --color
     la = !git l --all
 
-	filech = log -p --name-only --color
+    filech = log -p --name-only --color
 
     head = !git l -1
     h = !git head
@@ -60,55 +61,55 @@
     r = !git l -20
     ra = !git r --all
 
-	pg = diff
-	pgs = diff --staged
-	pa = apply
+    pg = diff
+    pgs = diff --staged
+    pa = apply
 
-	ash = stash
-	ashy = stash apply
+    ash = stash
+    ashy = stash apply
 
-	chp = cherry-pick
+    chp = cherry-pick
 
-	a = add
-	ap = add -p
+    a = add
+    ap = add -p
 
-	amr = am --resolved
-	amc = am --continue
-	ama = am --abort
-	ams = am --skip
+    amr = am --resolved
+    amc = am --continue
+    ama = am --abort
+    ams = am --skip
 
-	rec = rebase --continue
-	rea = rebase --abort
-	res = rebase --skip
+    rec = rebase --continue
+    rea = rebase --abort
+    res = rebase --skip
 
-	mt = mergetool
+    mt = mergetool
 
     unmerged = !git ls-files --unmerged | cut -f2 | uniq
     vim-unmerged = !vim `git unmerged`
     resolve-unmerged = !git add `git unmerged`
 
-	b = branch
-	ba = branch -a
+    b = branch
+    ba = branch -a
     contains = branch --contains
 
     sm = submodule
 
 [apply]
-	ignorewhitespace = change
-	whitespace = nowarn
+    ignorewhitespace = change
+    whitespace = nowarn
 
 [color]
-	interactive = true
-	branch = true
-	status = true
+    interactive = true
+    branch = true
+    status = true
 
 [core]
-	pager = less -iRS
+    pager = less -iRS
 
 [pager]
-	diff = true
-	status = true
-	show-branch = true
+    diff = true
+    status = true
+    show-branch = true
 
 [mergetool "vimdiff3"]
-	cmd = vim -u ~/.vimrc -f -d -c \"wincmd J\" \"$MERGED\" \"$LOCAL\" \"$BASE\" \"$REMOTE\"
+    cmd = vim -u ~/.vimrc -f -d -c \"wincmd J\" \"$MERGED\" \"$LOCAL\" \"$BASE\" \"$REMOTE\"
