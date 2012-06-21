@@ -397,13 +397,21 @@ set tags=./tags;/home,$HOME/.vim/extratags
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Syntax highlighting
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 " Doxygen syntax
 " let load_doxygen_syntax		= 1
 
 " Python highlight
 let python_highlight_exceptions = 1
 let python_highlight_indent_errors = 1
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" SAVE NEW FILE WITH DIRECTORIES CREATION
+" from http://stackoverflow.com/questions/4292733/vim-creating-parent-directories-on-save
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+augroup BWCCreateDir
+  au!
+  autocmd BufWritePre * if expand("<afile>")!~#'^\w\+:/' && !isdirectory(expand("%:h")) | execute "silent! !mkdir -p ".shellescape(expand('%:h'), 1) | redraw! | endif
+augroup END
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " OmniCppComplete

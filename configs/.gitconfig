@@ -10,7 +10,7 @@
 
 [alias]
     root = rev-parse --show-toplevel
-    cdroot = !cd `git root`
+    #cdroot = !cd `git root`
 
     co = checkout
 

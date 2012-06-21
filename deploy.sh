@@ -11,7 +11,7 @@ for f in `ls -A configs`; do
 done
 
 # Update submodules
-run git sm update --init
+run git submodule update --init
 
 # Install RVM
 if [[ ! -x $HOME/.rvm ]]; then
