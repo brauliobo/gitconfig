@@ -13,6 +13,7 @@
     #cdroot = !cd `git root`
 
     co = checkout
+    cob = checkout -b
 
     ci = commit --cleanup=default
     cam = commit --cleanup=default --amend
@@ -95,6 +96,8 @@
     contains = branch --contains
 
     sm = submodule
+    smu = submodule update
+    smui = submodule update --init
 
 [apply]
     ignorewhitespace = change
