@@ -104,6 +104,7 @@
     sm = submodule
     smu = submodule update
     smui = submodule update --init
+    sms = submodule sync
 
 [apply]
     ignorewhitespace = change
