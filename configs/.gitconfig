@@ -90,6 +90,12 @@
     vim-unmerged = !vim `git unmerged`
     resolve-unmerged = !git add `git unmerged`
 
+    untracked = ls-files --other --exclude-standard
+    vim-untracked = !vim `git untracked`
+    add-untracked = !git add `git untracked`
+    gitignore-untracked = !git untracked >> .gitignore
+    ig-untracked = !git ignore `git untracked`
+
     b = branch
     ba = branch -a
     contains = branch --contains
