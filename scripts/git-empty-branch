@@ -1,0 +1,7 @@
+#!/bin/bash
+
+git symbolic-ref HEAD refs/heads/null
+rm .git/index
+touch null
+git add null
+git commit null -m 'initial null commit'
