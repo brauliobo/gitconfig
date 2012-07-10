@@ -380,7 +380,7 @@ set autowrite			" Salvação divina
 set completeopt=menu		" Modo de completação automática
 set cscopequickfix=s-,c-,d-,i-,t-,e-	" Resultados do cscope no quickfix
 set fillchars=vert:\|		" Remove '-' das linhas dobradas (folded)
-set grepprg=ack-grep		" Better grep!
+set grepprg=ack-grep\ --sort-files		" Better grep!
 set guioptions=a
 set listchars+=precedes:<,extends:>
 " set mouse=ai			" Habilita o mouse

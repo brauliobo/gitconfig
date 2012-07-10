@@ -2,7 +2,7 @@ alias vi="vim"
 alias vim='TERM="xterm-256color" vim'
 export EDITOR=vim                                                                                                                                                                               
 
-alias "ack-grep"="ack-grep -a"
+alias "ack-grep"="ack-grep -a --sort-files"
 
 alias "g"="git"
 alias "git-new-workdir"="/usr/share/doc/git/contrib/workdir/git-new-workdir"
