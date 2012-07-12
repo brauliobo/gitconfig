@@ -451,21 +451,53 @@ function! SimpleComplete()
 endfunction
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Find Nearest
+" Source: http://vim.1045645.n5.nabble.com/find-closest-occurrence-in-both-directions-td1183340.html
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! FindNearest(pattern)
+  let @/=a:pattern
+  let b:prev = search(a:pattern, 'bncW')
+  if b:prev
+    let b:next = search(a:pattern, 'ncW')
+    if b:next
+      let b:cur = line('.')
+      if b:cur - b:prev == b:next - b:cur
+        " on a match
+      elseif b:cur - b:prev < b:next - b:cur
+        ?
+      else
+        /
+      endif
+    else
+      ?
+    endif
+  else
+    /
+  endif
+endfunction
+
+command! -nargs=1 FN call FindNearest(<q-args>)
+nmap \ :FN<space>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Mappings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nmap <leader>ew :e <C-R>=expand("%:p:h")."/"<CR>
 nmap <leader>es :sp <C-R>=expand("%:p:h")."/"<CR>
 nmap <leader>ev :vsp <C-R>=expand("%:p:h")."/"<CR>
 
-" Acesso mais veloz ao command mode
-nmap ç :
-vmap ç :
-nmap Ç :!
-nmap 0 ^	" Faz com que o zero retorne ao início da linha seguindo a edentação
-nmap <F2> :set hls!<CR>    " Habilita/desabilita hls
-nmap <F3> <C-W>} " Preview da definição da tag atual
-nmap <F8> :VCSCommit<CR> " Commit fast!
-nmap <C-F6> :call UpdateTags('.')<CR> " Remonta o ctags
-" <C-P> melhorado!
+" Select between conflict blocks
+nmap <leader>so \<<<<<<<<CR>dd/=======<CR>V/>>>>>>><CR>d " select ours
+nmap <leader>st \<<<<<<<<CR>V/=======<CR>d/>>>>>>><CR>dd " select theirs
+
+nmap 0 ^	" Shortcut to go to the begginning of line
+
+nmap <F2> :set hls!<CR>    " Enable/disable search hightlight
+nmap <F3> <C-W>} " Preview of current tag definition
+nmap <F8> :VCSCommit<CR> " Fast commit!
+nmap <C-F6> :call UpdateTags('.')<CR> " Rebuild ctags
+
+" Better <C-P>!
 inoremap <expr> <C-Space> SimpleComplete()
 imap <C-@> <C-Space>
+
