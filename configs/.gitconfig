@@ -58,8 +58,7 @@
     lgp = !git lg -p
     lp = log -p --color
     la = !git l --all
-
-    filech = log -p --name-only --color
+    lf = log -p --name-only --color
 
     head = !git l -1
     h = !git head
