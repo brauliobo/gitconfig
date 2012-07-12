@@ -1,7 +1,9 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" CREDITS
+"  - Ian Liu
+"  - Gary Bernhardt
+"  - Braulio Bhavamitra
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" This is Gary Bernhardt's .vimrc file
-" vim:set ts=2 sts=2 sw=2 expandtab:
 
 call pathogen#infect()
 
@@ -57,6 +59,23 @@ filetype plugin indent on
 " make tab completion for files/buffers act like bash
 set wildmenu
 let mapleader=","
+
+set autowrite " Automatic backups
+set completeopt=menu " Automatic completion mode
+set cscopequickfix=s-,c-,d-,i-,t-,e- " Results from cscope at quickfix
+set grepprg=ack-grep\ --sort-files " Better grep!
+set guioptions=a
+set listchars+=precedes:<,extends:>
+set nowrap
+set sidescroll=5
+set smartindent " Autoindent
+set spelllang=en_us " Default spell
+set tags=./tags;/home,$HOME/.vim/extratags
+
+" set mouse=ai " Enable mouse
+" set foldcolumn=2		" Show buttons to expand/collapse foldings
+" set number			" Sets the line numbering
+" set nobackup			" Do not save backups
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CUSTOM AUTOCMDS
@@ -369,30 +388,6 @@ command! OpenChangedFiles :call OpenChangedFiles()
 " Insert the current time
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 command! InsertTime :normal a<c-r>=strftime('%F %H:%M:%S.0 %z')<cr>
-
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Ian Liu's vimrc
-
-set autowrite			" Salvação divina
-set completeopt=menu		" Modo de completação automática
-set cscopequickfix=s-,c-,d-,i-,t-,e-	" Resultados do cscope no quickfix
-set fillchars=vert:\|		" Remove '-' das linhas dobradas (folded)
-set grepprg=ack-grep\ --sort-files		" Better grep!
-set guioptions=a
-set listchars+=precedes:<,extends:>
-" set mouse=ai			" Habilita o mouse
-set nowrap
-set sidescroll=5
-set smartindent			" Auto-endenta
-set spelllang=en_us		" Define o dicionário padrão
-set tags=./tags;/home,$HOME/.vim/extratags
-
-" set foldcolumn=2		" Mostra botões para expandir/fechar as dobras
-" set number			" Sets the line numbering
-" set nobackup			" Não salva arquivos ~
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Syntax highlighting
