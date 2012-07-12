@@ -489,12 +489,12 @@ nmap <leader>ev :vsp <C-R>=expand("%:p:h")."/"<CR>
 " Select between conflict blocks
 nmap <leader>so \<<<<<<<<CR>dd/=======<CR>V/>>>>>>><CR>d " select ours
 nmap <leader>st \<<<<<<<<CR>V/=======<CR>d/>>>>>>><CR>dd " select theirs
+nmap <leader>fc /<<<<<<<<CR> " find next conflict
 
 nmap 0 ^	" Shortcut to go to the begginning of line
 
 nmap <F2> :set hls!<CR>    " Enable/disable search hightlight
 nmap <F3> <C-W>} " Preview of current tag definition
-nmap <F8> :VCSCommit<CR> " Fast commit!
 nmap <C-F6> :call UpdateTags('.')<CR> " Rebuild ctags
 
 " Better <C-P>!
