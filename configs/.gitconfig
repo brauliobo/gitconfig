@@ -40,6 +40,7 @@
     ps = push
 
     pl = pull
+    plr = pull --rebase
 
     st = status
 
@@ -104,6 +105,11 @@
     b = branch
     ba = branch -a
     contains = branch --contains
+
+    rem = remote
+    rema = remote add
+    remr = remote rm
+    remotes = remote -v
 
     sm = submodule
     smu = submodule update
