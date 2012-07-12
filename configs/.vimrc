@@ -486,10 +486,13 @@ nmap <leader>ew :e <C-R>=expand("%:p:h")."/"<CR>
 nmap <leader>es :sp <C-R>=expand("%:p:h")."/"<CR>
 nmap <leader>ev :vsp <C-R>=expand("%:p:h")."/"<CR>
 
-" Select between conflict blocks
-nmap <leader>so \<<<<<<<<CR>dd/=======<CR>V/>>>>>>><CR>d " select ours
-nmap <leader>st \<<<<<<<<CR>V/=======<CR>d/>>>>>>><CR>dd " select theirs
-nmap <leader>fc /<<<<<<<<CR> " find next conflict
+""" Select between conflict blocks
+" select ours
+nmap <leader>so \<<<<<<<<CR>dd/=======<CR>V/>>>>>>><CR>d
+" select theirs
+nmap <leader>st \<<<<<<<<CR>V/=======<CR>dk/>>>>>>><CR>dd
+" find next conflict
+nmap <leader>fc /<<<<<<<<CR>
 
 nmap 0 ^	" Shortcut to go to the begginning of line
 
