@@ -46,14 +46,20 @@
 
     st = status
 
+    unmerged = !git ls-files --unmerged | cut -f2 | uniq
+    untracked = ls-files --other --exclude-standard
+    staged = ls-files --staged
+    modified = ls-files --modified
+    deleted = ls-files --deleted
+    gitignored = ls-files -o -i --exclude-standard
+    sig = !git ls-files -v | grep "^[[:lower:]]"
+
     ig = update-index --assume-unchanged
     uig = update-index --no-assume-unchanged
     ignore = update-index --assume-unchanged
-    sig = !git ls-files -v | grep "^[[:lower:]]"
     ignored = !git sig
 
     gitignore = !cd `git root` && echo >> .gitignore
-    gitignored = ls-files -o -i --exclude-standard
 
     l = !source ~/.githelpers && pretty_git_log
     lg = log --graph --pretty=format:'%Cred%h%Creset %s %Cgreen(%cr) %Cblue%an <%ae>%Creset' --abbrev-commit --date=relative
@@ -94,11 +100,9 @@
 
     mt = mergetool
 
-    unmerged = !git ls-files --unmerged | cut -f2 | uniq
     vim-unmerged = !vim `git unmerged`
     resolve-unmerged = !git add `git unmerged`
 
-    untracked = ls-files --other --exclude-standard
     vim-untracked = !vim `git untracked`
     add-untracked = !git add `git untracked`
     gitignore-untracked = !git gitignore `git untracked`
