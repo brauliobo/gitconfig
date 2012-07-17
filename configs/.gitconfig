@@ -100,10 +100,12 @@
 
     mt = mergetool
 
-    vim-unmerged = !vim `git unmerged`
-    resolve-unmerged = !git add `git unmerged`
+    vm = !vim `git unmerged`
+    vmo = !vim `git modified`
+    vt = !vim `git untracked`
+    vim-unmerged = !git vm # deprecated
 
-    vim-untracked = !vim `git untracked`
+    resolve-unmerged = !git add `git unmerged`
     add-untracked = !git add `git untracked`
     gitignore-untracked = !git gitignore `git untracked`
     ig-untracked = !git ignore `git untracked`
