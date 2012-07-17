@@ -1,4 +1,5 @@
-alias vi="vim"                                                                                                                                                                                  
+# VIM
+alias vi='TERM="xterm-256color" vim'                                                                                                                                                                                  
 alias vim='TERM="xterm-256color" vim'
 export EDITOR=vim                                                                                                                                                                               
 
@@ -11,8 +12,7 @@ alias "git-new-workdir"="/usr/share/doc/git/contrib/workdir/git-new-workdir"
 # RVM
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" 
 PATH=$PATH:$HOME/.rvm/bin
-
-# default rvm gemset
+# default gemset
 rvm 1.8.7@noosfero
 
 # add scripts dir to $PATH
