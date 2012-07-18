@@ -124,6 +124,8 @@
     smui = submodule update --init
     sms = submodule sync
 
+    bl = blame
+
 [apply]
     ignorewhitespace = change
     whitespace = nowarn
