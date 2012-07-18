@@ -31,7 +31,7 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(battery screen git command-not-found deb
-    rvm ruby rake gem bundler rails cap)
+    rvm ruby rake gem bundler rails rails3 cap)
 
 source $ZSH/oh-my-zsh.sh
 
