@@ -1,4 +1,4 @@
-1) Install wget, curl and zsh
+1) Install wget, curl, zsh, vim and ack-grep
 2) Run deploy.sh (your existings configs won't be overwritten)
 3) Change to ZSH: chsh -s /bin/zsh
 4) Change ~/.gitconfig with your name/email and commit changes
