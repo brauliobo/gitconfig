@@ -1,1 +1,5 @@
 rvm_auto_reload_flag=1
+
+# in root user, install only for it (https://rvm.io/support/faq/#root)
+rvm_prefix="$HOME"
+rvm_path="$HOME/.rvm"
