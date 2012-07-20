@@ -120,23 +120,6 @@ augroup END
 :set statusline=%<%f\ (%{&ft})\ %-4(%m%)%=%-19(%3l,%02c%03V%)
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" MISC KEY MAPS
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <leader>y "*y
-" Move around splits with <c-hjkl>
-nnoremap <c-j> <c-w>j
-nnoremap <c-k> <c-w>k
-nnoremap <c-h> <c-w>h
-nnoremap <c-l> <c-w>l
-" Insert a hash rocket with <c-l>
-imap <c-l> <space>=><space>
-" Can't be bothered to understand ESC vs <c-c> in insert mode
-imap <c-c> <esc>
-" Clear the search buffer when hitting return
-" :nnoremap <CR> :nohlsearch<cr>
-nnoremap <leader><leader> <c-^>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " MULTIPURPOSE TAB KEY
 " Indent if we're at the beginning of a line. Else, do completion.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -503,6 +486,31 @@ autocmd BufWritePre *.{rb,erb,rhtml,c,cpp,h,sh} :%s/\s\+$//e
 "autocmd FileType c,cpp,ruby,java,php,perl autocmd BufWritePre <buffer> :%s/\s\+$//e
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" KEY MAPS
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""" Clipboard copy/paste
+map <leader>yy "*yy
+map <leader>pp "*pp
+vnoremap <leader>y "*y
+vnoremap <leader>p "*p
+
+""" Move around splits with <c-hjkl>
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-h> <c-w>h
+nnoremap <c-l> <c-w>l
+
+""" Insert a hash rocket with <c-l>
+imap <c-l> <space>=><space>
+
+""" Can't be bothered to understand ESC vs <c-c> in insert mode
+imap <c-c> <esc>
+
+""" Fast file switching
+nnoremap <leader><leader> <c-^>
+
+""" BufferExplorer mappings
 nmap <leader>ew :e <C-R>=expand("%:p:h")."/"<CR>
 nmap <leader>es :sp <C-R>=expand("%:p:h")."/"<CR>
 nmap <leader>ev :vsp <C-R>=expand("%:p:h")."/"<CR>
@@ -515,13 +523,18 @@ nmap <leader>st \<<<<<<<<CR>V/=======<CR>dk/>>>>>>><CR>dd
 " find next conflict
 nmap <leader>fc /<<<<<<<<CR>
 
-nmap 0 ^	" Shortcut to go to the begginning of line
+""" Shortcut to go to the begginning of line
+nmap 0 ^	
 
+""" Search highlight
 nmap <F2> :set hls!<CR>    " Enable/disable search hightlight
+" Clear the search buffer when hitting return
+" :nnoremap <CR> :nohlsearch<cr>
+
+""" Ctags
 nmap <F3> <C-W>} " Preview of current tag definition
 nmap <C-F6> :call UpdateTags('.')<CR> " Rebuild ctags
 
-" Better <C-P>!
+""" Better <C-P>!
 inoremap <expr> <C-Space> SimpleComplete()
 imap <C-@> <C-Space>
-
