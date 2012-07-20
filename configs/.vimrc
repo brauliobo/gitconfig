@@ -77,6 +77,10 @@ set tags=./tags;/home,$HOME/.vim/extratags
 " set number			" Sets the line numbering
 " set nobackup			" Do not save backups
 
+" remove trailing spaces (from http://vim.wikia.com/wiki/Remove_unwanted_spaces#Automatically_removing_all_trailing_whitespace)
+autocmd BufWritePre *.{rb,erb,rhtml,c,cpp,h,sh} :%s/\s\+$//e
+" autocmd FileType c,cpp,ruby,java,php,perl autocmd BufWritePre <buffer> :%s/\s\+$//e
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CUSTOM AUTOCMDS
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
