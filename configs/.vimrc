@@ -77,9 +77,6 @@ set tags=./tags;/home,$HOME/.vim/extratags
 " set number			" Sets the line numbering
 " set nobackup			" Do not save backups
 
-" remove trailing spaces (from http://vim.wikia.com/wiki/Remove_unwanted_spaces#Automatically_removing_all_trailing_whitespace)
-autocmd BufWritePre *.{rb,erb,rhtml,c,cpp,h,sh} :%s/\s\+$//e
-" autocmd FileType c,cpp,ruby,java,php,perl autocmd BufWritePre <buffer> :%s/\s\+$//e
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " CUSTOM AUTOCMDS
@@ -98,7 +95,7 @@ augroup vimrcEx
   autocmd FileType ruby,haml,eruby,yaml,html,javascript,sass,cucumber set ai sw=2 sts=2 et
   autocmd FileType python set sw=4 sts=4 et
 
-  autocmd! BufRead,BufNewFile *.sass setfiletype sass 
+  autocmd! BufRead,BufNewFile *.sass setfiletype sass
 
   autocmd BufRead *.mkd  set ai formatoptions=tcroqn2 comments=n:&gt;
   autocmd BufRead *.markdown  set ai formatoptions=tcroqn2 comments=n:&gt;
@@ -479,7 +476,32 @@ command! -nargs=1 FN call FindNearest(<q-args>)
 nmap \ :FN<space>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Mappings
+" REMOVE TRAILING SPACES
+" Commands and shortcuts for showing/removing trailing spaces
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function ShowTrailingSpaces(...)
+    let @/='\v(\s+$)|( +\ze\t)'
+    let oldhlsearch=&hlsearch
+    set hls!
+    return oldhlsearch
+endfunction
+
+function TrimTrailingSpaces() range
+    let oldhlsearch=ShowTrailingSpaces(1)
+    execute a:firstline.",".a:lastline."substitute ///gec"
+    let &hlsearch=oldhlsearch
+endfunction
+
+command -bar -nargs=? ShowTrailingSpaces call ShowTrailingSpaces(<args>)
+command -bar -nargs=0 -range=% TrimTrailingSpaces <line1>,<line2>call TrimTrailingSpaces()
+nnoremap <F12>     :ShowTrailingSpaces<CR>
+nnoremap <S-F12>   m`:TrimTrailingSpaces<CR>``
+vnoremap <S-F12>   :TrimTrailingSpaces<CR>
+
+" automatic removal based on filetypes (from http://vim.wikia.com/wiki/Remove_unwanted_spaces#Automatically_removing_all_trailing_whitespace)
+autocmd BufWritePre *.{rb,erb,rhtml,c,cpp,h,sh} :%s/\s\+$//e
+"autocmd FileType c,cpp,ruby,java,php,perl autocmd BufWritePre <buffer> :%s/\s\+$//e
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nmap <leader>ew :e <C-R>=expand("%:p:h")."/"<CR>
 nmap <leader>es :sp <C-R>=expand("%:p:h")."/"<CR>
