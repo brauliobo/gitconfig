@@ -462,22 +462,26 @@ nmap \ :FN<space>
 " REMOVE TRAILING SPACES
 " Commands and shortcuts for showing/removing trailing spaces
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-function ShowTrailingSpaces(...)
-    let @/='\v(\s+$)|( +\ze\t)'
-    let oldhlsearch=&hlsearch
-    set hls!
-    return oldhlsearch
+function! ShowSpaces(...)
+  let @/='\v(\s+$)|( +\ze\t)'
+  let oldhlsearch=&hlsearch
+  if !a:0
+    let &hlsearch=!&hlsearch
+  else
+    let &hlsearch=a:1
+  end
+  return oldhlsearch
 endfunction
 
-function TrimTrailingSpaces() range
+function! TrimTrailingSpaces() range
     let oldhlsearch=ShowTrailingSpaces(1)
     execute a:firstline.",".a:lastline."substitute ///gec"
     let &hlsearch=oldhlsearch
 endfunction
 
-command -bar -nargs=? ShowTrailingSpaces call ShowTrailingSpaces(<args>)
-command -bar -nargs=0 -range=% TrimTrailingSpaces <line1>,<line2>call TrimTrailingSpaces()
-nnoremap <F12>     :ShowTrailingSpaces<CR>
+command! -bar -nargs=? ShowTrailingSpaces call ShowTrailingSpaces(<args>)
+command! -bar -nargs=0 -range=% TrimTrailingSpaces <line1>,<line2>call TrimTrailingSpaces()
+nnoremap <F12>     :ShowTrailingSpaces 1<CR>
 nnoremap <S-F12>   m`:TrimTrailingSpaces<CR>``
 vnoremap <S-F12>   :TrimTrailingSpaces<CR>
 
@@ -490,10 +494,10 @@ autocmd BufWritePre *.{rb,erb,rhtml,c,cpp,h,sh} :%s/\s\+$//e
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """ Clipboard copy/paste
-map <leader>yy "*yy
-map <leader>pp "*pp
-vnoremap <leader>y "*y
-vnoremap <leader>p "*p
+map <leader>yy "+yy
+map <leader>pp "+pp
+vnoremap <leader>y "+y
+vnoremap <leader>p "+p
 
 """ Move around splits with <c-hjkl>
 nnoremap <c-j> <c-w>j
@@ -507,7 +511,7 @@ imap <c-l> <space>=><space>
 """ Can't be bothered to understand ESC vs <c-c> in insert mode
 imap <c-c> <esc>
 
-""" Fast file switching
+""" Faster file switching
 nnoremap <leader><leader> <c-^>
 
 """ BufferExplorer mappings
