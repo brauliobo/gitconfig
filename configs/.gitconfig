@@ -112,6 +112,7 @@
 
     b = branch
     ba = branch -a
+    bd = branch -D
     contains = branch --contains
 
     rem = remote
