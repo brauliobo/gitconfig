@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# inspired from http://madduck.net/blog/2007.07.11:creating-a-git-branch-without-ancestry/
+cd `git root`
 git symbolic-ref HEAD refs/heads/null
 rm .git/index
 touch null
