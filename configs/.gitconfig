@@ -16,22 +16,31 @@
     cob = checkout -b
     ours = checkout --ours
     theirs = checkout --theirs
+    aours = "!f() { (git reset $* >/dev/null); git ours $* && git add $*; }; f"
+    atheirs = "!f() { (git reset $* >/dev/null); git theirs $* && git add $*; }; f"
 
     ci = commit --cleanup=default
     cam = commit --cleanup=default --amend
 
+    cl = clean
+    cldf = clean -df
+
+    res = reset
     cundo = reset HEAD^1
     cundoh = reset HEAD^1 --hard
     dall = reset --hard HEAD
     unstage = reset HEAD
 
     s = show --color
-    sno = show --color --name-only
+    sf = show --color --name-only
+
+    # git change-commits GIT_COMMITTER_NAME "old name" "new name"
+    change-commits = "!f() { VAR=$1; OLD=$2; NEW=$3; shift 3; git filter-branch --env-filter \"if [[ $`echo $VAR` = \\\"$OLD\\\" ]]; then export $VAR=\\\"$NEW\\\"; fi\" $@; }; f "
 
     d = diff --color
     ds = diff --color --staged
-    dsno = diff --color --staged --name-only
-    dno = diff --color --name-only
+    dsf = diff --color --staged --name-only
+    df = diff --color --name-only
 
     f = fetch
     fa = fetch --all
@@ -65,8 +74,9 @@
     lg = log --graph --pretty=format:'%Cred%h%Creset %s %Cgreen(%cr) %Cblue%an <%ae>%Creset' --abbrev-commit --date=relative
     lgp = !git lg -p
     lp = log -p --color
-    la = !git l --all
     lf = log -p --name-only --color
+    lnom = !git log --color --no-merges
+    lc = "!f() { git log $* | grep '^commit ' | cut -f 2 -d ' '; }; f"
 
     head = !git l -1
     h = !git head
@@ -83,6 +93,9 @@
     shl = stash list
 
     chp = cherry-pick
+    chpc = cherry-pick --continue
+    chpq = cherry-pick --quit
+    chpa = cherry-pick --abort
 
     a = add
     ap = add -p
@@ -93,10 +106,13 @@
     ams = am --skip
 
     fm = format-patch
+    
+    rmf = rm -rf
 
-    rec = rebase --continue
-    rea = rebase --abort
-    res = rebase --skip
+    reb = rebase
+    rebc = rebase --continue
+    reba = rebase --abort
+    rebs = rebase --skip
 
     mt = mergetool
 
