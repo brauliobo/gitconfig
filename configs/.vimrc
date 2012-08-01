@@ -486,7 +486,7 @@ nnoremap <S-F12>   m`:TrimTrailingSpaces<CR>``
 vnoremap <S-F12>   :TrimTrailingSpaces<CR>
 
 " automatic removal based on filetypes (from http://vim.wikia.com/wiki/Remove_unwanted_spaces#Automatically_removing_all_trailing_whitespace)
-autocmd BufWritePre *.{rb,erb,rhtml,c,cpp,h,sh} :%s/\s\+$//e
+autocmd BufWritePre *.{rb,erb,rhtml,rake,c,cpp,h,sh} :%s/\s\+$//e
 "autocmd FileType c,cpp,ruby,java,php,perl autocmd BufWritePre <buffer> :%s/\s\+$//e
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
