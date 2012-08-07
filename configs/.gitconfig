@@ -14,6 +14,7 @@
 
     co = checkout
     cob = checkout -b
+    col = checkout HEAD~1
     ours = checkout --ours
     theirs = checkout --theirs
     aours = "!f() { (git reset $* >/dev/null); git ours $* && git add $*; }; f"
@@ -26,6 +27,7 @@
     cldf = clean -df
 
     res = reset
+    resh = reset --hard
     cundo = reset HEAD^1
     cundoh = reset HEAD^1 --hard
     dall = reset --hard HEAD
@@ -49,6 +51,7 @@
     unm = reset --merge
 
     ps = push
+    pso = push origin
 
     pl = pull
     plr = pull --rebase
@@ -70,8 +73,9 @@
 
     gitignore = !cd `git root` && echo >> .gitignore
 
-    l = !source ~/.githelpers && pretty_git_log
+    l = log --pretty=format:'%Cred%h%Creset %s %Cgreen(%cr) %Cblue%an <%ae>%Creset' --abbrev-commit --date=relative
     lg = log --graph --pretty=format:'%Cred%h%Creset %s %Cgreen(%cr) %Cblue%an <%ae>%Creset' --abbrev-commit --date=relative
+    lg2 = !source ~/.githelpers && pretty_git_log
     lgp = !git lg -p
     lp = log -p --color
     lf = log -p --name-only --color
@@ -91,6 +95,7 @@
     sh = stash
     sha = stash apply
     shl = stash list
+    shc = stash clear
 
     chp = cherry-pick
     chpc = cherry-pick --continue
@@ -137,6 +142,7 @@
     remotes = remote -v
 
     sm = submodule
+    sma = submodule add
     smu = submodule update
     smui = submodule update --init
     sms = submodule sync
