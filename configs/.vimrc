@@ -338,7 +338,7 @@ function! RunTests(filename)
     if match(a:filename, '_test.rb$') != -1
       let cmd = 'ruby'
     elseif match(a:filename, '_spec.rb$') != -1
-      let cmd = 'rspec --color'
+      let cmd = 'spec --color'
     end
 
     if filereadable("script/test")
