@@ -33,6 +33,8 @@
     dall = reset --hard HEAD
     unstage = reset HEAD
 
+    tags = tag -l
+
     s = show --color
     sf = show --color --name-only
 
