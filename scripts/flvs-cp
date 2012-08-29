@@ -1,0 +1,14 @@
+#!/bin/bash
+# from http://n00bsys0p.wordpress.com/2011/02/10/how-to-download-flash-10-2-video-streams-in-linux/
+
+if [ -z "$1" ]; then
+    DEST=$HOME/Vídeos
+else
+    DEST=$1
+fi
+
+FILES=$(lsof -n | grep "Flash.*deleted" | awk '{printf "/proc/" $2 "/fd/"; sub(/[a-z]+/,"",$4); print $4}')
+
+for FILE in $FILES; do
+    cp $FILE $(mktemp -u --suffix .flv $DEST/Video-XXX)
+done
