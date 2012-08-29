@@ -87,9 +87,9 @@ augroup vimrcEx
   autocmd FileType text setlocal textwidth=78
   " Jump to last cursor position unless it's invalid or in an event handler
   autocmd BufReadPost *
-    \ if line("'\"") > 0 && line("'\"") <= line("$") |
-    \   exe "normal g`\"" |
-    \ endif
+        \ if line("'\"") > 0 && line("'\"") <= line("$") |
+        \   exe "normal g`\"" |
+        \ endif
 
   "for ruby, autoindent with two spaces, always expand tabs
   autocmd FileType ruby,haml,eruby,yaml,html,javascript,sass,cucumber set ai sw=2 sts=2 et
@@ -124,12 +124,12 @@ augroup END
 " Indent if we're at the beginning of a line. Else, do completion.
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! InsertTabWrapper()
-    let col = col('.') - 1
-    if !col || getline('.')[col - 1] !~ '\k'
-        return "\<tab>"
-    else
-        return "\<c-p>"
-    endif
+  let col = col('.') - 1
+  if !col || getline('.')[col - 1] !~ '\k'
+    return "\<tab>"
+  else
+    return "\<c-p>"
+  endif
 endfunction
 inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 inoremap <s-tab> <c-n>
@@ -153,13 +153,13 @@ map <leader>v :view %%
 " RENAME CURRENT FILE
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! RenameFile()
-    let old_name = expand('%')
-    let new_name = input('New file name: ', expand('%'), 'file')
-    if new_name != '' && new_name != old_name
-        exec ':saveas ' . new_name
-        exec ':silent !rm ' . old_name
-        redraw!
-    endif
+  let old_name = expand('%')
+  let new_name = input('New file name: ', expand('%'), 'file')
+  if new_name != '' && new_name != old_name
+    exec ':saveas ' . new_name
+    exec ':silent !rm ' . old_name
+    redraw!
+  endif
 endfunction
 map <leader>n :call RenameFile()<cr>
 
@@ -180,20 +180,20 @@ endfunction
 " EXTRACT VARIABLE (SKETCHY)
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! ExtractVariable()
-    let name = input("Variable name: ")
-    if name == ''
-        return
-    endif
-    " Enter visual mode (not sure why this is needed since we're already in
-    " visual mode anyway)
-    normal! gv
+  let name = input("Variable name: ")
+  if name == ''
+    return
+  endif
+  " Enter visual mode (not sure why this is needed since we're already in
+  " visual mode anyway)
+  normal! gv
 
-    " Replace selected text with the variable name
-    exec "normal c" . name
-    " Define the variable on the line above
-    exec "normal! O" . name . " = "
-    " Paste the original selected text to be the variable value
-    normal! $p
+  " Replace selected text with the variable name
+  exec "normal c" . name
+  " Define the variable on the line above
+  exec "normal! O" . name . " = "
+  " Paste the original selected text to be the variable value
+  normal! $p
 endfunction
 vnoremap <leader>rv :call ExtractVariable()<cr>
 
@@ -201,26 +201,26 @@ vnoremap <leader>rv :call ExtractVariable()<cr>
 " INLINE VARIABLE (SKETCHY)
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 function! InlineVariable()
-    " Copy the variable under the cursor into the 'a' register
-    :let l:tmp_a = @a
-    :normal "ayiw
-    " Delete variable and equals sign
-    :normal 2daW
-    " Delete the expression into the 'b' register
-    :let l:tmp_b = @b
-    :normal "bd$
-    " Delete the remnants of the line
-    :normal dd
-    " Go to the end of the previous line so we can start our search for the
-    " usage of the variable to replace. Doing '0' instead of 'k$' doesn't
-    " work; I'm not sure why.
-    normal k$
-    " Find the next occurence of the variable
-    exec '/\<' . @a . '\>'
-    " Replace that occurence with the text we yanked
-    exec ':.s/\<' . @a . '\>/' . @b
-    :let @a = l:tmp_a
-    :let @b = l:tmp_b
+  " Copy the variable under the cursor into the 'a' register
+  :let l:tmp_a = @a
+  :normal "ayiw
+  " Delete variable and equals sign
+  :normal 2daW
+  " Delete the expression into the 'b' register
+  :let l:tmp_b = @b
+  :normal "bd$
+  " Delete the remnants of the line
+  :normal dd
+  " Go to the end of the previous line so we can start our search for the
+  " usage of the variable to replace. Doing '0' instead of 'k$' doesn't
+  " work; I'm not sure why.
+  normal k$
+  " Find the next occurence of the variable
+  exec '/\<' . @a . '\>'
+  " Replace that occurence with the text we yanked
+  exec ':.s/\<' . @a . '\>/' . @b
+  :let @a = l:tmp_a
+  :let @b = l:tmp_b
 endfunction
 nnoremap <leader>ri :call InlineVariable()<cr>
 
@@ -298,52 +298,57 @@ map <leader>c :w\|:!script/features<cr>
 map <leader>w :w\|:!script/features --profile wip<cr>
 
 function! RunTestFile(...)
-    if a:0
-        let command_suffix = a:1
-    else
-        let command_suffix = ""
-    endif
+  if a:0
+    let command_suffix = a:1
+  else
+    let command_suffix = ""
+  endif
 
-    " Run the tests for the previously-marked file.
-    let in_test_file = match(expand("%"), '\(.feature\|_spec.rb\)$') != -1
-    if in_test_file
-        call SetTestFile()
-    elseif !exists("t:grb_test_file")
-        return
-    end
-    call RunTests(t:grb_test_file . command_suffix)
+  " Run the tests for the previously-marked file.
+  if match(expand("%"), '\(.feature\|_spec.rb\|_test.rb\)$') != -1
+    call SetTestFile()
+  elseif !exists("t:grb_test_file")
+    return
+  end
+  call RunTests(t:grb_test_file . command_suffix)
 endfunction
 
 function! RunNearestTest()
-    let spec_line_number = line('.')
-    call RunTestFile(":" . spec_line_number . " -b")
+  let spec_line_number = line('.')
+  call RunTestFile(":" . spec_line_number . " -b")
 endfunction
 
 function! SetTestFile()
-    " Set the spec file that tests will be run for.
-    let t:grb_test_file=@%
+  " Set the spec file that tests will be run for.
+  let t:grb_test_file=@%
 endfunction
 
 function! RunTests(filename)
-    " Write the file and run tests for the given filename
-    :w
-    :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
-    :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
-    :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
-    :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
-    :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
-    :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
-    if match(a:filename, '\.feature$') != -1
-        exec ":!script/features " . a:filename
-    else
-        if filereadable("script/test")
-            exec ":!script/test " . a:filename
-        elseif filereadable("Gemfile")
-            exec ":!bundle exec rspec --color " . a:filename
-        else
-            exec ":!rspec --color " . a:filename
-        end
+  " Write the file and run tests for the given filename
+  :w
+  :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
+  :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
+  :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
+  :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
+  :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
+  :silent !echo;echo;echo;echo;echo;echo;echo;echo;echo;echo
+  if match(a:filename, '\.feature$') != -1
+    exec ":!script/features " . a:filename
+  else
+    if match(a:filename, '_test.rb$') != -1
+      let cmd = 'ruby'
+    elseif match(a:filename, '_spec.rb$') != -1
+      let cmd = 'spec --color'
     end
+
+    if filereadable("script/test")
+      exec ":!script/test " . a:filename
+    " elseif filereadable("Gemfile")
+      " exec ":!bundle exec " . cmd . ' ' . a:filename
+    else
+      exec ":!" . cmd . ' ' . a:filename
+    end
+  end
 endfunction
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -415,18 +420,18 @@ let my_extra_paths = [ '/usr/include/gtk-2.0/', '/usr/include/glib-2.0/' ]
 let my_ctags_options  = [ '--languages=c,c++', '--c-kinds=+p', '--fields=+iaS', '--extra=+q' ]
 
 function! UpdateExtraTags()
-	let command = ":!ctags -R -I " . join(g:my_ctags_options, ' ') . " -f- " . join(g:my_extra_paths, ' ') . " > $HOME/.vim/extratags"
-	exec command
+  let command = ":!ctags -R -I " . join(g:my_ctags_options, ' ') . " -f- " . join(g:my_extra_paths, ' ') . " > $HOME/.vim/extratags"
+  exec command
 endfunction
 
 function! UpdateTags(path)
-	let filename = a:path . '/tags'
-	let command = ":!ctags -R -I " . join(g:my_ctags_options, ' ') . ' -f- ' . a:path . ' > ' . filename
-	exec command
+  let filename = a:path . '/tags'
+  let command = ":!ctags -R -I " . join(g:my_ctags_options, ' ') . ' -f- ' . a:path . ' > ' . filename
+  exec command
 endfunction
 
 function! SimpleComplete()
-	return "\<C-P>\<C-N>\<C-R>=pumvisible() ? \"\\<down>\" : \"\"\<cr>"
+  return "\<C-P>\<C-N>\<C-R>=pumvisible() ? \"\\<down>\" : \"\"\<cr>"
 endfunction
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -474,9 +479,9 @@ function! ShowSpaces(...)
 endfunction
 
 function! TrimTrailingSpaces() range
-    let oldhlsearch=ShowTrailingSpaces(1)
-    execute a:firstline.",".a:lastline."substitute ///gec"
-    let &hlsearch=oldhlsearch
+  let oldhlsearch=ShowTrailingSpaces(1)
+  execute a:firstline.",".a:lastline."substitute ///gec"
+  let &hlsearch=oldhlsearch
 endfunction
 
 command! -bar -nargs=? ShowTrailingSpaces call ShowTrailingSpaces(<args>)
