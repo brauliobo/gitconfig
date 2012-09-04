@@ -20,8 +20,8 @@
     aours = "!f() { (git reset $* >/dev/null); git ours $* && git add $*; }; f"
     atheirs = "!f() { (git reset $* >/dev/null); git theirs $* && git add $*; }; f"
 
-    ci = commit --cleanup=default
-    cam = commit --cleanup=default --amend
+    ci = commit
+    cam = commit --amend
 
     cl = clean
     cldf = clean -df
@@ -42,6 +42,7 @@
     change-commits = "!f() { VAR=$1; OLD=$2; NEW=$3; shift 3; git filter-branch --env-filter \"if [[ $`echo $VAR` = \\\"$OLD\\\" ]]; then export $VAR=\\\"$NEW\\\"; fi\" $@; }; f "
 
     d = diff --color
+    dw = diff --color -w
     ds = diff --color --staged
     dsf = diff --color --staged --name-only
     df = diff --color --name-only
@@ -74,7 +75,9 @@
     ignore = update-index --assume-unchanged
     ignored = !git sig
 
-    gitignore = !cd `git root` && echo >> .gitignore
+    gitignore-untracked = !git gitignore `git untracked`
+    ig-untracked = !git ignore `git untracked`
+    gitignore = !cd `git root` && touch .gitignore
 
     l = log --pretty=format:'%Cred%h%Creset %s %Cgreen(%cr) %Cblue%an <%ae>%Creset' --abbrev-commit --date=relative
     lg = log --graph --pretty=format:'%Cred%h%Creset %s %Cgreen(%cr) %Cblue%an <%ae>%Creset' --abbrev-commit --date=relative
@@ -106,7 +109,10 @@
     chpa = cherry-pick --abort
 
     a = add
+    as = !git diff -w --no-color | git apply --cached
     ap = add -p
+    resolve-unmerged = !git add `git unmerged`
+    add-untracked = !git add `git untracked`
 
     am3 = am -3
     amr = am --resolved
@@ -129,11 +135,6 @@
     vmo = !vim `git modified`
     vt = !vim `git untracked`
     vim-unmerged = !git vm # deprecated
-
-    resolve-unmerged = !git add `git unmerged`
-    add-untracked = !git add `git untracked`
-    gitignore-untracked = !git gitignore `git untracked`
-    ig-untracked = !git ignore `git untracked`
 
     b = branch
     ba = branch -a
