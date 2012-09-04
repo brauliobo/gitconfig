@@ -48,6 +48,7 @@
 
     f = fetch
     fa = fetch --all
+    fo = fetch origin
 
     m = merge
     unm = reset --merge
@@ -107,6 +108,7 @@
     a = add
     ap = add -p
 
+    am3 = am -3
     amr = am --resolved
     amc = am --continue
     ama = am --abort
