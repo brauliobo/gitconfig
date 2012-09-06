@@ -13,8 +13,10 @@
     #cdroot = !cd `git root`
 
     co = checkout
+    coc = checkout .
     cob = checkout -b
     col = checkout HEAD~1
+
     ours = checkout --ours
     theirs = checkout --theirs
     aours = "!f() { (git reset $* >/dev/null); git ours $* && git add $*; }; f"
@@ -126,6 +128,7 @@
     rmf = rm -rf
 
     reb = rebase
+    rei = rebase -i
     rebc = rebase --continue
     reba = rebase --abort
     rebs = rebase --skip
