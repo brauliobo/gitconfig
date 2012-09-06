@@ -1,0 +1,8 @@
+#!/bin/bash
+
+BITRATE=128
+
+for WMA in "$@"; do
+    MP3=`echo $WMA | sed s/wma$/mp3/g`
+    ffmpeg -i "$WMA" -ab $BITRATE "$MP3"
+done
