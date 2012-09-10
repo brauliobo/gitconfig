@@ -28,7 +28,7 @@ run git submodule update --init
 
 ### Install RVM
 if [[ ! -x $HOME/.rvm ]]; then
-	run bash -s stable < <(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer )
+	run curl -L https://get.rvm.io | bash -s stable
 fi
 ### Install Oh my ZSH
 if [[ ! -x $HOME/.oh-my-zsh ]]; then
