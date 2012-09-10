@@ -1,0 +1,13 @@
+#!/bin/bash
+
+CMD=`basename $0`
+EARR=(${CMD//2/ })
+EIN=${EARR[0]}
+EOUT=${EARR[1]}
+
+BITRATE=128
+
+for INF in "$@"; do
+    OUTF=`echo $INF | sed s/$EIN/$EOUT/g`
+    ffmpeg -i "$INF" -ab $BITRATE "$OUTF"
+done
