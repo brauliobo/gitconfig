@@ -33,9 +33,9 @@
 
     res = reset
     resh = reset --hard
+    reshh = reset --hard HEAD
     cundo = reset HEAD^1
     cundoh = reset HEAD^1 --hard
-    dall = reset --hard HEAD
     unstage = reset HEAD
 
     tags = tag -l
@@ -60,6 +60,7 @@
     unm = reset --merge
 
     ps = push
+    psf = push -f
     pso = push origin
 
     pl = pull
