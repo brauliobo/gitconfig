@@ -13,7 +13,7 @@ alias "git-new-workdir"="/usr/share/doc/git/contrib/workdir/git-new-workdir"
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 PATH=$PATH:$HOME/.rvm/bin
 # default gemset
-rvm 1.8.7@noosferoorig
+rvm ree@noosferoorig
 
 # add scripts dir to $PATH
 while [ -h "$SOURCE" ] ; do SOURCE="$(readlink "$SOURCE")"; done
