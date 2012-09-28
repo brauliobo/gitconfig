@@ -32,6 +32,7 @@
     cldf = clean -df
 
     res = reset
+    resa = reset HEAD
     resh = reset --hard
     reshh = reset --hard HEAD
     cundo = reset HEAD^1
