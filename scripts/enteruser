@@ -1,0 +1,4 @@
+#!/bin/sh
+
+chmod 777 `tty`
+sudo su - $1
