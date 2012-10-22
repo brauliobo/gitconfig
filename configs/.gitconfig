@@ -26,6 +26,7 @@
     atheirs = "!f() { (git reset $* >/dev/null); git theirs $* && git add $*; }; f"
 
     ci = commit
+    cia = commit -a
     cam = commit --amend
 
     cl = clean
