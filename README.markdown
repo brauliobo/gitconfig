@@ -1,6 +1,6 @@
 1.  Install wget, curl, zsh, command-not-found, vim, ack-grep and vim-gnome (for clipboard support)
 
-        sudo apt-get install wget curl zsh command-not-found vim ack-grep vim-gnome
+        sudo apt-get install wget curl zsh command-not-found vim ack-grep sshpass vim-gnome
 
 2.  Run deploy.sh (your existings configs won't be overwritten)
 3.  Change to ZSH: chsh -s /bin/zsh
