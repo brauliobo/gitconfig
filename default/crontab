@@ -1,0 +1,34 @@
+# /etc/crontab: system-wide crontab
+# Unlike any other crontab you don't have to run the `crontab'
+# command to install the new version when you edit this file
+# and files in /etc/cron.d. These files also have username fields,
+# that none of the other crontabs do.
+
+SHELL=/bin/sh
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+# m: minute (0-59)
+# h: hour (0-11)
+# dom: day of the month (1-31)
+# mon: mon (1-12)
+# dow: day of the week (0-7)
+# Metacharacters
+# * every
+# / permits to specify a repetition. 
+# - permits to define a range. 
+# , permits to specify several values.
+
+# @reboot   execution at boot
+# @yearly   execution once a year, "0 0 1 1 *"
+# @annually execution once a year, "0 0 1 1 *"
+# @monthly  execution onnce a month, "0 0 1 * *"
+# @weekly   execution once a week, "0 0 * * 0"
+# @daily    execution once a day, "0 0 * * *"
+# @midnight execution once a day, "0 0 * * *"
+# @hourly   execution once an hour, "0 * * * *"
+
+# m h   dom mon dow     command
+*  *	*   *   *       echo 'job executed'
+
+
+
