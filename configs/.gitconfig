@@ -119,6 +119,8 @@
     resolve-unmerged = !git add `git unmerged`
     add-untracked = !git add `git untracked`
 
+    rs = !(git resa && git as && git co . && git resa) &>/dev/null
+
     am3 = am -3
     amr = am --resolved
     amc = am --continue
