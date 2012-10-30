@@ -132,7 +132,7 @@
     rmf = rm -rf
 
     reb = rebase
-    rei = rebase -i
+    rebi = rebase -i
     rebc = rebase --continue
     reba = rebase --abort
     rebs = rebase --skip
