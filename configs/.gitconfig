@@ -84,13 +84,14 @@
     ig-untracked = !git ignore `git untracked`
     gitignore = !cd `git root` && touch .gitignore
 
-    l = log --pretty=format:'%Cred%h%Creset %s %Cgreen(%cr) %Cblue%an <%ae>%Creset' --abbrev-commit --date=relative
-    lg = log --graph --pretty=format:'%Cred%h%Creset %s %Cgreen(%cr) %Cblue%an <%ae>%Creset' --abbrev-commit --date=relative
-    lg2 = !source ~/.githelpers && pretty_git_log
-    lgp = !git lg -p
     lp = log -p --color
     lf = log -p --name-only --color
-    lnom = !git log --color --no-merges
+    lnom = log --color --no-merges
+    lg = log --graph --pretty=format:'%Cred%h%Creset %s %Cgreen(%cr) %Cblue%an <%ae>%Creset' --abbrev-commit --date=relative
+    lg2 = !source ~/.githelpers && pretty_git_log
+    lgp = !git lg -p --color
+    lgf = !git lg -p --name-only --color
+    l = log --pretty=format:'%Cred%h%Creset %s %Cgreen(%cr) %Cblue%an <%ae>%Creset' --abbrev-commit --date=relative
     lc = "!f() { git log $* | grep '^commit ' | cut -f 2 -d ' '; }; f"
 
     head = !git l -1
