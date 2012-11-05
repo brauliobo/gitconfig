@@ -1,6 +1,18 @@
+startup_message off
+caption always "%-Lw%{= BW}%50>%n%f* %t%{-}%+Lw%<  -----  %{=b BW} %H %{-} %c %d/%m/%Y"
+
+# default screens
+#screen -t code 1 zsh
+#screen -t server 2 bash
+
+# for ergonomics, start from 1
 bind c screen 1
 bind ^c screen 1
 bind 0 select 10
 screen 1
+
+# scroll size
 scrollback 10000
+
+# use user shell
 shell -${SHELL}
