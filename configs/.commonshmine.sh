@@ -1,6 +1,7 @@
+GITROOT="$( cd -P "$( dirname "$SOURCE" )" && git root )"
+
 # add scripts dir to $PATH
 while [ -h "$SOURCE" ] ; do SOURCE="$(readlink "$SOURCE")"; done
-GITROOT="$( cd -P "$( dirname "$SOURCE" )" && git root )"
 DIR="$GITROOT/scripts"
 export PATH=$PATH:$DIR
 

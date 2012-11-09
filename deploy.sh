@@ -23,6 +23,9 @@ for f in `ls -A configs`; do
 	run ln -s $PWD/configs/$f $HOME/$f
 done
 
+GITROOT="$( cd -P "$( dirname "$SOURCE" )" && git root )"
+source $GITROOT/default/config
+
 ### Update submodules
 run git submodule update --init
 
@@ -45,4 +48,7 @@ if ! grep bashmine.sh $HOME/.bashrc > /dev/null; then
 fi
 
 ### grab gems credentials
+mkdir -p ~/.gem
 run curl -u $GEM_USER https://rubygems.org/api/v1/api_key.yaml > ~/.gem/credentials
+
+
