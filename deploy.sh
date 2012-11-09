@@ -45,4 +45,4 @@ if ! grep bashmine.sh $HOME/.bashrc > /dev/null; then
 fi
 
 ### grab gems credentials
-curl -u $GEM_USER https://rubygems.org/api/v1/api_key.yaml > ~/.gem/credentials
+run curl -u $GEM_USER https://rubygems.org/api/v1/api_key.yaml > ~/.gem/credentials
