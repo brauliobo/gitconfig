@@ -1,12 +1,11 @@
-GITROOT="$( cd -P "$( dirname "$SOURCE" )" && git root )"
-
-# add scripts dir to $PATH
 while [ -h "$SOURCE" ] ; do SOURCE="$(readlink "$SOURCE")"; done
-DIR="$GITROOT/scripts"
-export PATH=$PATH:$DIR
-
+GITROOT="$( cd -P "$( dirname "$SOURCE" )" && git root )"
 # Config
 source $GITROOT/default/config
+
+# add scripts dir to $PATH
+DIR="$GITROOT/scripts"
+export PATH=$PATH:$DIR
 
 # VIM
 alias vi='TERM="xterm-256color" vim'

@@ -23,7 +23,9 @@ for f in `ls -A configs`; do
 	run ln -s $PWD/configs/$f $HOME/$f
 done
 
+while [ -h "$SOURCE" ] ; do SOURCE="$(readlink "$SOURCE")"; done
 GITROOT="$( cd -P "$( dirname "$SOURCE" )" && git root )"
+### Config
 source $GITROOT/default/config
 
 ### Update submodules
