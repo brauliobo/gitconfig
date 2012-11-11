@@ -24,4 +24,4 @@ alias "git-new-workdir"="/usr/share/doc/git/contrib/workdir/git-new-workdir"
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
 PATH=$PATH:$HOME/.rvm/bin
 # default gemset
-[ -n "$DEFAULT_GEMSET"] && rvm $DEFAULT_GEMSET
+test -n "$DEFAULT_GEMSET" && rvm $DEFAULT_GEMSET
