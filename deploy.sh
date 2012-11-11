@@ -50,7 +50,9 @@ if ! grep bashmine.sh $HOME/.bashrc > /dev/null; then
 fi
 
 ### grab gems credentials
-mkdir -p ~/.gem
-run curl -u $GEM_USER https://rubygems.org/api/v1/api_key.yaml > ~/.gem/credentials
+if [[ -n "$RUBYGEMS_USER" && ! -f ~/.gem/credentials ]]; then
+    mkdir -p ~/.gem
+    run curl -u $RUBYGEMS_USER https://rubygems.org/api/v1/api_key.yaml > ~/.gem/credentials
+fi
 
 
