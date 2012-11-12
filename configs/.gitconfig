@@ -175,7 +175,8 @@
     rf = reflog
     rfe = reflog expire --expire=now --all
 
-    prune = !git rfe && git gcp
+    pr = prune
+    prm = !git rfe && git gcp
 
 [apply]
     ignorewhitespace = change
