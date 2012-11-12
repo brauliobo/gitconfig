@@ -1,1 +1,5 @@
+# set to load it upon shell load
 DEFAULT_GEMSET=ree@noosfero
+
+# set to fetch api key on deploy
+RUBYGEMS_USER=brauliobo
