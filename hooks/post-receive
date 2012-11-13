@@ -1,4 +1,4 @@
 #!/bin/sh
 
 echo '-> Running deploy.sh'
-$GITROOT/deploy.sh
+`git root`/deploy.sh
