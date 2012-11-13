@@ -30,6 +30,7 @@ source $GITROOT/default/config
 
 ### Update submodules
 run git submodule update --init
+run cd configs/.vim && git submodule update --init
 
 ### Install RVM
 if [[ ! -x $HOME/.rvm ]]; then
