@@ -18,6 +18,7 @@
     co = checkout
     coc = checkout .
     cob = checkout -b
+    cobf = "!f() { git brd $1; git cob $1; }; f"
     col = checkout HEAD~1
 
     ours = checkout --ours
@@ -145,10 +146,10 @@
     vt = !vim `git untracked`
     vim-unmerged = !git vm # deprecated
 
-    b = branch
-    ba = branch -a
-    bd = branch -D
-    contains = branch --contains
+    br = branch
+    bra = branch -a
+    brd = branch -D
+    brc = branch --contains
 
     rem = remote
     rema = remote add
