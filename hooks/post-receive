@@ -1,0 +1,4 @@
+#!/bin/sh
+
+echo '-> Running deploy.sh'
+$GITROOT/deploy.sh
