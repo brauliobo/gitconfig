@@ -156,6 +156,7 @@
     remotes = remote -v
 
     sm = submodule
+    smst = submodule --status
     sma = submodule add
     smu = submodule update
     smui = submodule update --init
