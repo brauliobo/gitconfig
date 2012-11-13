@@ -159,6 +159,7 @@
     sma = submodule add
     smu = submodule update
     smui = submodule update --init
+    smuir = submodule update --init --recursive
     sms = submodule sync
 
     bl = blame
