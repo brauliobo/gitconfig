@@ -30,6 +30,8 @@ source $GITROOT/default/config
 
 echo == Update submodules
 git smuir --quiet
+cd configs/.vim && git pull git://github.com/akitaonrails/vimfiles.git master
+cd - >/dev/null
 
 echo == Install RVM
 if [[ ! -x $HOME/.rvm ]]; then
