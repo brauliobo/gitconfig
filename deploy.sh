@@ -29,7 +29,7 @@ echo == Source $GITROOT/default/config
 source $GITROOT/default/config
 
 echo == Update submodules
-git smuir
+git smuir --quiet
 
 echo == Install RVM
 if [[ ! -x $HOME/.rvm ]]; then
