@@ -1,0 +1,20 @@
+#!/bin/bash    
+
+#HOST="your.ftp.host.dom"
+#USER="username"
+#PASS="password"
+#URL="$USER:$PASS@$HOST"
+#LCD="/path/of/your/local/dir"
+#RCD="/path/of/your/remote/dir"
+
+URL=$1
+RCD=$2
+LCD=$3
+
+set +x
+
+lftp -c "set ftp:list-options -a;
+open ftp://$URL; 
+lcd $LCD;
+mirror --parallel=10 --verbose --use-cache --verbose --allow-chown --allow-suid --no-umask
+"
