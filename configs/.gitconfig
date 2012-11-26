@@ -64,6 +64,8 @@
   pso = push origin
 
   pl = pull
+  plo = pull origin
+  plom = pull origin master
   plr = pull --rebase
 
   st = status
@@ -148,6 +150,7 @@
 
   current = rev-parse --abbrev-ref HEAD
   br = branch
+  brt = branch --track
   bra = branch -a
   brd = branch -D
   brc = branch --contains
