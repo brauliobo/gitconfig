@@ -1,21 +1,22 @@
 #!/bin/bash
 
-run() {
-	set -x; $@ ; { set +x; } 2>/dev/null
-}
-
 # from http://stackoverflow.com/questions/9271381/how-can-i-parse-long-form-arguments-in-shell
 _setArgs() {
     while [ "$1" != "" ]; do
-        case $1 in
-            "-o" | "--overwrite")
-                opt_overwrite=$1
-                ;;
+        case $1 in "-o" | "--overwrite")
+          opt_overwrite=$1
+          ;;
+        esac
+        case $1 in "-v" | "--verbose")
+          opt_verbose=$1
+          ;;
         esac
         shift
     done
 }
 _setArgs $*
+
+test $opt_verbose && set -x
 
 echo == Link configurations files not overwriting existing regular files
 for f in `ls -A configs`; do
