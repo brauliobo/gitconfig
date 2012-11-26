@@ -151,6 +151,7 @@
   current = rev-parse --abbrev-ref HEAD
   br = branch
   brt = branch --track
+  brup = branch --set-upstream
   bra = branch -a
   brd = branch -D
   brc = branch --contains
