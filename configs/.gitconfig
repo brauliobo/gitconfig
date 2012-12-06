@@ -155,6 +155,9 @@
   bra = branch -a
   brd = branch -D
   brc = branch --contains
+  brcommits = "!f() { git lc --branches=$1* }; f"
+  brdiff = !source ~/.githelpers && diff_branches
+  brfdiff = !source ~/.githelpers && diff_branches_show_files
 
   rem = remote
   rema = remote add
