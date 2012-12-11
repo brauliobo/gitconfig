@@ -8,6 +8,13 @@
   smtpuser = brauliobo@gmail.com
   smtpserverport = 587
 
+[apply]
+  ignorewhitespace = change
+  whitespace = nowarn
+
+[push]
+	default = matching
+
 [alias]
   root = rev-parse --show-toplevel
     #cdroot = !cd `git root`
@@ -62,7 +69,7 @@
   ps = push
   psf = push -f
   pso = push origin
-  pssm = push --recurse-submodules
+  pssm = push --recurse-submodules=on-demand
 
   pl = pull
   plo = pull origin
@@ -189,10 +196,6 @@
 
   pr = prune
   prm = !git rfe && git gcp
-
-[apply]
-  ignorewhitespace = change
-  whitespace = nowarn
 
 [color]
   interactive = true
