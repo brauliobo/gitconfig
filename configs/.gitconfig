@@ -62,6 +62,7 @@
   ps = push
   psf = push -f
   pso = push origin
+  pssm = push --recurse-submodules
 
   pl = pull
   plo = pull origin
