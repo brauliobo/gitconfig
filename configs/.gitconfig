@@ -126,11 +126,10 @@
   chpa = cherry-pick --abort
 
   a = add
-  as = !git diff -w --no-color | git apply --cached
   ap = add -p
   resolve-unmerged = !git add `git unmerged`
   add-untracked = !git add `git untracked`
-
+  as = !git diff -w --no-color | git apply --cached
   rs = !(git resa && git as && git co . && git resa) &>/dev/null
 
   am3 = am -3
@@ -170,6 +169,7 @@
   rem = remote
   rema = remote add
   remr = remote rm
+  remv = remote -v
   remotes = remote -v
 
   sm = submodule
