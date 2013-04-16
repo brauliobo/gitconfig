@@ -15,6 +15,7 @@ set +x
 
 lftp -c "set ftp:list-options -a;
 open ftp://$URL; 
+cd $RCD;
 lcd $LCD;
 mirror --parallel=10 --verbose --use-cache --verbose --allow-chown --allow-suid --no-umask
 "

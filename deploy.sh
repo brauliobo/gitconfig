@@ -36,7 +36,7 @@ cd - >/dev/null
 
 echo == Install RVM
 if [[ ! -x $HOME/.rvm ]]; then
-	curl -L https://get.rvm.io | bash -s stable
+	curl -#L https://get.rvm.io | bash -s stable
 fi
 echo == Install Oh my ZSH
 if [[ ! -x $HOME/.oh-my-zsh ]]; then
