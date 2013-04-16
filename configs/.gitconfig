@@ -42,10 +42,10 @@
 
   res = reset
   resa = reset HEAD
-  resh = reset --hard
-  reshh = reset --hard HEAD
+  resh = !git stash && git reset --hard
+  reshh = !git stash && git reset --hard HEAD
   cundo = reset HEAD^1
-  cundoh = reset HEAD^1 --hard
+  cundoh = !git stash && git reset HEAD^1 --hard
   unstage = reset HEAD
 
   tags = tag -l
@@ -70,6 +70,7 @@
   psf = push -f
   pso = push origin
   pssm = push --recurse-submodules=on-demand
+  psremoveallbranches = "!f() { git push $1 `git brar $1 | grep -v master | xargs -I {} echo :{}`; }; f"
 
   pl = pull
   plo = pull origin
@@ -126,11 +127,10 @@
   chpa = cherry-pick --abort
 
   a = add
-  as = !git diff -w --no-color | git apply --cached
   ap = add -p
   resolve-unmerged = !git add `git unmerged`
   add-untracked = !git add `git untracked`
-
+  as = !git diff -w --no-color | git apply --cached
   rs = !(git resa && git as && git co . && git resa) &>/dev/null
 
   am3 = am -3
@@ -161,6 +161,7 @@
   brt = branch --track
   brup = branch --set-upstream
   bra = !git branch -a | less
+  brar = "!f() { git bra | grep remotes/$1/ | cut -f 3 -d '/'; }; f"
   brd = branch -D
   brc = branch --contains
   brcommits = "!f() { git lc --branches=$1* }; f"
@@ -170,6 +171,7 @@
   rem = remote
   rema = remote add
   remr = remote rm
+  remv = remote -v
   remotes = remote -v
 
   sm = submodule
