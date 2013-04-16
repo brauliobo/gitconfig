@@ -160,7 +160,7 @@
   br = branch
   brt = branch --track
   brup = branch --set-upstream
-  bra = branch -a
+  bra = !git branch -a | less
   brd = branch -D
   brc = branch --contains
   brcommits = "!f() { git lc --branches=$1* }; f"
