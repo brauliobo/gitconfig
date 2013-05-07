@@ -17,7 +17,7 @@
 
 [alias]
   root = rev-parse --show-toplevel
-    #cdroot = !cd `git root`
+  #cdroot = !cd `git root`
 
   out = log --branches --not --remotes
   in = pull --dry-run
@@ -67,6 +67,7 @@
   unm = reset --merge
 
   ps = push
+  psu = push -u
   psf = push -f
   pso = push origin
   pssm = push --recurse-submodules=on-demand
@@ -211,6 +212,9 @@
   diff = true
   status = true
   show-branch = true
+
+[push]
+  default = upstream
 
 [mergetool "vimdiff3"]
   cmd = vim -u ~/.vimrc -f -d -c \"wincmd J\" \"$MERGED\" \"$LOCAL\" \"$BASE\" \"$REMOTE\"
