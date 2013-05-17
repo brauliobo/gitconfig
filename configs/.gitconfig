@@ -58,6 +58,7 @@
   ds = diff --color --staged
   dsf = diff --color --staged --name-only
   df = diff --color --name-only
+  dc = "!f() { HASH=$1; shift 1; git d --cc $HASH $HASH^1 $HASH^2 $@; }; f"
 
   f = fetch
   fa = fetch --all
