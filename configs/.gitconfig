@@ -13,7 +13,7 @@
   whitespace = nowarn
 
 [push]
-	default = matching
+  default = upstream
 
 [alias]
   root = rev-parse --show-toplevel
@@ -213,9 +213,6 @@
   diff = true
   status = true
   show-branch = true
-
-[push]
-  default = upstream
 
 [mergetool "vimdiff3"]
   cmd = vim -u ~/.vimrc -f -d -c \"wincmd J\" \"$MERGED\" \"$LOCAL\" \"$BASE\" \"$REMOTE\"
