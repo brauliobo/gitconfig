@@ -19,7 +19,10 @@
   root = rev-parse --show-toplevel
   #cdroot = !cd `git root`
 
-  out = log --branches --not --remotes
+  upstream = !git for-each-ref --format='%(upstream:short)' $(git symbolic-ref -q HEAD)
+  upstream-remote = !git upstream | sed -e 's/\\/.*$//g'
+
+  out = !git fetch `git upstream-remote` && git l `git upstream`..HEAD
   in = pull --dry-run
 
   co = checkout
