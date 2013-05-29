@@ -165,7 +165,7 @@
   br = branch
   brt = branch --track
   brup = branch --set-upstream
-  bra = !git branch -a | less
+  bra = !git branch -a | less -FiRS
   brar = "!f() { git bra | grep remotes/$1/ | cut -f 3 -d '/'; }; f"
   brd = branch -D
   brc = branch --contains
