@@ -12,6 +12,11 @@ alias zshconfig="vim ~/.zshrc"
 alias ohmyzsh="vim ~/.oh-my-zsh"
 alias zshsource="source ~/.zshrc"
 
+# Update without prompt
+DISABLE_UPDATE_PROMPT=true
+# Disable update entirely
+#DISABLE_AUTO_UPDATE=true
+
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
 
