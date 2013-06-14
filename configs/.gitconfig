@@ -15,6 +15,17 @@
 [push]
   default = upstream
 
+[color]
+  interactive = true
+  branch = true
+  status = true
+
+[core]
+  pager = less -FiRS
+
+[mergetool "vimdiff3"]
+  cmd = vim -u ~/.vimrc -f -d -c \"wincmd J\" \"$MERGED\" \"$LOCAL\" \"$BASE\" \"$REMOTE\"
+
 [alias]
   root = rev-parse --show-toplevel
   #cdroot = !cd `git root`
@@ -203,14 +214,3 @@
 
   pr = prune
   prm = !git rfe && git gcp
-
-[color]
-  interactive = true
-  branch = true
-  status = true
-
-[core]
-  pager = less -FiRS
-
-[mergetool "vimdiff3"]
-  cmd = vim -u ~/.vimrc -f -d -c \"wincmd J\" \"$MERGED\" \"$LOCAL\" \"$BASE\" \"$REMOTE\"
