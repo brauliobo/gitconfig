@@ -12,6 +12,7 @@ It is very simple, just check its source code.
 Install
 =======
 These are sort of mandatory steps:
+
 1.  Install dependencies
 
         sudo apt-get install wget curl command-not-found vim
@@ -27,7 +28,7 @@ There are also some extra things you may like:
 1.  VIM support of X clipboard depends on `vim-gnome` package
 1.  `git-new-workdir` is aliased to `/usr/share/doc/git/contrib/workdir/git-new-workdir`. So to use it run:
 
-    sudo chmod +x /usr/share/doc/git/contrib/workdir/git-new-workdir
+        sudo chmod +x /usr/share/doc/git/contrib/workdir/git-new-workdir
 
 Troubleshooting
 ===============
