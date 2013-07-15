@@ -1,0 +1,5 @@
+include "/usr/share/themes/oxygen-gtk/gtk-2.0/gtkrc"
+gtk-theme-name="oxygen-gtk"
+
+gtk-enable-event-sounds=0
+gtk-enable-input-feedback-sounds=0
