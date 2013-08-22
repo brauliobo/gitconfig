@@ -21,7 +21,7 @@
   status = true
 
 [core]
-  pager = less -eiRS
+  pager = less -FiRS
 
 [mergetool "vimdiff3"]
   cmd = vim -u ~/.vimrc -f -d -c \"wincmd J\" \"$MERGED\" \"$LOCAL\" \"$BASE\" \"$REMOTE\"
@@ -142,7 +142,7 @@
   chpq = cherry-pick --quit
   chpa = cherry-pick --abort
 
-  a = add
+  a = add --all
   ap = add -p
   resolve-unmerged = !git add `git unmerged`
   add-untracked = !git add `git untracked`

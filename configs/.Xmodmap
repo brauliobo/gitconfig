@@ -1,0 +1,9 @@
+!
+!
+
+! dell removed the right control: change context menu to right control
+!keycode 135 = Menu NoSymbol Menu
+remove Control = Control_R
+keycode 105 = Control_R NoSymbol Control_R
+keycode 135 = Control_R NoSymbol Control_R
+add Control = Control_R
