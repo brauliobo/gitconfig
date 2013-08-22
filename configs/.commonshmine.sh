@@ -1,5 +1,6 @@
 while [ -h "$SOURCE" ] ; do SOURCE="$(readlink "$SOURCE")"; done
 GITROOT="$( cd -P "$( dirname "$SOURCE" )" && git root )"
+
 # Config
 source $GITROOT/default/config
 
@@ -20,8 +21,3 @@ alias "g"="git"
 alias "git-new-workdir"="/usr/share/doc/git/contrib/workdir/git-new-workdir"
 #export GIT_PROXY_COMMAND="proxy"
 
-# RVM
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
-PATH=$PATH:$HOME/.rvm/bin
-# default gemset
-test -n "$DEFAULT_GEMSET" && rvm $DEFAULT_GEMSET
