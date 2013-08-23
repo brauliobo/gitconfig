@@ -14,7 +14,7 @@ alias vim='TERM="xterm-256color" vim'
 export EDITOR=vim
 
 # Grep
-alias "ack-grep"="ack-grep -a --sort-files"
+alias "ack-grep"="ack-grep -a --follow --sort-files"
 
 # Git
 alias "g"="git"

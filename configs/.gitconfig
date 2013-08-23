@@ -50,6 +50,7 @@
   ci = commit
   cia = commit -a
   cam = commit --amend
+  cama = commit --amend -a
 
   cl = clean
   cldf = clean -df
