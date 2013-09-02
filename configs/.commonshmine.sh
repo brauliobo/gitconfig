@@ -21,3 +21,6 @@ alias "g"="git"
 alias "git-new-workdir"="/usr/share/doc/git/contrib/workdir/git-new-workdir"
 #export GIT_PROXY_COMMAND="proxy"
 
+# RVM
+source "$HOME/.rvm/scripts/rvm"
+rvm `cat $HOME/.ruby-version`
