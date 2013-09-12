@@ -21,7 +21,7 @@
   status = true
 
 [core]
-  pager = less -FiRS
+  pager = less -FiR
 
 [mergetool "vimdiff3"]
   cmd = vim -u ~/.vimrc -f -d -c \"wincmd J\" \"$MERGED\" \"$LOCAL\" \"$BASE\" \"$REMOTE\"
