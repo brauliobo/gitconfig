@@ -10,4 +10,4 @@ else
   CMD+='-a'
 fi
 
-exec "$CMD $@"
+exec sh -c "$CMD $@"
