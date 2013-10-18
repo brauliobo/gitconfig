@@ -1,5 +1,5 @@
 [user]
-  email = brauliobo@gmail.com
+  email = braulio@eita.org.br
   name = Braulio Bhavamitra
 
 [sendemail]
@@ -21,7 +21,7 @@
   status = true
 
 [core]
-  pager = less -FiRS
+  pager = less -FiR
 
 [mergetool "vimdiff3"]
   cmd = vim -u ~/.vimrc -f -d -c \"wincmd J\" \"$MERGED\" \"$LOCAL\" \"$BASE\" \"$REMOTE\"
@@ -50,6 +50,7 @@
   ci = commit
   cia = commit -a
   cam = commit --amend
+  cama = commit --amend -a
 
   cl = clean
   cldf = clean -df

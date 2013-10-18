@@ -1,0 +1,13 @@
+#!/bin/bash
+
+ACK_GREP='/usr/bin/ack-grep'
+ACK_GREP_VERSION=`$ACK_GREP --version | head -1 | cut -f 2 -d ' '`
+
+CMD="$ACK_GREP --follow --sort-files "
+if [[ $ACK_GREP_VERSION > 2.00 ]]; then
+  CMD+='-k'
+else
+  CMD+='-a'
+fi
+
+exec sh -c "$CMD $@"

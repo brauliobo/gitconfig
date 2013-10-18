@@ -18,16 +18,16 @@ _setArgs $*
 
 test $opt_verbose && set -x
 
-while [ -h "$SOURCE" ] ; do SOURCE="$(readlink "$SOURCE")"; done
-GITROOT="$( cd -P "$( dirname "$SOURCE" )" && git root )"
-echo == Source $GITROOT/default/config
-source $GITROOT/default/config
-
 echo == Link configurations files not overwriting existing regular files
 for f in `ls -A configs`; do
   [[ -L $HOME/$f || $opt_overwrite ]] && rm $HOME/$f
   ln -s $PWD/configs/$f $HOME/$f
 done
+
+while [ -h "$SOURCE" ] ; do SOURCE="$(readlink "$SOURCE")"; done
+GITROOT="$( cd -P "$( dirname "$SOURCE" )" && git root )"
+echo == Source $GITROOT/default/config
+source $GITROOT/default/config
 
 echo == Update submodules
 git smuir --quiet
