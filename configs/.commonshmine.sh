@@ -16,6 +16,9 @@ export EDITOR=vim
 # Grep
 alias "ack-grep"="ack-grep -a --sort-files"
 
+# GEM
+alias "gem-clear"='gem list | cut -d" " -f1 | xargs gem uninstall -aIx'
+
 # Git
 alias "g"="git"
 alias "git-new-workdir"="/usr/share/doc/git/contrib/workdir/git-new-workdir"
