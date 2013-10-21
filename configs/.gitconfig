@@ -85,6 +85,7 @@
   ps = push
   psu = push -u
   psf = push -f
+  psuf = push -uf
   pso = push origin
   pssm = push --recurse-submodules=on-demand
   psremoveallbranches = "!f() { git push $1 `git brar $1 | grep -v master | xargs -I {} echo :{}`; }; f"
