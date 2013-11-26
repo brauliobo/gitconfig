@@ -57,6 +57,7 @@ if [[ -n "$RUBYGEMS_USER" && ! -f ~/.gem/credentials ]]; then
 fi
 
 echo == Install hooks
+find -L .git/hooks -type f ! '(' -name '*.sample' ')' -delete
 for h in `ls $GITROOT/hooks`; do
   ln -sf $GITROOT/hooks/$h $GITROOT/.git/hooks
 done
