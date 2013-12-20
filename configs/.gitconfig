@@ -57,10 +57,10 @@
 
   res = reset
   resa = reset HEAD
-  resh = !git stash && git reset --hard
-  reshh = !git stash && git reset --hard HEAD
+  resh = !git stash && git reset --hard && git stash apply
+  reshh = !git stash && git reset --hard HEAD && git stash apply
   cundo = reset HEAD^1
-  cundoh = !git stash && git reset HEAD^1 --hard
+  cundoh = !git stash && git reset HEAD^1 --hard && git stash apply
   unstage = reset HEAD
 
   tags = tag -l

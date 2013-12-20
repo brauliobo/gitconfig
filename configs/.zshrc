@@ -37,7 +37,7 @@ COMPLETION_WAITING_DOTS="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(battery screen git command-not-found deb
     rvm ruby rake gem rails cap
-    #bundle # not useful for noosfero
+    bundle
 )
 
 source $ZSH/oh-my-zsh.sh
