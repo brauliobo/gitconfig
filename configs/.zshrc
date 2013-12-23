@@ -42,5 +42,8 @@ plugins=(battery screen git command-not-found deb
 
 source $ZSH/oh-my-zsh.sh
 
+# don't put commands starting with space on history
+setopt HIST_IGNORE_SPACE
+
 # Customize to your needs...
 . $HOME/.zshmine.sh
