@@ -57,7 +57,7 @@
 
   res = reset
   resa = reset HEAD
-  resh = !git stash && git reset --hard && git stash apply
+  resh = "!f() { git stash && git reset --hard $@ && git stash apply; }; f"
   reshh = !git stash && git reset --hard HEAD && git stash apply
   cundo = reset HEAD^1
   cundoh = !git stash && git reset HEAD^1 --hard && git stash apply
