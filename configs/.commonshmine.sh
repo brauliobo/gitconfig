@@ -1,4 +1,4 @@
-while [ -h "$SOURCE" ] ; do SOURCE="$(readlink "$SOURCE")"; done
+while [ -h "$SOURCE" ]; do SOURCE="$(readlink "$SOURCE")"; done
 GITROOT="$( cd -P "$( dirname "$SOURCE" )" && git root )"
 SCRIPTS="$GITROOT/scripts"
 CUSTOM_PATHS=$SCRIPTS
@@ -8,13 +8,13 @@ source $GITROOT/default/config
 
 # clear custom paths to avoid duplication
 PATH=`echo $PATH | sed "s|$CUSTOM_PATHS:||g"`
+# add custom paths
+export PATH=$CUSTOM_PATHS:$PATH
 
 # RVM
 source "$HOME/.rvm/scripts/rvm"
-rvm `cat $HOME/.ruby-version`
-
-# add custom paths
-export PATH=$CUSTOM_PATHS:$PATH
+DEFAULT_GEMSET=`cat $HOME/.ruby-version`
+[ -n "$DEFAULT_GEMSET" ] && rvm $DEFAULT_GEMSET
 
 # VIM
 alias vi='TERM="xterm-256color" vim'
