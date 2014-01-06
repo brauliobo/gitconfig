@@ -1,5 +1,5 @@
 while [ -h "$SOURCE" ]; do SOURCE="$(readlink "$SOURCE")"; done
-GITROOT="$( cd -P "$( dirname "$SOURCE" )" && git root )"
+GITROOT="$(builtin cd -P "$(dirname "$SOURCE")" && git root)"
 SCRIPTS="$GITROOT/scripts"
 CUSTOM_PATHS=$SCRIPTS
 

@@ -45,5 +45,11 @@ source $ZSH/oh-my-zsh.sh
 # don't put commands starting with space on history
 setopt HIST_IGNORE_SPACE
 
-# Customize to your needs...
+# allow array simple loop from string
+set -o shwordsplit
+
+# 
+unsetopt correct_all
+
+# load shell init
 . $HOME/.zshmine.sh
