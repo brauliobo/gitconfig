@@ -6,12 +6,10 @@ CUSTOM_PATHS=$SCRIPTS
 # Config
 source $GITROOT/default/config
 
-if [ -n "$CUSTOM_PATHS" ]; then
-  # clear custom paths to avoid duplication
-  PATH=`echo $PATH | sed "s|$CUSTOM_PATHS:||g"`
-  # add custom paths
-  export PATH=$CUSTOM_PATHS:$PATH
-fi
+# clear custom paths to avoid duplication
+PATH=`echo $PATH | sed "s|$CUSTOM_PATHS:||g"`
+# add custom paths
+export PATH=$CUSTOM_PATHS:$PATH
 
 # RVM
 source "$HOME/.rvm/scripts/rvm"
