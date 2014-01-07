@@ -24,21 +24,24 @@ for f in `ls -A configs`; do
   ln -s $PWD/configs/$f $HOME/$f
 done
 
-while [ -h "$SOURCE" ] ; do SOURCE="$(readlink "$SOURCE")"; done
-GITROOT="$( cd -P "$( dirname "$SOURCE" )" && git root )"
+while [ -h "$SOURCE" ]; do SOURCE="$(readlink "$SOURCE")"; done
+GITROOT="$(builtin cd -P "$(dirname "$SOURCE")" && git root)"
 echo == Source $GITROOT/default/config
 source $GITROOT/default/config
 
 echo == Update submodules
 git smuir --quiet
 
-echo == Install RVM
-if [[ ! -x $HOME/.rvm ]]; then
-  curl -#L https://get.rvm.io | bash -s stable
-fi
 echo == Install Oh my ZSH
 if [[ ! -x $HOME/.oh-my-zsh ]]; then
   wget --no-check-certificate https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | sh
+fi
+
+if [[ $INSTALL_RVM == 1 ]]; then
+  echo == Install RVM
+  if [[ ! -x $HOME/.rvm ]]; then
+    curl -#L https://get.rvm.io | bash -s stable
+  fi
 fi
 
 echo == Add autoload configs code
