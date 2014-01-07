@@ -12,9 +12,11 @@ PATH=`echo $PATH | sed "s|$CUSTOM_PATHS:||g"`
 export PATH=$CUSTOM_PATHS:$PATH
 
 # RVM
-source "$HOME/.rvm/scripts/rvm"
-DEFAULT_GEMSET=`cat $HOME/.ruby-version`
-[ -n "$DEFAULT_GEMSET" ] && rvm $DEFAULT_GEMSET
+if [[ -x $HOME/.rvm ]]; then
+  source "$HOME/.rvm/scripts/rvm"
+  DEFAULT_GEMSET=`cat $HOME/.ruby-version`
+  [ -n "$DEFAULT_GEMSET" ] && rvm $DEFAULT_GEMSET
+fi
 
 # VIM
 alias vi='TERM="xterm-256color" vim'
