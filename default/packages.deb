@@ -1,0 +1,11 @@
+
+apache2 postgresql build-essential
+
+# development
+git-core vim zsh curl command-not-found default-jre 
+
+chromium-browser-l10n firefox
+
+skype vlc pavucontrol unity-greeter kubuntu-restricted-extras 
+
+language-selector-gnome ubuntu-desktop 
