@@ -1,11 +1,21 @@
 
-apache2 postgresql build-essential
+# web development
+apache2 postgresql memcached tidy
 
 # development
-git-core vim zsh curl command-not-found default-jre 
+build-essential git-core vim curl default-jre 
 
+# shell
+zsh command-not-found 
+
+# web
 chromium-browser-l10n firefox
 
-skype vlc pavucontrol unity-greeter kubuntu-restricted-extras 
+# desktop
+language-selector-gnome ubuntu-desktop unity-greeter 
 
-language-selector-gnome ubuntu-desktop 
+# multimedia
+mencoder mplayer skype vlc recordmydesktop pavucontrol kubuntu-restricted-extras 
+
+# graphics
+simple-scan
