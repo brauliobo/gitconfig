@@ -15,7 +15,10 @@ chromium-browser-l10n firefox
 language-selector-gnome ubuntu-desktop unity-greeter 
 
 # multimedia
-mencoder mplayer skype vlc recordmydesktop pavucontrol kubuntu-restricted-extras 
+mencoder mplayer vlc recordmydesktop pavucontrol kubuntu-restricted-extras 
+
+# communication
+skype konversation
 
 # graphics
 simple-scan
