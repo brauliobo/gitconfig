@@ -21,7 +21,9 @@
   status = true
 
 [core]
-  pager = less -FiR
+  #pager = less -FiR # has problems with tmux and regular shells
+  pager = more -p
+  #pager = vimpager
 
 [mergetool "vimdiff3"]
   cmd = vim -u ~/.vimrc -f -d -c \"wincmd J\" \"$MERGED\" \"$LOCAL\" \"$BASE\" \"$REMOTE\"

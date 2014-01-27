@@ -1,3 +1,6 @@
 [submodule "configs/.vim"]
 	path = configs/.vim
 	url = git://github.com/brauliobo/vimfiles.git
+[submodule "src/vimpager"]
+	path = src/vimpager
+	url = https://github.com/rkitover/vimpager.git
