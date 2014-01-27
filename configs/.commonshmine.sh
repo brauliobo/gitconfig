@@ -12,9 +12,10 @@ PATH=`echo $PATH | sed "s|$CUSTOM_PATHS:||g"`
 export PATH=$CUSTOM_PATHS:$PATH
 
 # RVM
-if [[ -x $HOME/.rvm ]]; then
+if [[ -x $HOME/.rvm ]] && ! (env | grep PATH | grep .rvm > /dev/null); then
   source "$HOME/.rvm/scripts/rvm"
   DEFAULT_GEMSET=`cat $HOME/.ruby-version`
+  rvm system
   [ -n "$DEFAULT_GEMSET" ] && rvm $DEFAULT_GEMSET
 fi
 
