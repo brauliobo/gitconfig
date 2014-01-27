@@ -6,7 +6,7 @@ apache2 postgresql memcached tidy
 build-essential git-core vim curl default-jre 
 
 # admin
-ssh clusterssh
+ssh tmux screen
 
 # shell
 zsh command-not-found 
