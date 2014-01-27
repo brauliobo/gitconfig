@@ -30,6 +30,11 @@ There are also some extra things you may like:
 
         sudo chmod +x /usr/share/doc/git/contrib/workdir/git-new-workdir
 
+Perl development
+----------------
+
+1.  Install cpanminus with `curl -L http://cpanmin.us | perl - --sudo App::cpanminus`
+
 Troubleshooting
 ===============
 
