@@ -21,7 +21,7 @@
   status = true
 
 [core]
-  #pager = less -FiR # has problems with tmux and regular shells
+  #pager = less -FiR # -F is necessary but has problems with tmux and regular shells
   pager = most
   #pager = vimpager
   #pager = more -p
