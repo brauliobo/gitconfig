@@ -11,6 +11,9 @@ ssh tmux screen
 # shell
 zsh command-not-found 
 
+# sys admin
+python-software-properties debmirror
+
 # web
 chromium-browser-l10n firefox
 
