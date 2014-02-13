@@ -27,4 +27,7 @@ mencoder mplayer vlc recordmydesktop pavucontrol kubuntu-restricted-extras
 skype konversation
 
 # graphics
-simple-scan
+simple-scan gimp inkscape
+
+# GIS
+qgis
