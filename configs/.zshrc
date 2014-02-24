@@ -53,3 +53,6 @@ unsetopt correct_all
 
 # load shell init
 . $HOME/.zshmine.sh
+
+ # Add RVM to PATH for scripting
+PATH=$PATH:$HOME/.rvm/bin
