@@ -32,10 +32,10 @@ source $GITROOT/default/config
 echo == Update submodules
 git smuir --quiet
 
-echo == Install Oh my ZSH
-if [[ ! -x $HOME/.oh-my-zsh ]]; then
-  wget --no-check-certificate https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | sh
-fi
+#echo == Install Oh my ZSH
+#if [[ ! -x $HOME/.oh-my-zsh ]]; then
+#  wget --no-check-certificate https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | sh
+#fi
 
 if [[ $INSTALL_RVM == 1 ]]; then
   echo == Install RVM

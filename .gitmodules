@@ -4,3 +4,6 @@
 [submodule "src/vimpager"]
 	path = src/vimpager
 	url = https://github.com/rkitover/vimpager.git
+[submodule "configs/.zprezto"]
+	path = configs/.zprezto
+	url = https://github.com/sorin-ionescu/prezto.git

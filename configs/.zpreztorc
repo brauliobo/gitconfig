@@ -1,0 +1,30 @@
+# load prezto
+source ~/.zprezto/runcoms/zpreztorc
+
+# prezto modules
+zstyle ':prezto:load' pmodule \
+       'environment' \
+       'terminal' \
+       'editor' \
+       'history' \
+       'history-substring-search' \
+       'directory' \
+       'spectrum' \
+       'utility' \
+       'completion' \
+       'homebrew' \
+       'osx' \
+       'ruby' \
+       'rails' \
+       'git' \
+       'node' \
+       'python' \
+       'haskell' \
+       'syntax-highlighting' \
+       'tmux' \
+       'utility' \
+       'prompt'
+
+# presto theme
+zstyle ':prezto:module:prompt' theme 'sorin'
+
