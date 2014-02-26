@@ -22,7 +22,11 @@ fi
 # VIM
 alias vi='TERM="xterm-256color" vim'
 alias vim='TERM="xterm-256color" vim'
+
+# EDITOR
 export EDITOR=vim
+export VISUAL=$EDITOR
+export GIT_EDITOR=$EDITOR
 
 # GEM
 alias "gem-clear"='gem list | cut -d" " -f1 | xargs gem uninstall -aIx'

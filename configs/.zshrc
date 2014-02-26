@@ -15,3 +15,7 @@ alias zshsource="source ~/.zshrc"
 
 # load shell init
 . $HOME/.zshmine.sh
+
+# word navigation with control arrows
+bindkey '5D' emacs-backward-word
+bindkey '5C' emacs-forward-word
