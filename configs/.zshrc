@@ -9,6 +9,7 @@ set -o shwordsplit
 
 # disable autocorrection
 unsetopt correct_all
+DISABLE_CORRECTION="true"
 
 alias zshconfig="vim ~/.zshrc"
 alias zshsource="source ~/.zshrc"

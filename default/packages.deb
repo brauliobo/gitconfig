@@ -3,10 +3,13 @@
 apache2 postgresql memcached tidy
 
 # development
-build-essential git-core vim curl default-jre 
+build-essential git-core vim default-jre 
 
 # admin
 ssh tmux screen
+
+# networking
+curl wget lftp
 
 # shell
 zsh command-not-found 
