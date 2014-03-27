@@ -6,7 +6,7 @@ apache2 postgresql memcached tidy
 build-essential git-core vim default-jre 
 
 # admin
-ssh tmux screen
+knockd ssh tmux screen
 
 # networking
 curl wget lftp
@@ -21,7 +21,7 @@ python-software-properties debmirror
 chromium-browser-l10n firefox
 
 # desktop
-language-selector-gnome ubuntu-desktop unity-greeter 
+language-selector-gnome ubuntu-desktop unity-greeter xclip xsel
 
 # multimedia
 mencoder mplayer vlc recordmydesktop pavucontrol kubuntu-restricted-extras 

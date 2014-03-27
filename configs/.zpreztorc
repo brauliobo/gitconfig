@@ -8,6 +8,7 @@ zstyle ':prezto:load' pmodule \
        'editor' \
        'history' \
        'history-substring-search' \
+       'command-not-found' \
        'directory' \
        'spectrum' \
        'utility' \
