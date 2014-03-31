@@ -1,0 +1,3 @@
+#!/bin/bash
+
+skype --dbpath=~/.Skype2
