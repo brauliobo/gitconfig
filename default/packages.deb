@@ -5,6 +5,9 @@ apache2 postgresql memcached tidy
 # development
 build-essential git-core vim default-jre 
 
+# dev: php
+php5 php5-curl
+
 # admin
 knockd ssh tmux screen
 
