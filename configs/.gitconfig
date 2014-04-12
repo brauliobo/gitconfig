@@ -117,14 +117,14 @@
   ig-untracked = !git ignore `git untracked`
   gitignore = !cd `git root` && touch .gitignore
 
-  lp = log -p --color
-  lf = log -p --name-only --color
+  lp = log -m --simplify-merges --color -p
+  lf = log -m --simplify-merges --color -p --name-only
   lnom = log --color --no-merges
-  lg = log --graph --pretty=format:'%Cred%h%Creset %s %Cgreen(%cr) %Cblue%an <%ae>%Creset' --abbrev-commit --date=relative
+  lg = log -m --simplify-merges --color --graph --pretty=format:'%Cred%h%Creset %s %Cgreen(%cr) %Cblue%an <%ae>%Creset' --abbrev-commit --date=relative
   lg2 = !source ~/.githelpers && pretty_git_log
-  lgp = !git lg -p --color
-  lgf = !git lg -p --name-only --color
-  l = log --pretty=format:'%Cred%h%Creset %s %Cgreen(%cr) %Cblue%an <%ae>%Creset' --abbrev-commit --date=relative
+  lgp = !git lg -p
+  lgf = !git lg -p --name-only
+  l = log -m --simplify-merges --color --pretty=format:'%Cred%h%Creset %s %Cgreen(%cr) %Cblue%an <%ae>%Creset' --abbrev-commit --date=relative
   lc = "!f() { git log $* | grep '^commit ' | cut -f 2 -d ' '; }; f"
 
   head = !git l -1
