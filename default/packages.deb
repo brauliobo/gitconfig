@@ -18,7 +18,7 @@ curl wget lftp
 zsh command-not-found 
 
 # sys admin
-python-software-properties debmirror
+htop python-software-properties debmirror
 
 # web
 chromium-browser-l10n firefox
@@ -33,7 +33,7 @@ mencoder mplayer vlc recordmydesktop pavucontrol kubuntu-restricted-extras
 skype konversation
 
 # graphics
-simple-scan gimp inkscape
+simple-scan gimp inkscape qiv
 
 # GIS
 qgis
