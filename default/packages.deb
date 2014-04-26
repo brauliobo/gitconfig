@@ -35,5 +35,8 @@ skype konversation
 # graphics
 simple-scan gimp inkscape qiv
 
+# fonts
+msttcorefonts
+
 # GIS
 qgis
