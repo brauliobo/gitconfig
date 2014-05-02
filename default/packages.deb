@@ -15,19 +15,22 @@ knockd ssh tmux screen
 curl wget lftp
 
 # shell
-zsh command-not-found 
+zsh command-not-found tree
 
 # sys admin
 htop python-software-properties debmirror
 
 # web
-chromium-browser-l10n firefox
+chromium-browser-l10n firefox flashplugin-installer pepperflashplugin-nonfree
 
 # desktop
 language-selector-gnome ubuntu-desktop unity-greeter xclip xsel
 
 # multimedia
-mencoder mplayer vlc recordmydesktop pavucontrol kubuntu-restricted-extras 
+mplayer vlc pavucontrol kubuntu-restricted-extras 
+
+# multimedia authoring
+mencoder libav-tools recordmydesktop 
 
 # communication
 skype konversation
