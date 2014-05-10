@@ -17,8 +17,11 @@ curl wget lftp
 # shell
 zsh command-not-found tree
 
+# programming
+python-pip
+
 # sys admin
-htop python-software-properties debmirror
+htop python-software-properties debmirror okteta
 
 # web
 chromium-browser-l10n firefox flashplugin-installer pepperflashplugin-nonfree
@@ -27,7 +30,7 @@ chromium-browser-l10n firefox flashplugin-installer pepperflashplugin-nonfree
 language-selector-gnome ubuntu-desktop unity-greeter xclip xsel
 
 # multimedia
-mplayer vlc pavucontrol kubuntu-restricted-extras 
+mplayer vlc pavucontrol kubuntu-restricted-extras gstreamer1.0-plugins-ugly
 
 # multimedia authoring
 mencoder libav-tools recordmydesktop 
@@ -43,3 +46,6 @@ msttcorefonts
 
 # GIS
 qgis
+
+# filesystems
+ext3grep extundelete
