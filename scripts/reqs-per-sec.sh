@@ -65,12 +65,24 @@ then
 fi
 
 lastCount=`wc -l $logFile | sed 's/\([0-9]*\).*/\1/'`
+
+i=0
+printf "rqs:\t"
+
 while true
 do
  newCount=`wc -l $logFile | sed 's/\([0-9]*\).*/\1/'`
  diff=$(( newCount - lastCount ))
  rate=$(echo "$diff / $frequency" |bc -l)
- echo $rate
+ printf "%0.2f\t" $rate
  lastCount=$newCount
+
+ i=$((i+1))
+ if test "$i" -gt "2"; then
+   exit
+ fi
+
  sleep $frequency
 done
+
+printf "\n"
