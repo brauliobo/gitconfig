@@ -1,0 +1,14 @@
+[ui]
+username = Braulio Bhavamitra <braulio@eita.org.br>
+verbose = True
+
+[pager]
+pager = LESS='FRX' less
+
+[hooks]
+# Warning: too slow
+#post-commit = hg diff -c . --stat
+
+[extensions]
+hgext.convert=
+pager =

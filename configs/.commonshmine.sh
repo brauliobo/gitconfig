@@ -14,6 +14,7 @@ export PATH=$CUSTOM_PATHS:$PATH
 # RVM
 if [[ -x $HOME/.rvm ]] ; then
   if ! (env | grep PATH | grep .rvm > /dev/null); then
+    source "/usr/local/rvm/scripts/rvm"
     source "$HOME/.rvm/scripts/rvm"
   fi
   DEFAULT_GEMSET=`cat $HOME/.ruby-version`

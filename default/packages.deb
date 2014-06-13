@@ -1,6 +1,6 @@
 
 # web development
-apache2 postgresql memcached tidy
+apache2 postgresql memcached tidy httperf
 
 # development
 build-essential git-core vim default-jre 
@@ -15,22 +15,31 @@ knockd ssh tmux screen
 curl wget lftp
 
 # shell
-zsh command-not-found 
+zsh command-not-found tree
+
+# programming
+python-pip
 
 # security
 makepasswd
 
 # sys admin
-htop python-software-properties debmirror
+htop python-software-properties debmirror okteta
 
 # web
-chromium-browser-l10n firefox
+chromium-browser-l10n firefox flashplugin-installer pepperflashplugin-nonfree
 
 # desktop
 language-selector-gnome ubuntu-desktop unity-greeter xclip xsel
 
+# desktop: kde
+kcolorchooser
+
 # multimedia
-mencoder mplayer vlc recordmydesktop pavucontrol kubuntu-restricted-extras 
+mplayer vlc pavucontrol kubuntu-restricted-extras gstreamer1.0-plugins-ugly
+
+# multimedia authoring
+mencoder libav-tools recordmydesktop 
 
 # communication
 skype konversation
@@ -43,3 +52,9 @@ msttcorefonts
 
 # GIS
 qgis
+
+# filesystems
+ext3grep extundelete
+
+# testing
+phoronix-test-suite

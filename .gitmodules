@@ -6,4 +6,5 @@
 	url = https://github.com/rkitover/vimpager.git
 [submodule "configs/.zprezto"]
 	path = configs/.zprezto
-	url = https://github.com/sorin-ionescu/prezto.git
+	url = https://github.com/brauliobo/prezto.git
+
