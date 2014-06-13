@@ -17,6 +17,9 @@ curl wget lftp
 # shell
 zsh command-not-found 
 
+# security
+makepasswd
+
 # sys admin
 htop python-software-properties debmirror
 
