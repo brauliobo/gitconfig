@@ -8,6 +8,9 @@ build-essential git-core vim default-jre
 # dev: php
 php5 php5-curl
 
+# dev: js
+nodejs node-uglify
+
 # admin
 knockd ssh tmux screen
 
