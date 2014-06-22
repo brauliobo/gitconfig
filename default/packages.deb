@@ -15,7 +15,7 @@ nodejs node-uglify
 knockd ssh tmux screen
 
 # networking
-curl wget lftp
+curl wget lftp arp-scan
 
 # shell
 zsh command-not-found tree
