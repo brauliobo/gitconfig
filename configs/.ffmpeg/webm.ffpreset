@@ -1,0 +1,7 @@
+#f=webm
+#vf=scale=480:-1
+
+#vcodec=libvpx
+quality=0
+b=400k
+ab=160
