@@ -1,6 +1,6 @@
 
 # web development
-apache2 postgresql memcached tidy httperf
+apache2 postgresql memcached tidy httperf apache2-utils
 
 # development
 build-essential git-core vim default-jre 
@@ -42,7 +42,7 @@ kcolorchooser
 mplayer vlc pavucontrol kubuntu-restricted-extras gstreamer1.0-plugins-ugly
 
 # multimedia authoring
-mencoder libav-tools recordmydesktop 
+mencoder transcode libav-tools recordmydesktop 
 
 # communication
 skype konversation
