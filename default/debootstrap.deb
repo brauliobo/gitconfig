@@ -1,0 +1,9 @@
+curl wget
+
+sudo ssh dialog
+language-pack-pt
+
+net-tools iputils-ping
+
+vim git
+

@@ -1,0 +1,10 @@
+f=webm
+vf=scale=480:-1
+
+threads=4
+
+vcodec=libvpx
+quality=best
+b=400k
+ab=160
+
