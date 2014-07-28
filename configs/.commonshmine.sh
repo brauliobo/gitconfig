@@ -32,7 +32,7 @@ export VISUAL=$EDITOR
 export GIT_EDITOR=$EDITOR
 
 # GEM
-alias "gem-clear"='gem list | cut -d" " -f1 | xargs gem uninstall -aIx'
+alias "gem-clear"='for i in `gem list --no-versions`; do gem uninstall -aIx $i; done'
 
 # Git
 alias "g"="git"
