@@ -1,0 +1,9 @@
+#vf=scale=480:-1
+
+threads=4
+
+#vcodec=libvpx
+#q=-1
+#b:v=400k
+#ab=160k
+
