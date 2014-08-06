@@ -3,7 +3,10 @@
 apache2 postgresql memcached tidy httperf apache2-utils
 
 # development
-build-essential git-core vim default-jre 
+build-essential vim default-jre 
+
+# dev: scm
+git-core mercurial
 
 # dev: php
 php5 php5-curl
