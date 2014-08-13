@@ -20,6 +20,9 @@ knockd ssh tmux screen
 # networking
 curl wget lftp arp-scan
 
+# mail sending
+postfix mailutils
+
 # shell
 zsh command-not-found tree
 
@@ -39,7 +42,7 @@ chromium-browser-l10n firefox flashplugin-installer pepperflashplugin-nonfree
 language-selector-gnome ubuntu-desktop unity-greeter xclip xsel
 
 # desktop: kde
-kcolorchooser
+kcolorchooser kruler
 
 # multimedia
 mplayer vlc pavucontrol kubuntu-restricted-extras gstreamer1.0-plugins-ugly
@@ -61,6 +64,9 @@ qgis
 
 # filesystems
 ext3grep extundelete
+
+# system
+cpufrequtils lm-sensors
 
 # testing
 phoronix-test-suite
