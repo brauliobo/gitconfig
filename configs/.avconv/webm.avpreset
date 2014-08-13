@@ -1,9 +1,9 @@
-#vf=scale=480:-1
+# avconv -i Orgasmic-birth.avi -pre webm -b:v 400k -b:a 160k -filter:v "scale=480:-1" Orgasmic-birth.webm
 
 threads=4
-
 #vcodec=libvpx
 #q=-1
+
+#filter:v=scale=480:-1
 #b:v=400k
 #ab=160k
-
