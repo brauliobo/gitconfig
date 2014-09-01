@@ -51,6 +51,7 @@
   atheirs = "!f() { (git reset $* >/dev/null); git theirs $* && git add $*; }; f"
 
   ci = commit
+  cie = commit --allow-empty
   cia = commit -a
   cam = commit --amend
   cama = commit --amend -a
@@ -61,6 +62,7 @@
   res = reset
   resa = reset HEAD
   resh = "!f() { git stash && git reset --hard $@ && git stash apply; }; f"
+  reshu = !git resh `git upstream`
   reshh = !git stash && git reset --hard HEAD && git stash apply
   cundo = reset HEAD^1
   cundoh = !git stash && git reset HEAD^1 --hard && git stash apply
@@ -72,6 +74,7 @@
   sf = show --color --name-only
 
   d = diff --color
+  du = !git d `git upstream`
   dw = diff --color -w
   ds = diff --color --staged
   dsf = diff --color --staged --name-only
@@ -82,7 +85,7 @@
   fa = fetch --all
   fo = fetch origin
 
-  m = merge
+  m = merge --no-ff
   unm = reset --merge
 
   ps = push
@@ -166,6 +169,8 @@
 
   rb = rebase
   rbi = rebase -i
+  rbtc = !git theirs `git unmerged` || git resolve-unmerged && (git rbc || git rbs)
+  rboc = !git ours `git unmerged` || git reset `git unmerged` && git a . && (git rbc || git rbs)
   rbc = rebase --continue
   rba = rebase --abort
   rbs = rebase --skip
