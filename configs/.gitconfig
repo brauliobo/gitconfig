@@ -204,6 +204,8 @@
   smst = submodule --status
   sma = submodule add
   smu = submodule update
+  sme = submodule foreach
+  smepl = submodule foreach "(git checkout master; git pull)&"
   smui = submodule update --init
   smuir = submodule update --init --recursive
   sms = submodule sync
