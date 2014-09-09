@@ -14,6 +14,7 @@
 
 [push]
   default = upstream
+	rebase = true
 
 [color]
   interactive = true
@@ -61,11 +62,11 @@
 
   res = reset
   resa = reset HEAD
-  resh = "!f() { git stash && git reset --hard $@ && git stash apply; }; f"
+  resh = "!f() { git stash && git reset --hard $@; }; f"
   reshu = !git resh `git upstream`
-  reshh = !git stash && git reset --hard HEAD && git stash apply
+  reshh = !git stash && git reset --hard HEAD
   cundo = reset HEAD^1
-  cundoh = !git stash && git reset HEAD^1 --hard && git stash apply
+  cundoh = !git stash && git reset HEAD^1 --hard
   unstage = reset HEAD
 
   tags = tag -l
@@ -162,6 +163,10 @@
   amc = am --continue
   ama = am --abort
   ams = am --skip
+
+  rv = revert
+  rvc = revert --continue
+  rva = revert --abort
 
   fm = format-patch
 
