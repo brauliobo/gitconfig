@@ -91,6 +91,8 @@
 
   ps = push
   psu = push -u
+  psn = !git ps $1 `git brc`
+  psun = !git psu $1 `git brc`
   psf = push -f
   psuf = push -uf
   pso = push origin
@@ -180,6 +182,11 @@
   rba = rebase --abort
   rbs = rebase --skip
 
+  bs = bisect
+  bsr = bisect reset
+  bsb = bisect bad
+  bsg = bisect good
+
   mt = mergetool
 
   vm = !vim `git unmerged`
@@ -189,12 +196,13 @@
 
   current = rev-parse --abbrev-ref HEAD
   br = branch
+  brc = rev-parse --abbrev-ref HEAD
   brt = branch --track
   brup = branch --set-upstream
   bra = !git branch -a | less -FiRS
   brar = "!f() { git bra | grep remotes/$1/ | cut -f 3 -d '/'; }; f"
   brd = branch -D
-  brc = branch --contains
+  brco = branch --contains
   brcommits = "!f() { git lc --branches=$1* }; f"
   brdiff = !source ~/.githelpers && diff_branches
   brfdiff = !source ~/.githelpers && diff_branches_show_files
