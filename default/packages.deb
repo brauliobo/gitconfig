@@ -20,6 +20,9 @@ knockd ssh tmux screen
 # networking
 curl wget lftp arp-scan
 
+# network debug
+iftop nethogs iptraf
+
 # mail sending
 postfix mailutils
 
