@@ -63,7 +63,7 @@
   res = reset
   resa = reset HEAD
   resh = "!f() { git stash && git reset --hard $@; }; f"
-  reshu = !git resh `git upstream`
+  reshu = !git fetch upstream-remote && git resh `git upstream`
   reshh = !git stash && git reset --hard HEAD
   cundo = reset HEAD^1
   cundoh = !git stash && git reset HEAD^1 --hard
@@ -93,9 +93,10 @@
   psu = push -u
   psn = !git ps $1 `git brc`
   psun = !git psu $1 `git brc`
+  pso = push origin
+  psoun = !git psu origin `git brc`
   psf = push -f
   psuf = push -uf
-  pso = push origin
   pssm = push --recurse-submodules=on-demand
   psremoveallbranches = "!f() { git push $1 `git brar $1 | grep -v master | xargs -I {} echo :{}`; }; f"
 
@@ -146,6 +147,7 @@
   sh = stash
   sha = stash apply
   shl = stash list
+  shd = stash drop
   shc = stash clear
 
   chp = cherry-pick
