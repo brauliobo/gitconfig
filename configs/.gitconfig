@@ -63,7 +63,7 @@
   res = reset
   resa = reset HEAD
   resh = "!f() { git stash && git reset --hard $@; }; f"
-  reshu = !git fetch upstream-remote && git resh `git upstream`
+  reshu = !git fetch `git upstream-remote` && git resh `git upstream`
   reshh = !git stash && git reset --hard HEAD
   cundo = reset HEAD^1
   cundoh = !git stash && git reset HEAD^1 --hard
