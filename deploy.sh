@@ -57,6 +57,7 @@ echo == Grab gems credentials
 if [[ -n "$RUBYGEMS_USER" && ! -f ~/.gem/credentials ]]; then
   mkdir -p ~/.gem
   curl -u $RUBYGEMS_USER https://rubygems.org/api/v1/api_key.yaml > ~/.gem/credentials
+  chmod 0600 /home/braulio/.gem/credentials
 fi
 
 echo == Install hooks
