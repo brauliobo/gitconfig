@@ -108,6 +108,10 @@
   st = status
 
   unmerged = !git ls-files --unmerged | cut -f2 | uniq
+  theirsunmerged = !git ls-files --unmerged | grep \"\\\\s3\\\\s\" | cut -f2 | uniq
+  oursunmerged = !git ls-files --unmerged | grep \"\\\\s2\\\\s\" | cut -f2 | uniq
+  removedbytheirs = !bash -c 'source ~/.githelpers && diff_array \"`git theirsunmerged`\" \"`git oursunmerged`\"'
+
   untracked = ls-files --other --exclude-standard
   staged = ls-files --staged
   modified = ls-files --modified

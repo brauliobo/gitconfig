@@ -38,6 +38,22 @@ pretty_git_log() {
   less -FXRS
 }
 
+diff_array() {
+  a1="$1"
+  a2="$2"
+  awk -va1="$a1" -va2="$a2" '
+   BEGIN{
+     m= split(a1, A1," ")
+     n= split(a2, t," ")
+     for(i=1;i<=n;i++) { A2[t[i]] }
+     for (i=1;i<=m;i++){
+          if( ! (A1[i] in A2)  ){
+              printf A1[i]" "
+          }
+      }
+  }'
+}
+
 diff_branches() {
   bash -c "diff -u <(git lc $1) <(git lc)" |
   grep -e '^+' |
