@@ -107,10 +107,22 @@
 
   st = status
 
+  a = add --all
+  ap = add -p
+  resolve-unmerged = !git add `git unmerged`
+  add-untracked = !git add `git untracked`
+  as = !git diff -w --no-color | git apply --cached
+  rs = !(git resa && git as && git co . && git resa) &>/dev/null
+
+  rmf = rm -rf
+  rmtheirs = !git rm `git removedbytheirs`
+  rmours = !git rm `git removedbyours`
+
   unmerged = !git ls-files --unmerged | cut -f2 | uniq
   theirsunmerged = !git ls-files --unmerged | grep \"\\\\s3\\\\s\" | cut -f2 | uniq
   oursunmerged = !git ls-files --unmerged | grep \"\\\\s2\\\\s\" | cut -f2 | uniq
-  removedbytheirs = !bash -c 'source ~/.githelpers && diff_array \"`git theirsunmerged`\" \"`git oursunmerged`\"'
+  removedbyours = !bash -c 'source ~/.githelpers && diff_array \"`git theirsunmerged`\" \"`git oursunmerged`\"'
+  removedbytheirs = !bash -c 'source ~/.githelpers && diff_array \"`git oursunmerged`\" \"`git theirsunmerged`\"'
 
   untracked = ls-files --other --exclude-standard
   staged = ls-files --staged
@@ -159,13 +171,6 @@
   chpq = cherry-pick --quit
   chpa = cherry-pick --abort
 
-  a = add --all
-  ap = add -p
-  resolve-unmerged = !git add `git unmerged`
-  add-untracked = !git add `git untracked`
-  as = !git diff -w --no-color | git apply --cached
-  rs = !(git resa && git as && git co . && git resa) &>/dev/null
-
   am3 = am -3
   amr = am --resolved
   amc = am --continue
@@ -177,8 +182,6 @@
   rva = revert --abort
 
   fm = format-patch
-
-  rmf = rm -rf
 
   rb = rebase
   rbi = rebase -i
