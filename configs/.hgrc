@@ -10,5 +10,7 @@ pager = LESS='FRX' less
 #post-commit = hg diff -c . --stat
 
 [extensions]
-hgext.convert=
+hgext.convert =
 pager =
+rebase =
+mq =
