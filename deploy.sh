@@ -24,7 +24,7 @@ for f in `ls -A configs | grep -v '^\.config$'`; do
   ln -s $PWD/configs/$f $HOME/$f
 done
 for f in `ls -A configs/.config`; do
-  [[ -L $HOME/$f || $opt_overwrite ]] && rm $HOME/$f
+  [[ -L $HOME/.config/$f || $opt_overwrite ]] && rm $HOME/$f
   ln -s $PWD/configs/.config/$f $HOME/.config/$f
 done
 
