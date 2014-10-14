@@ -19,9 +19,13 @@ _setArgs $*
 test $opt_verbose && set -x
 
 echo == Link configurations files not overwriting existing regular files
-for f in `ls -A configs`; do
+for f in `ls -A configs | grep -v '^\.config$'`; do
   [[ -L $HOME/$f || $opt_overwrite ]] && rm $HOME/$f
   ln -s $PWD/configs/$f $HOME/$f
+done
+for f in `ls -A configs/.config`; do
+  [[ -L $HOME/$f || $opt_overwrite ]] && rm $HOME/$f
+  ln -s $PWD/configs/.config/$f $HOME/.config/$f
 done
 
 while [ -h "$SOURCE" ]; do SOURCE="$(readlink "$SOURCE")"; done
