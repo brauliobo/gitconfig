@@ -144,6 +144,7 @@
   lf = log -m --simplify-merges --color -p --name-only
   lnom = log --color --no-merges
   lg = log -m --simplify-merges --color --graph --pretty=format:'%Cred%h%Creset %s %Cgreen(%cr) %Cblue%an <%ae>%Creset' --abbrev-commit --date=relative
+  lgu = !git lg `git upstream`
   lg2 = !source ~/.githelpers && pretty_git_log
   lgp = !git lg -p
   lgf = !git lg -p --name-only
@@ -190,6 +191,10 @@
   rbc = rebase --continue
   rba = rebase --abort
   rbs = rebase --skip
+
+  squash = !"f() { NL=$1; abc=2; GIT_EDITOR=\"sed -i '$NL s/pick/squash/;/# This is the 2nd commit message:/,$ {d}'\"; git rebase -i HEAD~$NL; }; f"
+  sq = !git squash $1
+  sqps = !git squash $1 && git ps
 
   bs = bisect
   bsr = bisect reset
