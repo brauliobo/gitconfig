@@ -194,7 +194,7 @@
 
   squash = !"f() { NL=$1; abc=2; GIT_EDITOR=\"sed -i '$NL s/pick/squash/;/# This is the 2nd commit message:/,$ {d}'\"; git rebase -i HEAD~$NL; }; f"
   sq = !git squash $1
-  sqps = !git squash $1 && git ps
+  sqpsf = !git squash $1 && git psf
 
   bs = bisect
   bsr = bisect reset
