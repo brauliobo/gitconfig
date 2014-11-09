@@ -71,5 +71,8 @@ ext3grep extundelete
 # system
 cpufrequtils lm-sensors acpitool
 
+# system performance
+zram-config preload
+
 # testing
 phoronix-test-suite
