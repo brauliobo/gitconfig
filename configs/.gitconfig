@@ -83,6 +83,7 @@
   dc = "!f() { HASH=$1; shift 1; git d --cc $HASH $HASH^1 $HASH^2 $@; }; f"
 
   f = fetch
+  fu = !git fetch `git upstream-remote`
   fa = fetch --all
   fo = fetch origin
 
