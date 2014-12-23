@@ -38,6 +38,9 @@ makepasswd
 # sys admin
 htop python-software-properties debmirror okteta
 
+# power managing
+powertop xbacklight
+
 # web
 chromium-browser-l10n firefox flashplugin-installer pepperflashplugin-nonfree
 
