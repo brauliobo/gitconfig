@@ -44,6 +44,7 @@ git smuir --quiet
 if [[ $INSTALL_RVM == 1 ]]; then
   echo == Install RVM
   if [[ ! -x $HOME/.rvm ]]; then
+    gpg2 --keyserver hkp://keys.gnupg.net --recv-keys D39DC0E3
     curl -#L https://get.rvm.io | bash -s stable
   fi
 fi
