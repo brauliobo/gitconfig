@@ -45,6 +45,8 @@
   cob = checkout -b
   cobf = "!f() { git brd $1; git cob $1; }; f"
   col = checkout HEAD~1
+  cotc = !git sttc | xargs git checkout
+  como = !git stmo | xargs git checkout
 
   ours = checkout --ours
   theirs = checkout --theirs
@@ -107,6 +109,8 @@
   plr = pull --rebase
 
   st = status
+  sttc = !git status | grep typechange | awk '{print $2}'
+  stmo = !git status | grep modified | awk '{print $2}'
 
   a = add --all
   ap = add -p
