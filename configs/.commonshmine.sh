@@ -12,7 +12,7 @@ PATH=`echo $PATH | sed "s|$CUSTOM_PATHS:||g"`
 export PATH=$CUSTOM_PATHS:$PATH
 
 # RVM
-if [[ -x $HOME/.rvm ]] ; then
+if [[ -x $HOME/.rvm || -x /usr/local/rvm ]] ; then
   if ! (env | grep PATH | grep .rvm > /dev/null); then
     source "/usr/local/rvm/scripts/rvm"
     source "$HOME/.rvm/scripts/rvm"
