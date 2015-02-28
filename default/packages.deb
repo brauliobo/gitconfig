@@ -3,7 +3,7 @@
 apache2 postgresql memcached tidy httperf apache2-utils
 
 # development
-build-essential vim default-jre 
+build-essential vim most default-jre 
 
 # dev: scm
 git-core mercurial
@@ -33,7 +33,7 @@ zsh command-not-found tree
 python-pip
 
 # security
-makepasswd
+makepasswd gnupg2
 
 # sys admin
 htop python-software-properties debmirror okteta
@@ -51,10 +51,10 @@ language-selector-gnome ubuntu-desktop unity-greeter xclip xsel
 kcolorchooser kruler
 
 # multimedia
-mplayer vlc pavucontrol kubuntu-restricted-extras gstreamer1.0-plugins-ugly
+mplayer2 vlc pavucontrol kubuntu-restricted-extras gstreamer1.0-plugins-ugly
 
 # multimedia authoring
-mencoder transcode libav-tools recordmydesktop 
+transcode libav-tools recordmydesktop 
 
 # communication
 skype konversation
