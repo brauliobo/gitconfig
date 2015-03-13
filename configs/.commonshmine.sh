@@ -1,7 +1,7 @@
 while [ -h "$SOURCE" ]; do SOURCE="$(readlink "$SOURCE")"; done
 GITROOT="$(builtin cd -P "$(dirname "$SOURCE")" && git root)"
 SCRIPTS="$GITROOT/scripts"
-CUSTOM_PATHS=$SCRIPTS
+CUSTOM_PATHS=$SCRIPTS:~/.rbenv/bin
 
 # Config
 source $GITROOT/default/config

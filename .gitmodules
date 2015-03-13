@@ -8,3 +8,6 @@
 	path = configs/.zprezto
 	url = https://github.com/brauliobo/prezto.git
 
+[submodule "configs/.rbenv"]
+	path = configs/.rbenv
+	url = https://github.com/sstephenson/rbenv.git
