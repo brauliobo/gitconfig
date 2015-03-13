@@ -22,6 +22,11 @@ if [[ -x $HOME/.rvm || -x /usr/local/rvm ]] ; then
   [ -n "$DEFAULT_GEMSET" ] && (rvm use $DEFAULT_GEMSET 2>/dev/null)
 fi
 
+# rbenv
+if [ `which rbenv` ]; then
+  eval "$(rbenv init -)"
+fi
+
 # VIM
 alias vi='TERM="xterm-256color" vim'
 alias vim='TERM="xterm-256color" vim'

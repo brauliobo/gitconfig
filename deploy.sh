@@ -21,11 +21,11 @@ test $opt_verbose && set -x
 echo == Link configurations files not overwriting existing regular files
 for f in `ls -A configs | grep -v '^\.config$'`; do
   [[ -L $HOME/$f || $opt_overwrite ]] && rm $HOME/$f
-  ln -s $PWD/configs/$f $HOME/$f
+  ln -ns $PWD/configs/$f $HOME/$f
 done
 for f in `ls -A configs/.config`; do
   [[ -L $HOME/.config/$f || $opt_overwrite ]] && rm $HOME/$f
-  ln -s $PWD/configs/.config/$f $HOME/.config/$f
+  ln -ns $PWD/configs/.config/$f $HOME/.config/$f
 done
 
 while [ -h "$SOURCE" ]; do SOURCE="$(readlink "$SOURCE")"; done
@@ -35,6 +35,9 @@ source $GITROOT/default/config
 
 echo == Update submodules
 git smuir --quiet
+
+echo == Setup rbenv
+ln -nsf $GITROOT/src/rbenv-plugins $GITROOT/configs/.rbenv/plugins
 
 #echo == Install Oh my ZSH
 #if [[ ! -x $HOME/.oh-my-zsh ]]; then
@@ -68,5 +71,5 @@ fi
 echo == Install hooks
 find -L .git/hooks -type f ! '(' -name '*.sample' ')' -delete
 for h in `ls $GITROOT/hooks`; do
-  ln -sf $GITROOT/hooks/$h $GITROOT/.git/hooks
+  ln -nsf $GITROOT/hooks/$h $GITROOT/.git/hooks
 done
