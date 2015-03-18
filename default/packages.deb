@@ -14,6 +14,12 @@ php5 php5-curl
 # dev: js
 nodejs node-uglify
 
+# dev: java
+openjdk-8-jdk
+
+# dev: text
+ack-grep
+
 # admin
 knockd ssh tmux screen
 
@@ -21,13 +27,13 @@ knockd ssh tmux screen
 curl wget lftp arp-scan
 
 # network debug
-iftop nethogs iptraf
+iftop nethogs iptraf zenmap wireshark
 
 # mail sending
 postfix mailutils
 
 # shell
-zsh command-not-found tree
+zsh command-not-found tree pv
 
 # programming
 python-pip
@@ -70,6 +76,9 @@ qgis
 
 # filesystems
 ext3grep extundelete
+
+# package management
+aptitude 
 
 # system
 cpufrequtils lm-sensors acpitool
