@@ -3,3 +3,7 @@
 
 # temporary files
 *.swp
+
+# src files
+src/android-sdk-linux
+

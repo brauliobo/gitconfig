@@ -43,3 +43,8 @@ alias "gem-clear"='for i in `gem list --no-versions`; do gem uninstall -aIx $i; 
 alias "g"="git"
 alias "git-new-workdir"="/usr/share/doc/git/contrib/workdir/git-new-workdir"
 #export GIT_PROXY_COMMAND="proxy"
+
+# android sdk
+export ANDROID_HOME=$GITROOT/src/android-sdk-linux
+export PATH=$ANDROID_HOME/tools:$PATH
+
