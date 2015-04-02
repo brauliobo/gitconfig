@@ -80,8 +80,10 @@ s_system() {
   $EDITOR /etc/locale.gen
   echo LANG=$LANG > /etc/locale.conf
   locale-gen
+
+  pacman -S btrfs-progs grub os-prober
   mkinitcpio -p linux
-  pacman -S grub os-prober
+
   grub-install --target=i386-pc --recheck --debug $GRUBDEV
   grub-mkconfig -o /boot/grub/grub.cfg
   echo -e "KEYMAP=$KEYMAP\nFONT=$FONT" > /etc/vconsole.conf
@@ -99,7 +101,6 @@ s_auth() {
 }
 
 s_desktop() {
-  pacman -S btrfs-progs
   pacman -S iw wireless_tools net-tools
   pacman -S ssh rsync zsh tmux
 
