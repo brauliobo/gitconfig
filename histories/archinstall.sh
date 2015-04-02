@@ -101,8 +101,8 @@ s_auth() {
 }
 
 s_desktop() {
-  pacman -S iw wireless_tools net-tools
-  pacman -S ssh rsync zsh tmux
+  pacman -S iw wireless_tools net-tools networkmanager
+  pacman -S openssh rsync zsh tmux
 
   pacman -S sudo vim git wget pkgfile
   pkgfile --update
