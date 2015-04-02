@@ -4,6 +4,9 @@ HOMEDEV=/dev/sda6
 GRUBDEV=/dev/sda
 HOSTNAME=laptop
 TZ=America/Bahia
+LCENC=UTF-8
+LCLANG=pt_BR
+LANG=pt_BR.UTF-8
 LANG=pt_BR.UTF-8
 KEYMAP=br-latin1-abnt2
 FONT=lat2-16
@@ -57,21 +60,23 @@ echo -e "KEYMAP=$KEYMAP\nFONT=$FONT" > /etc/vconsole.conf
 echo '== root password'; read
 passwd
 echo '== user password'; read
+pacman -S sudo
 useradd $USER -m
-usermod -aG sudo $USER
 passwd $USER
+vi /etc/sudoers
+usermod -aG wheel $USER
 
 echo '== basic desktop install'; read
 pacman -S btrfs-progs
 pacman -S iw wireless_tools net-tools
 
-pacman -S sudo vim git wget pkgfile
+pacman -S vim git wget tmux pkgfile
 pkgfile --update
 
-pacman -S pavucontrol alsa-utils
+pacman -S pavucontrol alsa-utils pulseaudio
 pacman -S xorg sddm
-pacman -S plasma breeze-kde4 konsole kate
+pacman -S plasma breeze-kde4 konsole kate kmix lib32-sni-qt sni-qt
 
-systemctl enable sddm
+sstemctl enable sddm
 systemctl enable NetworkManager
 
