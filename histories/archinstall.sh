@@ -25,7 +25,6 @@ s_run() {
   echo '== setup wireless'; s_wifi
   echo '== load keymap'; s_keymap
   echo '== root fs'; s_fs
-  echo '== enable multilib and set mirrors'; read; s_sync
   echo '== install'; s_install
 }
 
@@ -62,12 +61,8 @@ s_fs() {
   fi
 }
 
-s_sync() {
-  $EDITOR /etc/pacman.conf
-  $EDITOR /etc/pacman.d/mirrorlist
-}
-
 s_install() {
+  $EDITOR /etc/pacman.d/mirrorlist
   pacstrap /mnt base
   genfstab -p /mnt >> /mnt/etc/fstab
 }
@@ -75,6 +70,9 @@ s_install() {
 ### functions for chroot
 
 s_system() {
+  $EDITOR /etc/pacman.conf
+  pacman -Syu
+
   echo $HOSTNAME > /etc/hostname
   ln -sf /usr/share/zoneinfo/$TZ /etc/localtime
   $EDITOR /etc/locale.gen
