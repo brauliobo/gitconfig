@@ -1,82 +1,120 @@
-ROOTDEV=/dev/sda5
+#!/bin/bash
+
+EDITOR=vi
+
+ROOTDEV=/dev/sda4
 ROOTLABEL=LINUX
-HOMEDEV=/dev/sda6
+#HOMEDEV=/dev/sda6
 GRUBDEV=/dev/sda
-HOSTNAME=laptop
+HOSTNAME=bhavaintelnuc
 TZ=America/Bahia
 LCENC=UTF-8
 LCLANG=pt_BR
-LANG=pt_BR.UTF-8
-LANG=pt_BR.UTF-8
+LANG=$LCENC.$LCLANG
 KEYMAP=br-latin1-abnt2
 FONT=lat2-16
 
 USER=braulio
 
-WIFIMOD=ath9k
+#WIFIMOD=ath9k
 WIFIESSID=OpenWrt
 
-echo '=== outside chroot'; read
-set -x
+s_run() {
+  echo '=== outside chroot'; read
+  set -x
+  echo '== setup wireless'; s_wifi
+  echo '== load keymap'; s_keymap
+  echo '== root fs'; s_fs
+  echo '== enable multilib and set mirrors'; read; s_sync
+  echo '== install'; s_install
+}
 
-echo '== setup wireless'
-modprobe $WIFIMOD
-ifconfig wlp2s0 up
-iwconfig wlp2s0 essid $WIFIESSID
-dhclient wlp2s0
+s_chroot_run() {
+  arch-chroot /mnt <<'EOC'
+    set -x
+    echo '=== inside chroot'; read
+    `declare -f s_system s_auth s_desktop`
+    echo '== system setup'; read; s_system
+    echo '== users setup'; s_auth
+    echo '== basic desktop install'; s_desktop
+EOC
+}
 
-echo '== load keymap'
-loadkeys $KEYMAP
+s_wifi() {
+  if [[ -n $WIFIMOD ]]; then
+    modprobe $WIFIMOD
+    ifconfig wlp2s0 up
+    kiwconfig wlp2s0 essid $WIFIESSID
+    dhclient wlp2s0
+  fi
+}
 
-echo '== root fs'
-#mkfs.btrfs $ROOTDEV -f -L $ROOTLABEL
-mount $ROOTDEV /mnt
-mkdir /mnt/home
-mount $HOMEDEV /mnt/home
+s_keymap() {
+  loadkeys $KEYMAP
+}
 
-echo '== enable multilib and set mirrors'; read
-vi /etc/pacman.conf
-vi /etc/pacman.d/mirrorlist
+s_fs() {
+  #mkfs.btrfs $ROOTDEV -f -L $ROOTLABEL
+  mount $ROOTDEV /mnt
+  mkdir /mnt/home
+  if [[ -n $HOMEDEV ]]; then
+    mount $HOMEDEV /mnt/home
+  fi
+}
 
-echo '== install'
-pacstrap /mnt base
-genfstab -p /mnt >> /mnt/etc/fstab
+s_sync() {
+  $EDITOR /etc/pacman.conf
+  $EDITOR /etc/pacman.d/mirrorlist
+}
 
-echo '=== inside chroot'; read
-set -x
+s_install() {
+  pacstrap /mnt base
+  genfstab -p /mnt >> /mnt/etc/fstab
+}
 
-arch-chroot /mnt
-echo $HOSTNAME > /etc/hostname
-ln -sf /usr/share/zoneinfo/$TZ /etc/localtime
-nano /etc/locale.gen
-echo LANG=$LANG > /etc/locale.conf
-locale-gen
-mkinitcpio -p linux
-pacman -S grub os-prober
-grub-install --target=i386-pc --recheck --debug $GRUBDEV
-grub-mkconfig -o /boot/grub/grub.cfg
-echo -e "KEYMAP=$KEYMAP\nFONT=$FONT" > /etc/vconsole.conf
+### functions for chroot
 
-echo '== root password'; read
-passwd
-echo '== user password'; read
-pacman -S sudo
-useradd $USER -m
-passwd $USER
-vi /etc/sudoers
-usermod -aG wheel $USER
+s_system() {
+  echo $HOSTNAME > /etc/hostname
+  ln -sf /usr/share/zoneinfo/$TZ /etc/localtime
+  $EDITOR /etc/locale.gen
+  echo LANG=$LANG > /etc/locale.conf
+  locale-gen
+  mkinitcpio -p linux
+  pacman -S grub os-prober
+  grub-install --target=i386-pc --recheck --debug $GRUBDEV
+  grub-mkconfig -o /boot/grub/grub.cfg
+  echo -e "KEYMAP=$KEYMAP\nFONT=$FONT" > /etc/vconsole.conf
+}
 
-echo '== basic desktop install'; read
-pacman -S btrfs-progs
-pacman -S iw wireless_tools net-tools
+s_auth() {
+  echo '== root password'; read
+  passwd
+  echo '== user password'; read
+  pacman -S sudo
+  useradd $USER -m
+  passwd $USER
+  vi /etc/sudoers
+  usermod -aG wheel $USER
+}
 
-pacman -S vim git wget tmux pkgfile
-pkgfile --update
+s_desktop() {
+  pacman -S btrfs-progs
+  pacman -S iw wireless_tools net-tools
+  pacman -S ssh rsync zsh tmux
 
-pacman -S pavucontrol alsa-utils pulseaudio
-pacman -S xorg sddm
-pacman -S plasma breeze-kde4 konsole kate kmix lib32-sni-qt sni-qt
+  pacman -S sudo vim git wget pkgfile
+  pkgfile --update
 
-sstemctl enable sddm
-systemctl enable NetworkManager
+  pacman -S pavucontrol alsa-utils pulseaudio
+  pacman -S xorg sddm
+  pacman -S plasma breeze-kde4 konsole kate kmix lib32-sni-qt sni-qt
+  pacman -S firefox chromium
 
+  systemctl enable sddm
+  systemctl enable NetworkManager
+  systemctl enable sshd
+}
+
+#s_run
+#s_chroot_run
