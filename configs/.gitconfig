@@ -13,7 +13,7 @@
   whitespace = nowarn
 
 [push]
-  default = upstream
+  default = current
 	rebase = true
 
 [color]
