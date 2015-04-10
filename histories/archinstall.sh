@@ -2,6 +2,7 @@
 
 EDITOR=vi
 
+ARCH=x86_64
 ROOTDEV=/dev/sda4
 ROOTLABEL=LINUX
 #HOMEDEV=/dev/sda6
@@ -108,11 +109,25 @@ s_desktop() {
   pacman -S pavucontrol alsa-utils pulseaudio
   pacman -S xorg sddm
   pacman -S plasma breeze-kde4 konsole kate kmix lib32-sni-qt sni-qt
-  pacman -S firefox chromium
 
   systemctl enable sddm
   systemctl enable NetworkManager
   systemctl enable sshd
+
+  pacman -S firefox chromium
+  pacman -S libreoffice
+  pacman -S java-runtime
+
+  s_yaourt
+}
+
+s_yaourt() {
+  echo "[archlinuxfr]
+  SigLevel = Never
+  Server = http://repo.archlinux.fr/$ARCH" >> /etc/pacman.conf
+  pacman -Sy base-devel yaourt
+  yaourt ttf-ms-fonts
+  yaourt chromium-pepper-flash
 }
 
 #s_run
