@@ -49,5 +49,5 @@ alias "git-new-workdir"="/usr/share/doc/git/contrib/workdir/git-new-workdir"
 
 # android sdk
 export ANDROID_HOME=$GITROOT/src/android-sdk-linux
-export PATH=$ANDROID_HOME/tools:$PATH
+export PATH=$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH
 
