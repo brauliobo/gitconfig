@@ -107,13 +107,16 @@ s_desktop() {
   pkgfile --update
 
   pacman -S pavucontrol alsa-utils pulseaudio
-  pacman -S xorg sddm
-  pacman -S plasma breeze-kde4 konsole kate kmix lib32-sni-qt sni-qt
+  pacman -S xf86-input-synaptics kcm-touchpad-frameworks
+  udo cp /usr/share/X11/xorg.conf.d/50-synaptics.conf /etc/X11/xorg.conf.d
+  pacman -S java-runtime
+  pacman -S xorg lightdm
 
-  systemctl enable sddm
-  systemctl enable NetworkManager
   systemctl enable sshd
+  systemctl enable lightdm
+  systemctl enable NetworkManager
 
+  pacman -S plasma breeze-kde4 konsole kate kmix lib32-sni-qt sni-qt
   pacman -S firefox chromium
   pacman -S libreoffice
   pacman -S java-runtime
