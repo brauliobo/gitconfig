@@ -1,13 +1,9 @@
-include "/usr/share/themes/Orion/gtk-2.0/gtkrc"
+include "/usr/share/themes/QtCurve/gtk-2.0/gtkrc"
+include "/etc/gtk-2.0/gtkrc"
+
 style "user-font"
 {
-    font_name="Oxygen-Sans Sans-Book"
+  font_name="Sans Serif"
 }
-widget_class "*" style "user-font"
-gtk-font-name="Oxygen-Sans Sans-Book 10"
-gtk-theme-name="Orion"
-gtk-icon-theme-name="breeze"
-gtk-fallback-icon-theme="gnome"
-gtk-toolbar-style=GTK_TOOLBAR_ICONS
-gtk-menu-images=1
-gtk-button-images=1
+widget_class "*" style "user-font" 
+gtk-theme-name="QtCurve"

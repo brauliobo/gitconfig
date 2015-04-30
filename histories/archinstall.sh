@@ -121,7 +121,7 @@ s_desktop() {
   systemctl enable lightdm
   systemctl enable NetworkManager
 
-  pacman -S plasma breeze-kde4 konsole kate kmix lib32-sni-qt sni-qt kdeutils kdegraphics
+  pacman -S plasma breeze-kde4 konsole kate kmix lib32-sni-qt sni-qt kdeutils kdegraphics qtcurve-gtk2
   pacman -S firefox chromium
   pacman -S libreoffice
   pacman -S java-runtime
@@ -129,6 +129,8 @@ s_desktop() {
   pacman -S firefox-i18n-$PACKAGELOCALE1 kde-l10n-$PACKAGELOCALE2
 
   pacman -S konversation skype
+
+  pacman -S owncloud-client
 
   # noosfero
   pacman -S postgresql imagemagick po4a
