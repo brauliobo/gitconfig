@@ -9,11 +9,13 @@ ROOTLABEL=LINUX
 GRUBDEV=/dev/sda
 HOSTNAME=bhavaintelnuc
 TZ=America/Bahia
-LCENC=UTF-8
 LCLANG=pt_BR
-LANG=$LCENC.$LCLANG
+LCENC=UTF-8
+PACKAGELOCALE1=pt-br
+PACKAGELOCALE2=pt_br
+LANG=$LCLANG.$LCENC
 KEYMAP=br-latin1-abnt2
-FONT=lat2-16
+FONT=default8x16
 
 USER=braulio
 
@@ -120,6 +122,8 @@ s_desktop() {
   pacman -S firefox chromium
   pacman -S libreoffice
   pacman -S java-runtime
+
+  pacman -S firefox-i18n-$PACKAGELOCALE1 kde-l10n-$PACKAGELOCALE2
 
   s_yaourt
 }
