@@ -78,13 +78,16 @@ s_system() {
 
   echo $HOSTNAME > /etc/hostname
   ln -sf /usr/share/zoneinfo/$TZ /etc/localtime
+  echo $TZ > /etc/timezone
   $EDITOR /etc/locale.gen
   echo LANG=$LANG > /etc/locale.conf
   locale-gen
 
-  pacman -S btrfs-progs grub os-prober
+  pacman -S btrfs-progs
+  $EDITOR /etc/mkinitcpio.conf
   mkinitcpio -p linux
 
+  pacman -S grub os-prober
   grub-install --target=i386-pc --recheck --debug $GRUBDEV
   grub-mkconfig -o /boot/grub/grub.cfg
   echo -e "KEYMAP=$KEYMAP\nFONT=$FONT" > /etc/vconsole.conf
@@ -103,7 +106,7 @@ s_auth() {
 
 s_desktop() {
   pacman -S iw wireless_tools net-tools networkmanager
-  pacman -S openssh rsync zsh tmux
+  pacman -S openssh rsync zsh tmux htop
 
   pacman -S sudo vim git wget pkgfile
   pkgfile --update
@@ -118,12 +121,19 @@ s_desktop() {
   systemctl enable lightdm
   systemctl enable NetworkManager
 
-  pacman -S plasma breeze-kde4 konsole kate kmix lib32-sni-qt sni-qt
+  pacman -S plasma breeze-kde4 konsole kate kmix lib32-sni-qt sni-qt kdeutils kdegraphics
   pacman -S firefox chromium
   pacman -S libreoffice
   pacman -S java-runtime
 
   pacman -S firefox-i18n-$PACKAGELOCALE1 kde-l10n-$PACKAGELOCALE2
+
+  pacman -S konversation skype
+
+  # noosfero
+  pacman -S postgresql imagemagick po4a
+  yaourt tango-icon-theme
+  pacman -S apache nginx
 
   s_yaourt
 }
