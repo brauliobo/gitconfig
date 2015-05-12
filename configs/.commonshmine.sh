@@ -17,15 +17,22 @@ if [[ -x $HOME/.rvm || -x /usr/local/rvm ]] ; then
     source "/usr/local/rvm/scripts/rvm"
     source "$HOME/.rvm/scripts/rvm"
   fi
-  DEFAULT_GEMSET=`cat $HOME/.ruby-version`
-  rvm use system >/dev/null 2>&1
-  [ -n "$DEFAULT_GEMSET" ] && (rvm use $DEFAULT_GEMSET 2>/dev/null)
 fi
 
 # rbenv
 if [ `which rbenv` ]; then
   eval "$(rbenv init -)"
 fi
+
+case $RUBY_FROM in
+rvm)
+  DEFAULT_GEMSET=`cat $HOME/.ruby-version`
+  rvm use system >/dev/null 2>&1
+  [ -n "$DEFAULT_GEMSET" ] && (rvm use $DEFAULT_GEMSET 2>/dev/null)
+  ;;
+rbenv)
+  ;;
+esac
 
 # VIM
 alias vi='TERM="xterm-256color" vim'

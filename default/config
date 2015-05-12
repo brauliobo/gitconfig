@@ -1,5 +1,4 @@
 # set to fetch api key on deploy
 RUBYGEMS_USER=brauliobo
 
-# define this to 1 to install rvm on deploy script
-INSTALL_RVM=1
+RUBY_FROM=rbenv
