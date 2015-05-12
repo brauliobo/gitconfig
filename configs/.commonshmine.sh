@@ -45,6 +45,7 @@ export GIT_EDITOR=$EDITOR
 
 # GEM
 alias "gem-clear"='for i in `gem list --no-versions`; do gem uninstall -aIx $i; done'
+alias be="bundle exec"
 
 # NPM
 alias "npm-clear"="sudo npm list -g --depth=0. | grep -v npm | awk -F ' ' '{print $2}' | awk -F '@' '{print $1}'  | sudo xargs npm remove -g"
