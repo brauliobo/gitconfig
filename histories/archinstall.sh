@@ -124,6 +124,7 @@ s_desktop() {
   pacmas -S breeze-kde4 qtcurve-gtk2
   pacman -S plasma konsole kate kmix lib32-sni-qt sni-qt kdeutils kdegraphics kdebase-dolphin
   pacman -S firefox chromium
+  pacman -S mplayer vlc
   pacman -S libreoffice
   pacman -S java-runtime
   #yaourt libappindicator
