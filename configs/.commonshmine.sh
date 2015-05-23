@@ -55,6 +55,10 @@ alias "g"="git"
 alias "git-new-workdir"="/usr/share/doc/git/contrib/workdir/git-new-workdir"
 #export GIT_PROXY_COMMAND="proxy"
 
+# GREP
+# the_silver_searcher
+alias "ag"="ag -a"
+
 # android sdk
 export ANDROID_HOME=$GITROOT/src/android-sdk-linux
 export PATH=$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH
