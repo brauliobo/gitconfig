@@ -125,11 +125,11 @@ s_desktop() {
   pacman -S plasma konsole kate kmix lib32-sni-qt sni-qt kdeutils kdegraphics kdebase-dolphin
   pacman -S firefox chromium
   pacman -S mplayer vlc
-  pacman -S libreoffice
+  pacman -S libreoffice-fresh
   pacman -S java-runtime
   #yaourt libappindicator
 
-  pacman -S firefox-i18n-$PACKAGELOCALE1 kde-l10n-$PACKAGELOCALE2
+  pacman -S firefox-i18n-$PACKAGELOCALE1 kde-l10n-$PACKAGELOCALE2  libreoffice-fresh-pt-BR
 
   pacman -S konversation skype
 
@@ -139,6 +139,9 @@ s_desktop() {
   pacman -S postgresql imagemagick po4a
   yaourt tango-icon-theme
   pacman -S apache nginx
+
+  # dev
+  pacman -S ack the_silver_searcher
 
   s_yaourt
 }
