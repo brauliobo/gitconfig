@@ -52,7 +52,11 @@ alias "npm-clear"="sudo npm list -g --depth=0. | grep -v npm | awk -F ' ' '{prin
 
 # Git
 alias "g"="git"
-alias "git-new-workdir"="/usr/share/doc/git/contrib/workdir/git-new-workdir"
+if [[ -r /usr/share/doc/git/contrib/workdir/git-new-workdir ]]; then
+  alias "git-new-workdir"="/usr/share/doc/git/contrib/workdir/git-new-workdir"
+else
+  alias "git-new-workdir"="/usr/share/git/workdir/git-new-workdir"
+fi
 #export GIT_PROXY_COMMAND="proxy"
 
 # GREP
