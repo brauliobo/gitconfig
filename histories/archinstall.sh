@@ -9,13 +9,13 @@ ROOTLABEL=LINUX
 GRUBDEV=/dev/sda
 HOSTNAME=bhavaintelnuc
 TZ=America/Bahia
-LCENC=UTF-8
 LCLANG=pt_BR
+LCENC=UTF-8
 PACKAGELOCALE1=pt-br
 PACKAGELOCALE2=pt_br
-LANG=$LCENC.$LCLANG
+LANG=$LCLANG.$LCENC
 KEYMAP=br-latin1-abnt2
-FONT=lat2-16
+FONT=default8x16
 
 USER=braulio
 
@@ -78,13 +78,16 @@ s_system() {
 
   echo $HOSTNAME > /etc/hostname
   ln -sf /usr/share/zoneinfo/$TZ /etc/localtime
+  echo $TZ > /etc/timezone
   $EDITOR /etc/locale.gen
   echo LANG=$LANG > /etc/locale.conf
   locale-gen
 
-  pacman -S btrfs-progs grub os-prober
+  pacman -S btrfs-progs
+  $EDITOR /etc/mkinitcpio.conf
   mkinitcpio -p linux
 
+  pacman -S grub os-prober
   grub-install --target=i386-pc --recheck --debug $GRUBDEV
   grub-mkconfig -o /boot/grub/grub.cfg
   echo -e "KEYMAP=$KEYMAP\nFONT=$FONT" > /etc/vconsole.conf
@@ -103,24 +106,42 @@ s_auth() {
 
 s_desktop() {
   pacman -S iw wireless_tools net-tools networkmanager
-  pacman -S openssh rsync zsh tmux
+  pacman -S openssh rsync zsh tmux htop
 
   pacman -S sudo vim git wget pkgfile
   pkgfile --update
 
   pacman -S pavucontrol alsa-utils pulseaudio
-  pacman -S xorg sddm
-  pacman -S plasma breeze-kde4 konsole kate kmix lib32-sni-qt sni-qt
-
-  systemctl enable sddm
-  systemctl enable NetworkManager
-  systemctl enable sshd
-
-  pacman -S firefox chromium
-  pacman -S libreoffice
+  pacman -S xf86-input-synaptics kcm-touchpad-frameworks
+  udo cp /usr/share/X11/xorg.conf.d/50-synaptics.conf /etc/X11/xorg.conf.d
   pacman -S java-runtime
+  pacman -S xorg lightdm
 
-  pacman -S firefox-i18n-$PACKAGELOCALE1 kde-l10n-$PACKAGELOCALE2
+  systemctl enable sshd
+  systemctl enable lightdm
+  systemctl enable NetworkManager
+
+  pacmas -S breeze-kde4 qtcurve-gtk2
+  pacman -S plasma konsole kate kmix lib32-sni-qt sni-qt kdeutils kdegraphics kdebase-dolphin
+  pacman -S firefox chromium
+  pacman -S mplayer vlc
+  pacman -S libreoffice-fresh
+  pacman -S java-runtime
+  #yaourt libappindicator
+
+  pacman -S firefox-i18n-$PACKAGELOCALE1 kde-l10n-$PACKAGELOCALE2  libreoffice-fresh-pt-BR
+
+  pacman -S konversation skype
+
+  pacman -S owncloud-client ktorrent
+
+  # noosfero
+  pacman -S postgresql imagemagick po4a
+  yaourt tango-icon-theme
+  pacman -S apache nginx
+
+  # dev
+  pacman -S ack the_silver_searcher
 
   s_yaourt
 }

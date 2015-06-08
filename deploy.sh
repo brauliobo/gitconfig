@@ -44,7 +44,7 @@ ln -nsf $GITROOT/src/rbenv-plugins $GITROOT/configs/.rbenv/plugins
 #  wget --no-check-certificate https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | sh
 #fi
 
-if [[ $INSTALL_RVM == 1 ]]; then
+if [[ $RUBY_FROM == 'rvm' ]]; then
   echo == Install RVM
   if [[ ! -x $HOME/.rvm ]]; then
     gpg2 --keyserver hkp://keys.gnupg.net --recv-keys D39DC0E3
