@@ -22,6 +22,7 @@
   status = true
 
 [core]
+  mergeoptions = --no-edit
   #pager = less -FiR # -F is necessary but has problems with tmux and regular shells
   pager = most
   #pager = vimpager
@@ -89,13 +90,14 @@
   fa = fetch --all
   fo = fetch origin
 
-  m = merge --no-ff
+  m = merge --no-edit
   unm = reset --merge
 
   ps = push
   psu = push -u
-  psn = !git ps $1 `git brc`
-  psun = !git psu $1 `git brc`
+  psn = "!f() { git ps $1 `git brc`; }; f"
+  psnf = "!f() { git psf $1 `git brc`; }; f"
+  psun = "!f() { git psu $1 `git brc`; }; f"
   pso = push origin
   psoun = !git psu origin `git brc`
   psf = push -f
@@ -259,3 +261,13 @@
   prm = !git rfe && git gcp
 
   fsize = git ls-tree -r -t -l --full-name HEAD | sort -rn -k 4 | less
+
+  findemptydirs = !"find . -type d -empty ! -path ./tmp/\\*"
+  deleteemptydirs = !"find . -type d -empty ! -path ./tmp/\\* -exec rmdir {} \\;"
+
+  ### specifics
+
+  mps = "!f() { cd ../$1; git m master; git ps; }; f"
+  c-mps = "!git mps cirandas"
+  b-mps = "!git mps blogoosfero"
+
