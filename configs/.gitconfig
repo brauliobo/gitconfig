@@ -74,16 +74,31 @@
 
   tags = tag -l
 
-  s = show --color
+  pg = diff
+  pgs = diff --staged
+  pa = apply
+
+  s = show --color --color-words='[^[:space:]]|([[:alnum:]]|UTF_8_GUARD)+'
   sf = show --color --name-only
 
-  d = diff --color
+  d = diff --color --color-words='[^[:space:]]|([[:alnum:]]|UTF_8_GUARD)+'
   du = !git d `git upstream`
-  dw = diff --color -w
-  ds = diff --color --staged
-  dsf = diff --color --staged --name-only
-  df = diff --color --name-only
+  dw = !git d -w
+  ds = !git d --staged
+  dsf = !git d --staged --name-only
+  df = !git d --name-only
   dc = "!f() { HASH=$1; shift 1; git diff --cc $HASH $HASH^1 $HASH^2 $@; }; f"
+
+  lp = log -m --no-merges --color -p
+  lf = log -m --no-merges --color -p --name-only
+  lg = log -m --simplify-merges --color --graph --pretty=format:'%Cred%h%Creset %s %Cgreen(%cr) %Cblue%an <%ae>%Creset' --abbrev-commit --date=relative
+  lgu = !git lg `git upstream`
+  lg2 = !source ~/.githelpers && pretty_git_log
+  lgp = !git lg --no-merges -p
+  lgpw = !git lg --no-merges -p --color-words='[^[:space:]]|([[:alnum:]]|UTF_8_GUARD)+'
+  lgf = !git lg --no-merges -p --name-only
+  l = log -m --simplify-merges --color --pretty=format:'%Cred%h%Creset %s %Cgreen(%cr) %Cblue%an <%ae>%Creset' --abbrev-commit --date=relative
+  lc = "!f() { git log $* | grep '^commit ' | cut -f 2 -d ' '; }; f"
 
   f = fetch
   fu = !git fetch `git upstream-remote`
@@ -147,25 +162,11 @@
   ig-untracked = !git ignore `git untracked`
   gitignore = !cd `git root` && touch .gitignore
 
-  lp = log -m --no-merges --color -p
-  lf = log -m --no-merges --color -p --name-only
-  lg = log -m --simplify-merges --color --graph --pretty=format:'%Cred%h%Creset %s %Cgreen(%cr) %Cblue%an <%ae>%Creset' --abbrev-commit --date=relative
-  lgu = !git lg `git upstream`
-  lg2 = !source ~/.githelpers && pretty_git_log
-  lgp = !git lg --no-merges -p
-  lgf = !git lg --no-merges -p --name-only
-  l = log -m --simplify-merges --color --pretty=format:'%Cred%h%Creset %s %Cgreen(%cr) %Cblue%an <%ae>%Creset' --abbrev-commit --date=relative
-  lc = "!f() { git log $* | grep '^commit ' | cut -f 2 -d ' '; }; f"
-
   head = !git l -1
   h = !git head
   hp = !source ~/.githelpers && show_git_head
   r = !git l -20
   ra = !git r --all
-
-  pg = diff
-  pgs = diff --staged
-  pa = apply
 
   sh = stash
   sha = stash apply
@@ -268,6 +269,6 @@
   ### specifics
 
   mps = "!f() { cd ../$1; git m master; git ps; }; f"
-  c-mps = "!git mps cirandas"
-  b-mps = "!git mps blogoosfero"
+  cmps = "!git mps cirandas"
+  bmps = "!git mps blogoosfero"
 
