@@ -86,13 +86,14 @@
   dw = diff --color --color-words='[^[:space:]]|([[:alnum:]]|UTF_8_GUARD)+'
   du = !git d `git upstream`
   ds = !git d --staged
+  dsw = !git d --staged --color-words='[^[:space:]]|([[:alnum:]]|UTF_8_GUARD)+'
   dsf = !git d --staged --name-only
   df = !git d --name-only
   dc = "!f() { HASH=$1; shift 1; git diff --cc $HASH $HASH^1 $HASH^2 $@; }; f"
 
   lp = log -m --no-merges --color -p
   lf = log -m --no-merges --color -p --name-only
-  lg = log -m --simplify-merges --color --graph --pretty=format:'%Cred%h%Creset %s %Cgreen(%cr) %Cblue%an <%ae>%Creset' --abbrev-commit --date=relative
+  lg = log -m --simplify-merges --color --graph --pretty=format:'%Cred%h%Creset %s %Cgreen(%ar) %Cblue%an <%ae>%Creset' --abbrev-commit --date=relative
   lgu = !git lg `git upstream`
   lg2 = !source ~/.githelpers && pretty_git_log
   lgp = !git lg --no-merges -p
@@ -181,19 +182,20 @@
   chpq = cherry-pick --quit
   chpa = cherry-pick --abort
 
+  rv = revert
+  rvc = revert --continue
+  rva = revert --abort
+
   am3 = am -3
   amr = am --resolved
   amc = am --continue
   ama = am --abort
   ams = am --skip
 
-  rv = revert
-  rvc = revert --continue
-  rva = revert --abort
-
   fm = format-patch
 
   rb = rebase
+  rbad = rebase --committer-date-is-author-date
   rbi = rebase -i
   rbtc = !git theirs `git unmerged` || git resolve-unmerged && (git rbc || git rbs)
   rboc = !git ours `git unmerged` || git reset `git unmerged` && git a . && (git rbc || git rbs)
