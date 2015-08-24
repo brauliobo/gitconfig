@@ -275,4 +275,5 @@
   mps = "!f() { cd ../$1; git m master; git ps; }; f"
   cmps = "!git mps cirandas"
   bmps = "!git mps blogoosfero"
+  nghs = "!cd ../noosfero; git co noosfero; git f noosfero; git resh noosfero/master; git ps ghnoosfero noosfero:master"
 
