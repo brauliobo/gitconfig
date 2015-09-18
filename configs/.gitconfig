@@ -225,6 +225,7 @@
   brt = branch --track
   brup = branch --set-upstream
   bra = !git branch -a | less -FiRS
+  brrecent = !git for-each-ref --sort=-committerdate refs/heads/
   brar = "!f() { git bra | grep remotes/$1/ | cut -f 3 -d '/'; }; f"
   brd = branch -D
   brco = branch --contains
@@ -275,5 +276,5 @@
   mps = "!f() { cd ../$1; git m master; git ps; }; f"
   cmps = "!git mps cirandas"
   bmps = "!git mps blogoosfero"
-  nghs = "!cd ../noosfero; git co noosfero; git f noosfero; git resh noosfero/master; git ps ghnoosfero noosfero:master"
+  nghs = "!git f noosfero; git ps ghnoosfero noosfero/master:master"
 
