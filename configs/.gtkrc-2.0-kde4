@@ -1,5 +1,9 @@
-include "/usr/share/themes/oxygen-gtk/gtk-2.0/gtkrc"
-gtk-theme-name="oxygen-gtk"
+include "/usr/share/themes/QtCurve/gtk-2.0/gtkrc"
+include "/etc/gtk-2.0/gtkrc"
 
-gtk-enable-event-sounds=0
-gtk-enable-input-feedback-sounds=0
+style "user-font"
+{
+  font_name="Sans Serif"
+}
+widget_class "*" style "user-font" 
+gtk-theme-name="QtCurve"

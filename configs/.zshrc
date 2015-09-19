@@ -1,3 +1,6 @@
+# ubuntu missed this
+emulate sh -c 'source /etc/profile'
+
 # load prezto
 source ~/.zprezto/runcoms/zshrc
 

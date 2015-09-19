@@ -3,7 +3,7 @@
 apache2 postgresql memcached tidy httperf apache2-utils
 
 # development
-build-essential vim default-jre 
+build-essential vim most default-jre 
 
 # dev: scm
 git-core mercurial
@@ -14,6 +14,12 @@ php5 php5-curl
 # dev: js
 nodejs node-uglify
 
+# dev: java
+openjdk-8-jdk
+
+# dev: text
+ack-grep
+
 # admin
 knockd ssh tmux screen
 
@@ -21,22 +27,25 @@ knockd ssh tmux screen
 curl wget lftp arp-scan
 
 # network debug
-iftop nethogs iptraf
+iftop nethogs iptraf zenmap wireshark
 
 # mail sending
 postfix mailutils
 
 # shell
-zsh command-not-found tree
+zsh command-not-found tree pv
 
 # programming
 python-pip
 
 # security
-makepasswd
+makepasswd gnupg2
 
 # sys admin
 htop python-software-properties debmirror okteta
+
+# power managing
+powertop xbacklight
 
 # web
 chromium-browser-l10n firefox flashplugin-installer pepperflashplugin-nonfree
@@ -48,10 +57,10 @@ language-selector-gnome ubuntu-desktop unity-greeter xclip xsel
 kcolorchooser kruler
 
 # multimedia
-mplayer vlc pavucontrol kubuntu-restricted-extras gstreamer1.0-plugins-ugly
+mplayer2 vlc pavucontrol kubuntu-restricted-extras gstreamer1.0-plugins-ugly
 
 # multimedia authoring
-mencoder transcode libav-tools recordmydesktop 
+transcode libav-tools recordmydesktop 
 
 # communication
 skype konversation
@@ -68,8 +77,14 @@ qgis
 # filesystems
 ext3grep extundelete
 
+# package management
+aptitude 
+
 # system
 cpufrequtils lm-sensors acpitool
+
+# system performance
+zram-config preload
 
 # testing
 phoronix-test-suite
