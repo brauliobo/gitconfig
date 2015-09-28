@@ -7,6 +7,6 @@ SIZE=${2:-480}
 QUALITY=${3:-33}
 
 ffmpeg -i "$SOURCE" -c:v libvpx-vp9 -vf scale=$SIZE:-1  \
-  -b:v 0 -crf $QUALITY -threads 8 -speed 4 -tile-columns 6 -frame-parallel 1 \
+  -b:v 0 -crf $QUALITY -threads 3 -speed 4 -tile-columns 6 -frame-parallel 1 \
   -c:a libopus -b:a 96k \
   -f webm "${SOURCE%.*}".webm
