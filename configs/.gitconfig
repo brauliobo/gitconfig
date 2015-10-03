@@ -103,6 +103,9 @@
   l = log -m --simplify-merges --color --pretty=format:'%Cred%h%Creset %s %Cgreen(%cr) %Cblue%an <%ae>%Creset' --abbrev-commit --date=relative
   lc = "!f() { git log $* | grep '^commit ' | cut -f 2 -d ' '; }; f"
 
+  lgu = !git lg --no-merges `git upstream`
+  lgup = !git lg --no-merges -p `git upstream`
+
   f = fetch
   fu = !git fetch `git upstream-remote`
   fa = fetch --all
