@@ -3,10 +3,10 @@
 # based on http://wiki.webmproject.org/ffmpeg/vp9-encoding-guide
 
 SOURCE=$1
-SIZE=${2:-480}
+SIZE=${2:-240}
 QUALITY=${3:-35} # 0-63, lower is better quality
 
-nice ffmpeg -i "$SOURCE" -c:v libvpx-vp9 -vf scale=$SIZE:-1  \
+nice ffmpeg -i "$SOURCE" -c:v libvpx-vp9 -vf scale=-1:$SIZE  \
   -b:v 0 -crf $QUALITY -threads 3 -speed 4 -tile-columns 6 -frame-parallel 1 \
   -c:a libopus -b:a 96k \
   -f webm "${SOURCE%.*}".webm &&
