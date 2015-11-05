@@ -81,25 +81,25 @@
 
   s = show --color
   sw = show --color --color-words='[^[:space:]]|([[:alnum:]]|UTF_8_GUARD)+'
-  sf = show --color --name-only
+  sf = show --color -C --stat
 
   d = diff --color
   dw = diff --color --color-words='[^[:space:]]|([[:alnum:]]|UTF_8_GUARD)+'
   du = !git d `git upstream`
   ds = !git d --staged
   dsw = !git d --staged --color-words='[^[:space:]]|([[:alnum:]]|UTF_8_GUARD)+'
-  dsf = !git d --staged --name-only
-  df = !git d --name-only
+  dsf = !git d --staged -C --stat
+  df = !git d -C --stat
   dc = "!f() { HASH=$1; shift 1; git diff --cc $HASH $HASH^1 $HASH^2 $@; }; f"
 
   lp = log -m --no-merges --color -p
-  lf = log -m --no-merges --color -p --name-only
+  lf = log -m --no-merges --color -C --stat
   lg = log -m --simplify-merges --color --graph --pretty=format:'%Cred%h%Creset %s %Cgreen(%ar) %Cblue%an <%ae>%Creset' --abbrev-commit --date=relative
   lgu = !git lg `git upstream`
   lg2 = !source ~/.githelpers && pretty_git_log
   lgp = !git lg --no-merges -p
   lgpw = !git lg --no-merges -p --color-words='[^[:space:]]|([[:alnum:]]|UTF_8_GUARD)+'
-  lgf = !git lg --no-merges -p --name-only
+  lgf = !git lg --no-merges -C --stat
   l = log -m --simplify-merges --color --pretty=format:'%Cred%h%Creset %s %Cgreen(%cr) %Cblue%an <%ae>%Creset' --abbrev-commit --date=relative
   lc = "!f() { git log $* | grep '^commit ' | cut -f 2 -d ' '; }; f"
 
