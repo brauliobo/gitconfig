@@ -25,6 +25,7 @@
   mergeoptions = --no-edit
   #pager = less -FiR # -F is necessary but has problems with tmux and regular shells
   pager = most
+	excludesfile = /home/braulio/.gitignore
   #pager = vimpager
   #pager = more -p
 
