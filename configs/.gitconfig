@@ -1,6 +1,11 @@
 [user]
-  email = braulio@eita.org.br
-  name = Braulio Bhavamitra
+  # not good to force this globally, you should use the right name/email in each context
+  #email = brauliobo@gmail.com
+  #name = Braulio Bhavamitra
+  #email = braulio@eita.org.br
+  #name = Braulio Bhavamitra
+  #email = brauliooliveira@olery.com
+  #name = Braulio Oliveira
 
 [sendemail]
   smtpencryption = tls
