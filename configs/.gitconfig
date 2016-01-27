@@ -28,8 +28,8 @@
 
 [core]
   mergeoptions = --no-edit
-  #pager = less -FiR # -F is necessary but has problems with tmux and regular shells
-  pager = most
+  pager = less -FiR # -F is necessary but has problems with tmux and regular shells
+  #pager = most
 	excludesfile = /home/braulio/.gitignore
   #pager = vimpager
   #pager = more -p
@@ -135,7 +135,7 @@
   pl = pull
   plo = pull origin
   plom = pull origin master
-  plr = pull --rebase
+  plr = !git sh && git pull --rebase && git shp
 
   st = status
   sttc = !git status | grep typechange | awk '{print $2}'
@@ -182,10 +182,11 @@
   ra = !git r --all
 
   sh = stash
-  sha = stash apply
+  shp = stash pop
   shl = stash list
   shd = stash drop
   shc = stash clear
+  sha = stash apply
 
   chp = cherry-pick
   chpc = cherry-pick --continue
