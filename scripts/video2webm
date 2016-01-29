@@ -3,12 +3,24 @@
 # based on http://wiki.webmproject.org/ffmpeg/vp9-encoding-guide
 
 SOURCE=$1
+WEBM="${SOURCE%.*}".webm
+
+THREADS=6
+
 SIZE=${2:-240}
 QUALITY=${3:-35} # 0-63, lower is better quality
+AUDIO_OPTIONS="-c:a libopus -b:a 80k"
+FILTERS="scale=-1:$SIZE"
 
-nice ffmpeg -i "$SOURCE" -c:v libvpx-vp9 -vf scale=-1:$SIZE  \
-  -b:v 0 -crf $QUALITY -threads 3 -speed 4 -tile-columns 6 -frame-parallel 1 \
-  -c:a libopus -b:a 96k \
-  -f webm "${SOURCE%.*}".webm &&
-rm "$SOURCE"
+#SUBTITLES="Cowspiracy_brp.srt"
+#FILTERS+=", subtitles=$SUBTITLES"
+
+nice ffmpeg -i "$SOURCE" -c:v libvpx-vp9 -f webm $AUDIO_OPTIONS \
+  -threads $THREADS -speed 4 -tile-columns $THREADS -frame-parallel 1 \
+  -vf "$FILTERS" -crf $QUALITY -b:v 0 \
+  "$WEBM" 
+#  -pass 1 -an /dev/null
+#  -pass 2 -auto-alt-ref 1 -lag-in-frames 25 
+
+#rm "$SOURCE"
 
