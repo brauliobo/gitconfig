@@ -18,9 +18,10 @@ FILTERS="scale=-1:$SIZE"
 nice ffmpeg -i "$SOURCE" -c:v libvpx-vp9 -f webm $AUDIO_OPTIONS \
   -threads $THREADS -speed 4 -tile-columns $THREADS -frame-parallel 1 \
   -vf "$FILTERS" -crf $QUALITY -b:v 0 \
-  "$WEBM" 
-#  -pass 1 -an /dev/null
-#  -pass 2 -auto-alt-ref 1 -lag-in-frames 25 
+  "$WEBM" \
+\ #  -pass 1 -an /dev/null \
+\ #  -pass 2 -auto-alt-ref 1 -lag-in-frames 25 \
+\
+&& rm "$SOURCE"
 
-#rm "$SOURCE"
 
