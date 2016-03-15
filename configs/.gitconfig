@@ -61,6 +61,7 @@
   atheirs = "!f() { (git reset $* >/dev/null); git theirs $* && git add $*; }; f"
 
   ci = commit
+  cif = "!f() { vim $1; git ci $1; }; f"
   cie = commit --allow-empty
   cia = commit -a
   cam = commit --amend
