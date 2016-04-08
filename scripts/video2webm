@@ -20,7 +20,7 @@ nice ffmpeg -i "$SOURCE" -c:v libvpx-vp9 -f webm $AUDIO_OPTIONS \
   -vf "$FILTERS" -crf $QUALITY -b:v 0 \
   "$WEBM" \
 \
-&& rm "$SOURCE"
+#&& rm "$SOURCE"
 
 # two pass options
 #  -pass 1 -an /dev/null \
