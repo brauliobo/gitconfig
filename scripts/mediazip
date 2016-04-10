@@ -1,0 +1,71 @@
+#!/usr/bin/env ruby
+
+require 'shellwords'
+defs = {
+  video: {
+    out_extension: 'webm',
+    threads: 6,
+
+    quality: 35,
+    height:  240,
+
+    command: -> infile, outfile, options {
+      <<-EOC
+        ffmpeg -loglevel quiet -i #{Shellwords.escape infile} \
+          -c:v libvpx-vp9 -f webm -vf scale=-1:#{options[:height]} -crf #{options[:quality]} -b:v 0 \
+          -c:a libopus -b:a 64k \
+          -threads #{options[:threads]} -speed 4 -tile-columns #{options[:threads]} -frame-parallel 1 \
+          #{Shellwords.escape outfile} 
+      EOC
+    },
+  },
+
+  audio: {
+    out_extension: 'opus',
+
+    bitrate: 96,
+
+    command: -> infile, outfile, options {
+      <<-EOC
+        ffmpeg -loglevel quiet -i #{Shellwords.escape infile} -f wav - |
+        opusenc --quiet - #{Shellwords.escape outfile}
+      EOC
+    },
+  },
+}
+
+
+require 'slop'
+opts    = Slop.parse do |o|
+  o.bool '--video'
+  o.bool '--audio'
+end
+files   = opts.parser.arguments.sort
+options = opts.to_hash
+
+STDERR.puts 'Please select a type with --video or --audio' unless options[:video] or options[:audio]
+target = if options[:video] then :video else :audio end
+target = defs[target]
+
+
+require 'etc'
+require 'concurrent'
+pool = Concurrent::FixedThreadPool.new Etc.nprocessors
+files.each do |infile|
+  pool.post do
+    outfile = infile.sub /.[^\.]+$/, ".#{target[:out_extension]}"
+    cmd     = target[:command].call infile, outfile, target
+
+    puts "Starting #{infile}"
+    File.unlink outfile if File.exists? outfile
+    ret = system "nice #{cmd}"
+    if ret
+      puts "Converted #{infile}"
+      File.unlink infile
+    else
+      STDERR.puts "Failed to convert #{infile}"
+    end
+  end
+end
+pool.wait_for_termination
+
