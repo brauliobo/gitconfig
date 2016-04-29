@@ -11,17 +11,18 @@ PATH=`echo $PATH | sed "s|$CUSTOM_PATHS:||g"`
 # add custom paths
 export PATH=$CUSTOM_PATHS:$PATH
 
-# RVM
-if [[ -x $HOME/.rvm || -x /usr/local/rvm ]] ; then
-  if ! (env | grep PATH | grep .rvm > /dev/null); then
-    source "/usr/local/rvm/scripts/rvm"
-    source "$HOME/.rvm/scripts/rvm"
-  fi
-fi
-
 # rbenv
 if [ `which rbenv` ]; then
+  __rvm_unload
   eval "$(rbenv init -)"
+else
+  # RVM (rbenv is prefered, as RVM will make rbenv stop working)
+  if [[ -x $HOME/.rvm || -x /usr/local/rvm ]] ; then
+    if ! (env | grep PATH | grep .rvm > /dev/null); then
+      source "/usr/local/rvm/scripts/rvm"
+      source "$HOME/.rvm/scripts/rvm"
+    fi
+  fi
 fi
 
 case $RUBY_FROM in
