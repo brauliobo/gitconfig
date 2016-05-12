@@ -6,6 +6,8 @@
   #name = Braulio Bhavamitra
   #email = brauliooliveira@olery.com
   #name = Braulio Oliveira
+  #email = braulio@prout.io
+  #name = Braulio Bhavamitra
 
 [sendemail]
   smtpencryption = tls
