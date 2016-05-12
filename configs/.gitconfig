@@ -101,14 +101,14 @@
   df = !git d -C --stat
   dc = "!f() { HASH=$1; shift 1; git diff --cc $HASH $HASH^1 $HASH^2 $@; }; f"
 
-  lp = log -m --no-merges --color -p
-  lf = log -m --no-merges --color -C --stat
+  lp = log -m --color -p
+  lf = log -m --color -C --stat
   lg = log -m --simplify-merges --color --graph --pretty=format:'%Cred%h%Creset %s %Cgreen(%ar) %Cblue%an <%ae>%Creset' --abbrev-commit --date=relative
   lgu = !git lg `git upstream`
   lg2 = !source ~/.githelpers && pretty_git_log
-  lgp = !git lg --no-merges -p
-  lgpw = !git lg --no-merges -p --color-words='[^[:space:]]|([[:alnum:]]|UTF_8_GUARD)+'
-  lgf = !git lg --no-merges -C --stat
+  lgp = !git lg -p
+  lgpw = !git lg -p --color-words='[^[:space:]]|([[:alnum:]]|UTF_8_GUARD)+'
+  lgf = !git lg -C --stat
   l = log -m --simplify-merges --color --pretty=format:'%Cred%h%Creset %s %Cgreen(%cr) %Cblue%an <%ae>%Creset' --abbrev-commit --date=relative
   lc = "!f() { git log $* | grep '^commit ' | cut -f 2 -d ' '; }; f"
 
