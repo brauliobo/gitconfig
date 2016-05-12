@@ -32,6 +32,7 @@ rvm)
   [ -n "$DEFAULT_GEMSET" ] && (rvm use $DEFAULT_GEMSET 2>/dev/null)
   ;;
 rbenv)
+  __rvm_unload
   ;;
 esac
 
