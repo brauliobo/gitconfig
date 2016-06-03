@@ -21,7 +21,8 @@
 
 [push]
   default = upstream
-	rebase = true
+  rebase = true
+  followTags = true
 
 [color]
   interactive = true
