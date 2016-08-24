@@ -97,6 +97,7 @@
   dw = diff --color --color-words='[^[:space:]]|([[:alnum:]]|UTF_8_GUARD)+'
   du = !git d `git upstream`
   ds = !git d --staged
+  dsf = !git d --staged --stat
   dsw = !git d --staged --color-words='[^[:space:]]|([[:alnum:]]|UTF_8_GUARD)+'
   dsf = !git d --staged -C --stat
   df = !git d -C --stat
