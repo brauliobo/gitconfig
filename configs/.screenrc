@@ -1,6 +1,11 @@
 startup_message off
 caption always "%-Lw%{= BW}%50>%n%f* %t%{-}%+Lw%<  -----  %{=b BW} %H %{-} %c %d/%m/%Y"
 
+startup_message off
+
+# scroll size
+defscrollback 999999
+
 # default screens
 #screen -t code 1 zsh
 #screen -t server 2 bash
