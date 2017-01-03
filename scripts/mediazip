@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 
+require 'pp'
+
 require 'shellwords'
 defs = {
   video: {
@@ -54,10 +56,12 @@ pool = Concurrent::FixedThreadPool.new Etc.nprocessors
 files.each do |infile|
   pool.post do
     outfile = infile.sub /.[^\.]+$/, ".#{target[:out_extension]}"
-    cmd     = target[:command].call infile, outfile, target
+    File.rename infile, (infile = "[INPUT]#{infile}") if infile == outfile
+
+    cmd = target[:command].call infile, outfile, target
+    File.unlink outfile if File.exists? outfile
 
     puts "Starting #{infile}"
-    File.unlink outfile if File.exists? outfile
     ret = system "nice #{cmd}"
     if ret
       puts "Converted #{infile}"
