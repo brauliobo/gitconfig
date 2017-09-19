@@ -126,6 +126,7 @@
   psu = push -u
   psn = "!f() { git ps $1 `git brc`; }; f"
   psnf = "!f() { git psf $1 `git brc`; }; f"
+  psfun = "!f() { git psu -f $1 `git brc`; }; f"
   psun = "!f() { git psu $1 `git brc`; }; f"
   pso = push origin
   psoun = !git psu origin `git brc`

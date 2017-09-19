@@ -11,22 +11,17 @@ PATH=`echo $PATH | sed "s|$CUSTOM_PATHS:||g"`
 # add custom paths
 export PATH=$CUSTOM_PATHS:$PATH
 
-# rbenv
-if [ `which rbenv` ]; then
-  __rvm_unload
-  eval "$(rbenv init -)"
-else
-  # RVM (rbenv is prefered, as RVM will make rbenv stop working)
-  if [[ -x $HOME/.rvm || -x /usr/local/rvm ]] ; then
-    if ! (env | grep PATH | grep .rvm > /dev/null); then
-      source "/usr/local/rvm/scripts/rvm"
-      source "$HOME/.rvm/scripts/rvm"
-    fi
-  fi
-fi
-
 case $RUBY_FROM in
 rvm)
+  if [[ -x $HOME/.rvm ]] ; then
+    #if ! (env | grep PATH | grep .rvm > /dev/null); then
+    source "$HOME/.rvm/scripts/rvm"
+    #fi
+  fi
+  if [[ -x /usr/local/rvm ]] ; then
+    source "/usr/local/rvm/scripts/rvm"
+  fi
+
   DEFAULT_GEMSET=`cat $HOME/.ruby-version`
   rvm use system >/dev/null 2>&1
   [ -n "$DEFAULT_GEMSET" ] && (rvm use $DEFAULT_GEMSET 2>/dev/null)
@@ -66,6 +61,6 @@ fi
 alias "ag"="ag -a"
 
 # android sdk
-export ANDROID_HOME=$GITROOT/src/android-sdk-linux
+export ANDROID_HOME=/opt/android-sdk
 export PATH=$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH
 
