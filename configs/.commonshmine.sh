@@ -61,6 +61,7 @@ fi
 alias "ag"="ag -a"
 
 # android sdk
-export ANDROID_HOME=/opt/android-sdk
+export ANDROID_HOME=$HOME/android-sdk
 export PATH=$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH
+export GOPATH=$SCRIPTS
 
