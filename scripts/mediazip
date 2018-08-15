@@ -1,8 +1,16 @@
 #!/usr/bin/env ruby
 
-require 'pp'
+require 'bundler/inline'
+gemfile do
+  gem 'slop', '~> 4.0'
+  gem 'concurrent-ruby'
+end
 
 require 'shellwords'
+require 'concurrent'
+require 'pp'
+require 'etc'
+
 defs = {
   video: {
     out_extension: 'webm',
@@ -36,22 +44,16 @@ defs = {
   },
 }
 
-
-require 'slop'
 opts    = Slop.parse do |o|
   o.bool '--video'
   o.bool '--audio'
 end
 files   = opts.parser.arguments.sort
 options = opts.to_hash
-
 STDERR.puts 'Please select a type with --video or --audio' unless options[:video] or options[:audio]
 target = if options[:video] then :video else :audio end
 target = defs[target]
 
-
-require 'etc'
-require 'concurrent'
 pool = Concurrent::FixedThreadPool.new Etc.nprocessors
 files.each do |infile|
   pool.post do
@@ -69,7 +71,10 @@ files.each do |infile|
     else
       STDERR.puts "Failed to convert #{infile}"
     end
+  rescue => e
+    require'pry';binding.pry
   end
 end
+pool.shutdown
 pool.wait_for_termination
 
