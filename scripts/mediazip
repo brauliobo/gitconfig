@@ -2,6 +2,7 @@
 
 require 'bundler/inline'
 gemfile do
+  gem 'pry'
   gem 'slop', '~> 4.0'
   gem 'concurrent-ruby'
 end
@@ -16,8 +17,8 @@ defs = {
     out_extension: 'webm',
     threads: 6,
 
-    quality: 35,
-    height:  240,
+    quality: 30,
+    height:  360,
 
     command: -> infile, outfile, options {
       <<-EOC
@@ -33,12 +34,10 @@ defs = {
   audio: {
     out_extension: 'opus',
 
-    bitrate: 96,
-
     command: -> infile, outfile, options {
       <<-EOC
         ffmpeg -loglevel quiet -i #{Shellwords.escape infile} -f wav - |
-        opusenc --quiet - #{Shellwords.escape outfile}
+        opusenc --bitrate #{options[:bitrate]} --quiet - #{Shellwords.escape outfile}
       EOC
     },
   },
@@ -47,32 +46,32 @@ defs = {
 opts    = Slop.parse do |o|
   o.bool '--video'
   o.bool '--audio'
+  o.bool '--keep'
+  o.int '--bitrate', default: 96
 end
 files   = opts.parser.arguments.sort
 options = opts.to_hash
 STDERR.puts 'Please select a type with --video or --audio' unless options[:video] or options[:audio]
 target = if options[:video] then :video else :audio end
-target = defs[target]
+target = defs[target].merge options
 
 pool = Concurrent::FixedThreadPool.new Etc.nprocessors
 files.each do |infile|
   pool.post do
-    outfile = infile.sub /.[^\.]+$/, ".#{target[:out_extension]}"
+    outfile = infile.sub(/.[^\.]+$/, ".#{target[:out_extension]}")
     File.rename infile, (infile = "[INPUT]#{infile}") if infile == outfile
 
     cmd = target[:command].call infile, outfile, target
-    File.unlink outfile if File.exists? outfile
+    File.unlink outfile if File.exists? outfile 
 
     puts "Starting #{infile}"
     ret = system "nice #{cmd}"
     if ret
       puts "Converted #{infile}"
-      File.unlink infile
+      File.unlink infile unless options[:keep]
     else
       STDERR.puts "Failed to convert #{infile}"
     end
-  rescue => e
-    require'pry';binding.pry
   end
 end
 pool.shutdown
