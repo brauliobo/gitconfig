@@ -14,21 +14,33 @@ require 'etc'
 
 defs = {
   video: {
-    out_extension: 'webm',
-    threads: 6,
-
+    out_extension: 'mp4',
     quality: 30,
-    height:  360,
+    width:   720,
 
     command: -> infile, outfile, options {
       <<-EOC
-        ffmpeg -loglevel quiet -i #{Shellwords.escape infile} \
-          -c:v libvpx-vp9 -f webm -vf scale=-1:#{options[:height]} -crf #{options[:quality]} -b:v 0 \
-          -c:a libopus -b:a 64k \
-          -threads #{options[:threads]} -speed 4 -tile-columns #{options[:threads]} -frame-parallel 1 \
+        ffmpeg -i #{Shellwords.escape infile} \
+          -c:v libx264 -vf scale="#{options[:width]}:trunc(ow/a/2)*2" -crf #{options[:quality]} \
+          -c:a libfdk_aac -b:a 64k \
           #{Shellwords.escape outfile} 
       EOC
     },
+    
+    #out_extension: 'webm',
+    #threads: 6,
+    #quality: 30,
+    #height:  360,
+
+    #command: -> infile, outfile, options {
+    #  <<-EOC
+    #    ffmpeg -loglevel quiet -i #{Shellwords.escape infile} \
+    #      -c:v libvpx-vp9 -f webm -vf scale=-1:#{options[:height]} -crf #{options[:quality]} -b:v 0 \
+    #      -c:a libopus -b:a 64k \
+    #      -threads #{options[:threads]} -speed 4 -tile-columns #{options[:threads]} -frame-parallel 1 \
+    #      #{Shellwords.escape outfile} 
+    #  EOC
+    #},
   },
 
   audio: {
@@ -47,6 +59,7 @@ opts    = Slop.parse do |o|
   o.bool '--video'
   o.bool '--audio'
   o.bool '--keep'
+  o.string '--destination'
   o.int '--bitrate', default: 96
 end
 files   = opts.parser.arguments.sort
@@ -55,10 +68,17 @@ STDERR.puts 'Please select a type with --video or --audio' unless options[:video
 target = if options[:video] then :video else :audio end
 target = defs[target].merge options
 
-pool = Concurrent::FixedThreadPool.new Etc.nprocessors
+Thread.report_on_exception = true
+Thread.abort_on_exception = true
+threads = if options[:video] then 2 else Etc.nprocessors end
+pool    = Concurrent::FixedThreadPool.new threads
+
 files.each do |infile|
   pool.post do
-    outfile = infile.sub(/.[^\.]+$/, ".#{target[:out_extension]}")
+    outfile = File.basename(infile).sub(/.[^\.]+$/, ".#{target[:out_extension]}")
+    outfile = "#{option[:destination]}/#{outfile}" if options[:destination]
+    options[:keep] = true if options[:destination]
+
     File.rename infile, (infile = "[INPUT]#{infile}") if infile == outfile
 
     cmd = target[:command].call infile, outfile, target
