@@ -32,8 +32,8 @@ rbenv)
 esac
 
 # VIM
-alias vi='TERM="xterm-256color" vim'
-alias vim='TERM="xterm-256color" vim'
+alias vi='TERM="xterm-256color" nvim'
+alias vim='TERM="xterm-256color" nvim'
 
 # EDITOR
 export EDITOR=vim

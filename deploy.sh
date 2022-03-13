@@ -18,15 +18,19 @@ _setArgs $*
 
 test $opt_verbose && set -x
 
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
 echo == Link configurations files not overwriting existing regular files
-for f in `ls -A configs | grep -v '^\.config$'`; do
+cd configs
+for f in `ls -A | grep -v '^\.config$'`; do
   [[ -L $HOME/$f || $opt_overwrite ]] && rm $HOME/$f
-  ln -ns $PWD/configs/$f $HOME/$f
+  ln -ns $PWD/$f $HOME/`dirname $f`/$f
 done
-for f in `ls -A configs/.config`; do
+for f in `ls -A .config`; do
   [[ -L $HOME/.config/$f || $opt_overwrite ]] && rm $HOME/$f
-  ln -ns $PWD/configs/.config/$f $HOME/.config/$f
+  ln -ns $PWD/.config/$f $HOME/`dirname .config/$f`/$f
 done
+cd -
 
 while [ -h "$SOURCE" ]; do SOURCE="$(readlink "$SOURCE")"; done
 GITROOT="$(builtin cd -P "$(dirname "$SOURCE")" && git root)"
