@@ -15,14 +15,14 @@ require 'etc'
 defs = {
   video: {
     out_extension: 'mp4',
-    quality: 30,
+    quality: 25,
     width:   720,
 
     command: -> infile, outfile, options {
       <<-EOC
-        ffmpeg -i #{Shellwords.escape infile} \
+        ffmpeg -loglevel quiet -threads 12 -i #{Shellwords.escape infile} \
           -c:v libx264 -vf scale="#{options[:width]}:trunc(ow/a/2)*2" -crf #{options[:quality]} \
-          -c:a libfdk_aac -b:a 64k \
+          -c:a libfdk_aac -profile:a aac_he -b:a 64k \
           #{Shellwords.escape outfile} 
       EOC
     },
@@ -49,7 +49,7 @@ defs = {
     command: -> infile, outfile, options {
       <<-EOC
         ffmpeg -loglevel quiet -i #{Shellwords.escape infile} -f wav - |
-        opusenc --bitrate #{options[:bitrate]} --quiet - #{Shellwords.escape outfile}
+        nice opusenc --bitrate #{options[:bitrate]} --quiet - #{Shellwords.escape outfile}
       EOC
     },
   },
@@ -60,7 +60,7 @@ opts    = Slop.parse do |o|
   o.bool '--audio'
   o.bool '--keep'
   o.string '--destination'
-  o.int '--bitrate', default: 96
+  o.int '--bitrate', default: 80
 end
 files   = opts.parser.arguments.sort
 options = opts.to_hash
@@ -70,7 +70,7 @@ target = defs[target].merge options
 
 Thread.report_on_exception = true
 Thread.abort_on_exception = true
-threads = if options[:video] then 2 else Etc.nprocessors end
+threads = if options[:video] then 3 else Etc.nprocessors end
 pool    = Concurrent::FixedThreadPool.new threads
 
 files.each do |infile|
