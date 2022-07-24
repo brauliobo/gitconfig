@@ -7,3 +7,7 @@
 # src files
 src/android-sdk-linux
 
+# scripts
+scripts/bin
+scripts/pkg
+scripts/src
