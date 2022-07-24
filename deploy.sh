@@ -18,17 +18,21 @@ _setArgs $*
 
 test $opt_verbose && set -x
 
+echo == Install Oh My Zsh
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+echo == Install SpaceVim
+curl -sLf https://spacevim.org/install.sh | bash
 
 echo == Link configurations files not overwriting existing regular files
 cd configs
 for f in `ls -A | grep -v '^\.config$'`; do
+  DEST=$HOME/`dirname $f`/$f
+  echo $DEST
+  [ -d $f ] && mkdir -p $DEST && continue
   [[ -L $HOME/$f || $opt_overwrite ]] && rm $HOME/$f
-  ln -ns $PWD/$f $HOME/`dirname $f`/$f
-done
-for f in `ls -A .config`; do
-  [[ -L $HOME/.config/$f || $opt_overwrite ]] && rm $HOME/$f
-  ln -ns $PWD/.config/$f $HOME/`dirname .config/$f`/$f
+  [ -L $HOME/$f ] && continue
+  ln -ns $PWD/$f $DEST
 done
 cd -
 
