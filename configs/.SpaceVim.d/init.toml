@@ -8,24 +8,28 @@
 
 # All SpaceVim option below [option] section
 [options]
-    # set spacevim theme. by default colorscheme layer is not loaded,
-    # if you want to use more colorscheme, please load the colorscheme
-    # layer
-    colorscheme = "gruvbox"
-    colorscheme_bg = "dark"
-    # Disable guicolors in basic mode, many terminal do not support 24bit
-    # true colors
-    enable_guicolors = true
-    # Disable statusline separator, if you want to use other value, please
-    # install nerd fonts
-    statusline_separator = "arrow"
-    statusline_iseparator = "arrow"
-    buffer_index_type = 4
-    enable_tabline_filetype_icon = true
-    enable_statusline_mode = false
+  # set spacevim theme. by default colorscheme layer is not loaded,
+  # if you want to use more colorscheme, please load the colorscheme
+  # layer
+  colorscheme = "gruvbox"
+  colorscheme_bg = "dark"
+  # Disable guicolors in basic mode, many terminal do not support 24bit
+  # true colors
+  enable_guicolors = true
+  # Disable statusline separator, if you want to use other value, please
+  # install nerd fonts
+  statusline_separator = "arrow"
+  statusline_iseparator = "arrow"
+  buffer_index_type = 4
+  enable_tabline_filetype_icon = true
+  enable_statusline_mode = false
 
-    bootstrap_before = 'myspacevim#before'
-    bootstrap_after  = 'myspacevim#after'
+  filemanager = "nerdtree"
+
+  bootstrap_before = 'myspacevim#before'
+  bootstrap_after  = 'myspacevim#after'
+
+  autocomplete_method = "deoplete" # works with ruby
 
 # Enable autocomplete layer
 [[layers]]
@@ -37,3 +41,31 @@ auto_completion_tab_key_behavior = "smart"
 name = 'shell'
 default_position = 'top'
 default_height = 30
+
+[[layers]]
+  name = "git"
+
+[[layers]]
+  name = "telescope"
+
+[[layers]]
+  name = "unite"
+
+[[layers]]
+  name = "tools"
+
+[[layers]]
+  name = "lang#ruby"
+[[layers]]
+  name = "lang#slim"
+[[layers]]
+  name = "lang#javascript"
+[[layers]]
+  name = "lang#vue"
+
+[[layers]]
+  name = "tmux"
+
+# neomake is annoying, ruby-lint not working
+#[[layers]]
+#  name = "checkers"

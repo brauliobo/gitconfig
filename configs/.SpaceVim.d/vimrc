@@ -54,7 +54,7 @@ set number      "add line numbers
 set nostartofline " Don't reset cursor to start of line when moving around
 
 "toggle number
-nmap <f3> :set number! number?<cr>   
+nmap <f3> :set number! number?<cr>
 
 set showbreak=...
 set wrap linebreak nolist
@@ -496,7 +496,7 @@ vnoremap <leader>p "+p
 set pastetoggle=<F2>
 
 "shortcut to go to the begginning of line
-nmap 0 ^	
+nmap 0 ^
 
 "arrow keys are unacceptable
 map <Left> :echo "no! use 'h'"<cr>
@@ -638,30 +638,30 @@ let g:used_javascript_libs = 'underscore,backbone,jquery,angularjs'
 
 
 "=============== TMUX ADJUSTMENT AREA ==================
-  
+
 " for tmux to automatically set paste and nopaste mode at the time pasting (as
 " happens in VIM UI)
- 
+
 function! WrapForTmux(s)
   if !exists('$TMUX')
     return a:s
   endif
- 
+
   let tmux_start = "\<Esc>Ptmux;"
   let tmux_end = "\<Esc>\\"
- 
+
   return tmux_start . substitute(a:s, "\<Esc>", "\<Esc>\<Esc>", 'g') . tmux_end
 endfunction
- 
+
 "let &t_SI .= WrapForTmux("\<Esc>[?2004h")
 "let &t_EI .= WrapForTmux("\<Esc>[?2004l")
- 
+
 function! XTermPasteBegin()
   set pastetoggle=<Esc>[201~
   set paste
   return ""
 endfunction
- 
+
 "inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
 if &term =~ "screen"
   let &t_BE = "\e[?2004h"

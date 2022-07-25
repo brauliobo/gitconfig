@@ -22,6 +22,7 @@ echo == Install Oh My Zsh
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 echo == Install SpaceVim
+ln -nsf $GITROOT/configs/.SpaceVim.d $HOME
 curl -sLf https://spacevim.org/install.sh | bash
 
 echo == Link configurations files not overwriting existing regular files
