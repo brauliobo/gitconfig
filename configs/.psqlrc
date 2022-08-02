@@ -3,5 +3,5 @@
 --\setenv PAGER 'w3m -T text/html -o confirm_qq=false'
 --\pset pager always
 
-\setenv PAGER 'less -SFXER'
+\setenv PAGER 'less -SFXR'
 

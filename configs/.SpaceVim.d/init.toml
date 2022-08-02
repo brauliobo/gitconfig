@@ -49,7 +49,7 @@ default_height = 30
   name = "telescope"
 
 [[layers]]
-  name = "unite"
+  name = "denite"
 
 [[layers]]
   name = "tools"
