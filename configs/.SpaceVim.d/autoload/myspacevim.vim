@@ -17,6 +17,17 @@ function! myspacevim#before() abort
   map <C-k> <C-w>k
   map <C-l> <C-w>l
 
+  " start with first character on newline
+  nmap 0 ^
+
+  "Activate smartcase
+  set ic
+  set smartcase
+
+  " rename current file
+  map <leader>n :call RenameFile()<cr>
+
+  "" PRY
   " …also, Insert Mode as bpry<space>
   iabbr bpry require'pry';binding.pry
   " And admit that the typos happen:
@@ -26,8 +37,15 @@ function! myspacevim#before() abort
   " Alias for one-handed operation:
   map <Leader><Leader>p <Leader>bp
 
-  " start with first character on newline
-  nmap 0 ^
+  ""Select between conflict blocks
+  "select ours
+  nmap <leader>so \<<<<<<<<CR>dd\=======<CR>V/>>>>>>><CR>d
+  "select theirs
+  nmap <leader>st \<<<<<<<<CR>V/=======<CR>d\>>>>>>><CR>dd
+  "select both
+  nmap <leader>sb \<<<<<<<<CR>dd\=======<CR>dd\>>>>>>><CR>dd
+  "find next conflict
+  nmap <leader>fc /<<<<<<<<CR>
 
   "replace camelcase and underscore word navigation
   "map <silent> w <Plug>CamelCaseMotion_w
@@ -45,4 +63,14 @@ function! myspacevim#before() abort
 endfunction
 
 function! myspacevim#after() abort
+endfunction
+
+function! RenameFile()
+  let old_name = expand('%')
+  let new_name = input('New file name: ', expand('%'), 'file')
+  if new_name != '' && new_name != old_name
+    exec ':saveas ' . new_name
+    exec ':silent !rm ' . old_name
+    redraw!
+  endif
 endfunction
