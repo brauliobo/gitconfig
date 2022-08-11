@@ -1,7 +1,8 @@
 #!/usr/bin/env ruby
 
 require 'bundler/inline'
-gemfile do
+gemfile true do
+  source 'https://rubygems.org'
   gem 'pry'
   gem 'slop', '~> 4.0'
   gem 'concurrent-ruby'

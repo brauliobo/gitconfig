@@ -19,7 +19,7 @@ mmmap = Dir.glob('/sys/dev/block/*/uevent').each.with_object({}) do |uevent,h|
   h[params['DEVNAME']] = "#{params['MAJOR']}:#{params['MINOR']}"
 end
 
-WR_SPEED = 20_048_576
+WR_SPEED = ENV['SPEED'] || 100_048_576
 LABEL_PREFIX = 'chia_'
 
 devices.select!{ |d,p| p['LABEL']&.start_with? LABEL_PREFIX }
@@ -33,6 +33,6 @@ end.join '\n'
 
 puts limits
 #File.write '/sys/fs/cgroup/system.slice/io.max', "#{limits}\n"
-system "echo -e \"#{limits}\" > /sys/fs/cgroup/system.slice/io.max"
+system "echo -e \"#{limits}\" > /sys/fs/cgroup/user.slice/io.max"
 
 

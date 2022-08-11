@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if pgrep pcsx || pgrep wine || pgrep -f minecraft; then
+  systemctl stop nbminer
+else
+  systemctl start nbminer
+fi
+
