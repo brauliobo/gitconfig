@@ -2,9 +2,6 @@ function! myspacevim#before() abort
   " checkers: prevent ruby-lint
   autocmd VimEnter * NeomakeDisable
 
-  " grep command
-  set grepprg=ag
-
   " fill column display
   set cc=100
 
@@ -26,6 +23,14 @@ function! myspacevim#before() abort
 
   " rename current file
   map <leader>n :call RenameFile()<cr>
+
+  "" FIND
+  nmap <Leader>t :Telescope find_files<cr>
+  " grep command
+  set grepprg=ag
+
+  "save shortcut
+  nnoremap <leader>w :wa<CR>
 
   "" PRY
   " …also, Insert Mode as bpry<space>

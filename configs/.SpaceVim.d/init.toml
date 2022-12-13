@@ -50,7 +50,8 @@ default_height = 30
 
 [[layers]]
   name = "telescope"
-
+[[layers]]
+  name = "fzf"
 [[layers]]
   name = "denite"
 
