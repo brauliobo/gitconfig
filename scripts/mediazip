@@ -16,14 +16,15 @@ require 'etc'
 defs = {
   video: {
     out_extension: 'mp4',
-    quality: 25,
-    width:   720,
+    quality:  25,
+    width:    480,
+    abitrate: 32,
 
     command: -> infile, outfile, options {
       <<-EOC
         ffmpeg -loglevel quiet -threads 12 -i #{Shellwords.escape infile} \
           -c:v libx264 -vf scale="#{options[:width]}:trunc(ow/a/2)*2" -crf #{options[:quality]} \
-          -c:a libfdk_aac -profile:a aac_he -b:a 64k \
+          -c:a libfdk_aac -profile:a aac_he -b:a #{options[:abitrate]}k \
           #{Shellwords.escape outfile} 
       EOC
     },
