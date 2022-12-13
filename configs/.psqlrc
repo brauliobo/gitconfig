@@ -5,3 +5,4 @@
 
 \setenv PAGER 'less -SFXR'
 
+\set HISTSIZE 10000000
