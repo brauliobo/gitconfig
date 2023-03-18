@@ -22,8 +22,9 @@ defs = {
 
     command: -> infile, outfile, options {
       <<-EOC
-        ffmpeg -loglevel quiet -threads 12 -i #{Shellwords.escape infile} \
-          -c:v libx264 -vf scale="#{options[:width]}:trunc(ow/a/2)*2" -crf #{options[:quality]} \
+        ffmpeg -threads 12 -i #{Shellwords.escape infile} \
+          -hwaccel cuda -hwaccel_output_format cuda \
+          -c:v h264_nvenc -vf scale="#{options[:width]}:trunc(ow/a/2)*2" -crf #{options[:quality]} \
           -c:a libfdk_aac -profile:a aac_he -b:a #{options[:abitrate]}k \
           #{Shellwords.escape outfile} 
       EOC
@@ -84,6 +85,7 @@ files.each do |infile|
     File.rename infile, (infile = "[INPUT]#{infile}") if infile == outfile
 
     cmd = target[:command].call infile, outfile, target
+    puts cmd
     File.unlink outfile if File.exists? outfile 
 
     puts "Starting #{infile}"

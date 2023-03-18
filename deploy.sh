@@ -30,7 +30,6 @@ cd configs
 for f in `ls -A | grep -v '^\.config$'`; do
   DEST=$HOME/`dirname $f`/$f
   echo $DEST
-  [ -d $f ] && mkdir -p $DEST && continue
   [[ -L $HOME/$f || $opt_overwrite ]] && rm $HOME/$f
   [ -L $HOME/$f ] && continue
   ln -ns $PWD/$f $DEST

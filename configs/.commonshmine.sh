@@ -60,8 +60,10 @@ fi
 # the_silver_searcher
 alias "ag"="ag -a"
 
+export GOPATH=$SCRIPTS
+export PATH=$HOME/.local/bin:$PATH
+
 # android sdk
 export ANDROID_HOME=$HOME/android-sdk
 export PATH=$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH
-export GOPATH=$SCRIPTS
 

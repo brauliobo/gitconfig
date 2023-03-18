@@ -31,6 +31,8 @@
 
   autocomplete_method = "deoplete" # works with ruby
 
+  #project_rooter_patterns = false
+
 # Enable autocomplete layer
 [[layers]]
 name = 'autocomplete'
