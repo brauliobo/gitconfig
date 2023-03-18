@@ -7,3 +7,9 @@
 [submodule "src/rbenv-plugins/ruby-build"]
 	path = src/rbenv-plugins/ruby-build
 	url = https://github.com/sstephenson/ruby-build.git
+[submodule "nested-tmux"]
+	path = nested-tmux
+	url = git@github.com:brauliobo/nested-tmux.git
+[submodule "tmux-resurrect"]
+	path = tmux-resurrect
+	url = https://github.com/tmux-plugins/tmux-resurrect
