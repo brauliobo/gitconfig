@@ -58,7 +58,7 @@ fi
 
 # GREP
 # the_silver_searcher
-alias "ag"="ag -a"
+#alias "ag"="ag"
 
 export GOPATH=$SCRIPTS
 export PATH=$HOME/.local/bin:$PATH
