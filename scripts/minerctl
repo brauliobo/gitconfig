@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if pgrep pcsx || pgrep wine || pgrep -f minecraft; then
+if pgrep pcsx || pgrep wine || pgrep -f 'minecraft.*jar' || pgrep -f Minecraft; then
   systemctl stop nbminer
 else
   systemctl start nbminer
