@@ -67,3 +67,5 @@ export PATH=$HOME/.local/bin:$PATH
 export ANDROID_HOME=$HOME/android-sdk
 export PATH=$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH
 
+alias vpnrun="function f() { CC=\$1; shift 1; vopono -v exec --custom ~/openvpn/brauliobo@gmail.com_'$CC'_7E4B0.ovpn --protocol openvpn \"\$@\" }; f"
+
