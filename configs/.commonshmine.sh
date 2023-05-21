@@ -60,6 +60,8 @@ fi
 # the_silver_searcher
 #alias "ag"="ag"
 
+alias cp="cp --reflink=auto"
+
 export GOPATH=$SCRIPTS
 export PATH=$HOME/.local/bin:$PATH
 
