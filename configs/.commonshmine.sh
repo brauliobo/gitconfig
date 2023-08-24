@@ -71,3 +71,5 @@ export PATH=$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH
 
 alias vpnrun="function f() { CC=\$1; shift 1; vopono -v exec --custom ~/openvpn/brauliobo@gmail.com_'$CC'_7E4B0.ovpn --protocol openvpn \"\$@\" }; f"
 
+if [ -f ../env.sh ]; then source ../env.sh; fi
+
