@@ -22,9 +22,9 @@ rvm)
     source "/usr/local/rvm/scripts/rvm"
   fi
 
-  DEFAULT_GEMSET=`cat $HOME/.ruby-version`
   rvm use system >/dev/null 2>&1
-  [ -n "$DEFAULT_GEMSET" ] && (rvm use $DEFAULT_GEMSET 2>/dev/null)
+  if [ -f .ruby-version ]; then rvm use `cat .ruby-version`; fi
+
   ;;
 rbenv)
   __rvm_unload
@@ -70,6 +70,4 @@ export ANDROID_HOME=$HOME/android-sdk
 export PATH=$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH
 
 alias vpnrun="function f() { CC=\$1; shift 1; vopono -v exec --custom ~/openvpn/brauliobo@gmail.com_'$CC'_7E4B0.ovpn --protocol openvpn \"\$@\" }; f"
-
-if [ -f .ruby-version ]; then rvm use `cat .ruby-version`; fi
 
