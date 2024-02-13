@@ -75,3 +75,8 @@ default_height = 30
 # neomake is annoying, ruby-lint not working
 #[[layers]]
 #  name = "checkers"
+
+[[custom_plugins]]
+  repo = 'posva/vim-vue'
+  merged = false
+
