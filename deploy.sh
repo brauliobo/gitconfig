@@ -23,16 +23,19 @@ sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.
 
 echo == Install SpaceVim
 ln -nsf $GITROOT/configs/.SpaceVim.d $HOME
-curl -sLf https://spacevim.org/install.sh | bash
+[[ ! -d $HOME/.SpaceVim ]] && curl -sLf https://spacevim.org/install.sh | bash
 
 echo == Link configurations files not overwriting existing regular files
 cd configs
-for f in `ls -A | grep -v '^\.config$'`; do
-  DEST=$HOME/`dirname $f`/$f
-  echo $DEST
-  [[ -L $HOME/$f || $opt_overwrite ]] && rm $HOME/$f
-  [ -L $HOME/$f ] && continue
-  ln -ns $PWD/$f $DEST
+for f in `find -type f -printf '%P\n'| grep -v rbenv`; do
+  DIR=$HOME/`dirname $f`
+  [[ -L $DIR && $opt_overwrite ]] && rm $DIR
+  mkdir -p $DIR
+
+  DEST=$HOME/$f
+  echo "$PWD/$f -> $DEST"
+  [[ $opt_overwrite ]] && rm $DEST
+  ln -sf $PWD/$f $DEST
 done
 cd -
 
