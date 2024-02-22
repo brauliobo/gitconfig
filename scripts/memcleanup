@@ -1,0 +1,7 @@
+#!/bin/bash -x
+
+systemctl stop asd
+sync
+echo 3 > /proc/sys/vm/drop_caches
+systemctl start asd
+
