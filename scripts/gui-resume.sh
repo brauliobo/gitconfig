@@ -1,4 +1,6 @@
 #!/bin/bash
 
-sudo systemctl start nbminer
+#echo 1 > /sys/devices/system/cpu/cpufreq/boost
+
+sudo systemctl stop nbminer
 
