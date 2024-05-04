@@ -1,0 +1,29 @@
+#!/usr/bin/env ruby
+
+require 'fileutils'
+require 'open3'
+
+SEGT  = ENV['SEGT']&.to_i || 3600 # one file per hour
+FTIME = '%Y-%m-%d_%H-%M'.gsub '%', '%%'
+DEST  = ENV['DEST']
+URL   = ENV['URL']
+ENC   = if ENV['ENC'] then "-c:v libx264 -preset veryfast -movflags +faststart -crf 30 -c:a copy" # cpu intensive
+        else "-c:v copy -c:a copy" end
+CMD   = "ffmpeg -loglevel quiet -fflags nobuffer -i rtmp://#{URL}/%{key} #{ENC} -f segment -segment_time #{SEGT} -strftime 1 %{dest}/#{FTIME}.mp4"
+KEYS  = ENV['CAMKEYS'].split ','
+
+threads = KEYS.map do |key|
+  keydst = "#{DEST}/%{key}" % {key: key}
+  keydir = FileUtils.mkdir_p keydst
+  cmd    = CMD % {key: key, dest: keydst}
+  puts cmd
+  _stdin, _stdout, _stderr, waitthr = Open3.capture3 cmd
+  waitthr
+end
+
+at_exit do
+  threads.each{ |t| Process.kill 'TERM', t.pid }
+end
+
+sleep 1_000 while true
+
