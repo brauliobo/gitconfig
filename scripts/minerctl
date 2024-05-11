@@ -1,8 +1,8 @@
 #!/bin/bash
 
-if pgrep pcsx || pgrep wine || pgrep -f 'minecraft.*jar' || pgrep -f Minecraft; then
-  systemctl stop nbminer
+if pgrep pcsx || pgrep wine || pgrep obs; then
+  systemctl stop nbminer amdgpu-clocks
 else
-  systemctl start nbminer
+  systemctl start nbminer amdgpu-clocks
 fi
 
