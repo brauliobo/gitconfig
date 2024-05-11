@@ -2,6 +2,7 @@
 
 systemctl restart systemd-journald
 systemctl restart cronie
+systemctl restart polkitd
 systemctl restart user-0
 
 systemctl stop asd
