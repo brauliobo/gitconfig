@@ -11,3 +11,5 @@ src/android-sdk-linux
 scripts/bin
 scripts/pkg
 scripts/src
+scripts/stream/base.rb
+
