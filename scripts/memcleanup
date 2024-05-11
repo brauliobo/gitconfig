@@ -3,7 +3,7 @@
 systemctl restart systemd-journald
 systemctl restart cronie
 systemctl restart polkit
-systemctl restart user-0
+systemctl restart user-0.slice
 
 systemctl stop asd
 sync
