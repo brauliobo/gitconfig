@@ -1,0 +1,19 @@
+#!/usr/bin/env ruby
+
+require 'pathname'
+require 'concurrent-ruby'
+require_relative 'lib/peach'
+
+THREADS = ENV['THREADS'] || 1
+LANG = ENV['LANG_CODE'] || 'pt'
+CMD  = "whisper '%{audio}' --model large-v2 --language #{LANG} --threads 12 --device cuda --output_dir transcriptions > '%{out}'"
+
+def run cmd; puts cmd; system cmd end
+
+Pathname.glob('**/*.opus').peach threads: THREADS do |a|
+  t   = a.sub_ext '.txt'
+  next puts "#{a}: skipping as transcription is already done" if File.exist? t
+  cmd = CMD % {audio: a, out: t}
+  run cmd
+end
+
