@@ -1,5 +1,7 @@
 #!/bin/bash
 
+qdbus org.freedesktop.ScreenSaver /ScreenSaver Lock
+
 if [[ $(lsmod | grep vfio) ]]; then
   sudo rmmod vfio-pci
   sudo modprobe nvidia
@@ -7,7 +9,9 @@ if [[ $(lsmod | grep vfio) ]]; then
   sudo nvidia-smi -pl 100
 fi
 
-systemctl --user enable --now swayidle
-
-qdbus org.freedesktop.ScreenSaver /ScreenSaver Lock
+if [ "$(loginctl show-session "$XDG_SESSION_ID" -p Type --value)" = "wayland" ]; then
+  systemctl --user enable --now swayidle
+else
+  systemctl --user disable swayidle
+fi
 
