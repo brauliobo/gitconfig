@@ -16,6 +16,7 @@
   # Disable guicolors in basic mode, many terminal do not support 24bit
   # true colors
   enable_guicolors = true
+
   # Disable statusline separator, if you want to use other value, please
   # install nerd fonts
   statusline_separator = "arrow"
@@ -30,6 +31,8 @@
   bootstrap_after  = 'myspacevim#after'
 
   autocomplete_method = "deoplete" # works with ruby
+
+  enable_language_server = true
 
   #project_rooter_patterns = false
 
@@ -67,16 +70,20 @@ default_height = 30
 [[layers]]
   name = "lang#javascript"
 [[layers]]
-  name = "lang#vue"
+  name = "vim-vue"
 
 [[layers]]
   name = "tmux"
+
+[[layers]]
+  name = "lsp"
+  filetypes = ["python", "ruby", "javascript", "typescript", "go", "rust", "c", "cpp", "java"]
 
 # neomake is annoying, ruby-lint not working
 #[[layers]]
 #  name = "checkers"
 
 [[custom_plugins]]
-  repo = 'posva/vim-vue'
+  name = "https://github.com/github/copilot.vim"
   merged = false
 
