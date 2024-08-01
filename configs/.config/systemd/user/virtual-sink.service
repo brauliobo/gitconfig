@@ -1,0 +1,11 @@
+[Unit]
+Description=Virtual Sink
+
+[Service]
+ExecStart=/usr/bin/pactl load-module module-null-sink sink_name=virtual_sink sink_properties=device.description=Virtual_Sink
+ExecStop=/usr/bin/pactl unload-module module-null-sink
+RemainAfterExit=yes
+
+[Install]
+WantedBy=default.target
+

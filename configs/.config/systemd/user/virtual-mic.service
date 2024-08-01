@@ -1,0 +1,12 @@
+[Unit]
+Description=Virtual Microphone
+After=virtual-sink.service
+Requires=virtual-sink.service
+
+[Service]
+ExecStart=/usr/bin/pactl load-module module-remap-source source_name=virtual_mic master=virtual_sink.monitor source_properties=device.description=Virtual_Mic
+ExecStop=/usr/bin/pactl unload-module module-remap-source
+RemainAfterExit=yes
+
+[Install]
+WantedBy=default.target
