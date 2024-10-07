@@ -9,7 +9,7 @@ LANG    = ENV['LANG_CODE'] || 'pt'
 MODEL   = '~/Projects/media-downloader-bot/models/ggml-large-v3-turbo.bin'
 
 CMD  = <<-EOC
-nice ffmpeg -loglevel quiet -i '%{audio}' -f wav -ac 1 -ar 16000 - | nice whisper.cpp -f - --model #{MODEL} -p 2 > '%{out}'
+nice ffmpeg -loglevel quiet -i '%{audio}' -f wav -ac 1 -ar 16000 - | nice whisper.cpp -f - --model #{MODEL} -l #{LANG} -p 2 > '%{out}'
 EOC
 
 def run cmd; puts cmd; system cmd end
