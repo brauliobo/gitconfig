@@ -10,4 +10,4 @@ sync
 echo 3 > /proc/sys/vm/drop_caches
 systemctl start asd
 
-systemctl restart media-downloader-bot
+systemctl restart media-downloader
