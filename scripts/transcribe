@@ -14,7 +14,7 @@ EOC
 
 def run cmd; puts cmd; system cmd end
 
-files = Pathname.glob '**/*.opus'
+files = Pathname.glob('**/*.opus').sort
 files.reverse! if ENV['REVERSE']
 files.peach threads: THREADS do |a|
   t   = a.sub_ext '.txt'
