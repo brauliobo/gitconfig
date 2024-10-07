@@ -1,8 +1,8 @@
 #!/bin/bash
 
 if pgrep pcsx || pgrep wine || pgrep obs; then
-  systemctl stop nbminer amdgpu-clocks
+  systemctl stop nbminer
 else
-  systemctl start nbminer amdgpu-clocks
+  #systemctl start nbminer
 fi
 
