@@ -13,3 +13,5 @@ scripts/pkg
 scripts/src
 scripts/stream/base.rb
 
+host-*
+
