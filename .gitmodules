@@ -13,3 +13,9 @@
 [submodule "tmux-resurrect"]
 	path = tmux-resurrect
 	url = https://github.com/tmux-plugins/tmux-resurrect
+[submodule "configs/configs/.config/nvim"]
+	path = configs/configs/.config/nvim
+	url = https://github.com/brauliobo/lazy.nvim.starter.git
+[submodule "configs/.config/nvim"]
+	path = configs/.config/nvim
+	url = https://github.com/brauliobo/lazy.nvim.starter.git
