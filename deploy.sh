@@ -21,14 +21,10 @@ test $opt_verbose && set -x
 echo == Install Oh My Zsh
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-echo == Install SpaceVim
-ln -nsf $GITROOT/configs/.SpaceVim.d $HOME
-[[ ! -d $HOME/.SpaceVim ]] && curl -sLf https://spacevim.org/install.sh | bash
-
 echo == Link configurations files not overwriting existing regular files
 cd configs
-for f in `find -type f -printf '%P\n'| grep -v rbenv`; do
-  DIR=$HOME/`dirname $f`
+for f in $(find -type f -printf '%P\n' | grep -v rbenv); do
+  DIR=$HOME/$(dirname $f)
   [[ -L $DIR && $opt_overwrite ]] && rm $DIR
   mkdir -p $DIR
 
@@ -64,23 +60,23 @@ if [[ $RUBY_FROM == 'rvm' ]]; then
 fi
 
 echo == Add autoload configs code
-if ! grep zshmine.sh $HOME/.zshrc > /dev/null; then
-  echo '. $HOME/.zshmine.sh' >> ~/.zshrc
+if ! grep zshmine.sh $HOME/.zshrc >/dev/null; then
+  echo '. $HOME/.zshmine.sh' >>~/.zshrc
 fi
-if ! grep bashmine.sh $HOME/.bashrc > /dev/null; then
-  echo '. $HOME/.bashmine.sh' >> ~/.bashrc
-  echo '. $HOME/.bashmine.sh' >> ~/.bash_profile
+if ! grep bashmine.sh $HOME/.bashrc >/dev/null; then
+  echo '. $HOME/.bashmine.sh' >>~/.bashrc
+  echo '. $HOME/.bashmine.sh' >>~/.bash_profile
 fi
 
 echo == Grab gems credentials
 if [[ -n "$RUBYGEMS_USER" && ! -f ~/.gem/credentials ]]; then
   mkdir -p ~/.gem
-  curl -u $RUBYGEMS_USER https://rubygems.org/api/v1/api_key.yaml > ~/.gem/credentials
+  curl -u $RUBYGEMS_USER https://rubygems.org/api/v1/api_key.yaml >~/.gem/credentials
   chmod 0600 /home/braulio/.gem/credentials
 fi
 
 echo == Install hooks
 find -L .git/hooks -type f ! '(' -name '*.sample' ')' -delete
-for h in `ls $GITROOT/hooks`; do
+for h in $(ls $GITROOT/hooks); do
   ln -nsf $GITROOT/hooks/$h $GITROOT/.git/hooks
 done
