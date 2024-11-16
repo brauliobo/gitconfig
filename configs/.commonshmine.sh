@@ -76,3 +76,14 @@ if [ -f ../env.sh ]; then source ../env.sh; fi
 
 alias cp="cp --reflink=auto"
 alias rm="rm --one-file-system"
+
+# tmux
+[ -f ../tmux-start ] && TMUX_START=../tmux-start
+#[ -f ./tmux-start ] && TMUX_START=./tmux-start
+if [ -n "$TMUX_START" ] && [[ "$(tmux display-message -p -F '#{window_index}')" == 1 ]]; then
+  if [[ -z "${TMUX_PARENT}" ]]; then
+    ~/.tmux.conf.d/nested-tmux/new-tmux
+  elif [[ "$(tmux display-message -p -F '#{session_windows}')" == 1 ]]; then
+    source $TMUX_START
+  fi
+fi
