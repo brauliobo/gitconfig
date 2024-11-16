@@ -4,6 +4,9 @@
 # temporary files
 *.swp
 
+# local private files
+locals
+
 # src files
 src/android-sdk-linux
 
