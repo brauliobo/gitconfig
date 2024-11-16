@@ -1,5 +1,0 @@
-# set to fetch api key on deploy
-RUBYGEMS_USER=brauliobo
-
-RUBY_FROM=rvm
-

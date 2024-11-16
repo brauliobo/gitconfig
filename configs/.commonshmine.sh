@@ -1,29 +1,32 @@
 while [ -h "$SOURCE" ]; do SOURCE="$(readlink "$SOURCE")"; done
 GITROOT="$(builtin cd -P "$(dirname "$SOURCE")" && git root)"
+
 SCRIPTS="$GITROOT/scripts"
-CUSTOM_PATHS=$SCRIPTS:~/.rbenv/bin
+LOCALS="$GITROOT/locals"
+CUSTOM_PATHS=:$SCRIPTS
+CUSTOM_PATHS+=:$LOCALS
 
 # Config
-source $GITROOT/default/config
+[[ -f $GITROOT/locals/envs ]] && source $GITROOT/locals/envs
 
 # clear custom paths to avoid duplication
-PATH=`echo $PATH | sed "s|$CUSTOM_PATHS:||g"`
+PATH=$(echo $PATH | sed "s|$CUSTOM_PATHS:||g")
 # add custom paths
 export PATH=$CUSTOM_PATHS:$PATH
 
 case $RUBY_FROM in
 rvm)
-  if [[ -x $HOME/.rvm ]] ; then
+  if [[ -x $HOME/.rvm ]]; then
     #if ! (env | grep PATH | grep .rvm > /dev/null); then
     source "$HOME/.rvm/scripts/rvm"
     #fi
   fi
-  if [[ -x /usr/local/rvm ]] ; then
+  if [[ -x /usr/local/rvm ]]; then
     source "/usr/local/rvm/scripts/rvm"
   fi
 
   rvm use system >/dev/null 2>&1
-  if [ -f .ruby-version ]; then rvm use `cat .ruby-version`; fi
+  if [ -f .ruby-version ]; then rvm use $(cat .ruby-version); fi
 
   ;;
 rbenv)
@@ -36,7 +39,7 @@ alias vi=nvim
 alias vim=nvim
 
 # EDITOR
-export EDITOR=vim
+export EDITOR=nvim
 export VISUAL=$EDITOR
 export GIT_EDITOR=$EDITOR
 
@@ -73,4 +76,3 @@ if [ -f ../env.sh ]; then source ../env.sh; fi
 
 alias cp="cp --reflink=auto"
 alias rm="rm --one-file-system"
-
