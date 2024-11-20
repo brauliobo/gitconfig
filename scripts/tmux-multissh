@@ -1,0 +1,48 @@
+#!/bin/bash
+
+# Check if TMUX_HOSTS is set
+if [ -z "${TMUX_HOSTS}" ]; then
+  echo "Error: TMUX_HOSTS environment variable is not set."
+  echo "Usage: TMUX_HOSTS=(host1 host2 host3) tmux-multissh"
+  exit 1
+fi
+
+# Convert the TMUX_HOSTS string into an array
+IFS=' ' read -r -a HOSTS <<<"${TMUX_HOSTS}"
+
+# Check if the script is running inside tmux
+if [ -n "$TMUX" ]; then
+  # Start with the first host in the current pane
+  tmux send-keys "ssh ${HOSTS[0]}" C-m
+
+  # Create additional panes and SSH into each host
+  for ((i = 1; i < ${#HOSTS[@]}; i++)); do
+    # Split the current pane horizontally
+    tmux split-window -h
+    # SSH into the host in the new pane
+    tmux send-keys "ssh ${HOSTS[i]}" C-m
+    # Adjust layout
+    tmux select-layout tiled
+  done
+
+  # Enable synchronize-panes
+  tmux set-window-option synchronize-panes on
+
+  # Select the first pane
+  tmux select-pane -t 0
+else
+  # Not inside tmux, start a new session
+  tmux new-session -d "ssh ${HOSTS[0]}"
+
+  # Create additional panes and SSH into each host
+  for ((i = 1; i < ${#HOSTS[@]}; i++)); do
+    tmux split-window -h "ssh ${HOSTS[i]}"
+    tmux select-layout tiled
+  done
+
+  # Enable synchronize-panes
+  tmux set-window-option synchronize-panes on
+
+  # Attach to the tmux session
+  tmux attach-session
+fi
