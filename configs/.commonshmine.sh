@@ -77,6 +77,8 @@ if [ -f ../env.sh ]; then source ../env.sh; fi
 alias cp="cp --reflink=auto"
 alias rm="rm --one-file-system"
 
+alias jq="jq -C"
+
 # tmux
 [ -f ../tmux-start ] && TMUX_START=../tmux-start
 #[ -f ./tmux-start ] && TMUX_START=./tmux-start
