@@ -79,13 +79,23 @@ alias rm="rm --one-file-system"
 
 alias jq="jq -C"
 
+export HISTSIZE=100100100
+
+export RSYNC_DEFAULTS="-avxP --inplace --no-whole-file"
+
 # tmux
 [ -f ../tmux-start ] && TMUX_START=../tmux-start
 #[ -f ./tmux-start ] && TMUX_START=./tmux-start
-if [ -n "$TMUX_START" ] && [[ "$(tmux display-message -p -F '#{window_index}')" == 1 ]]; then
+
+TMUX_SESSION_COUNT=$(tmux ls 2>/dev/null | wc -l)
+if [ -n "$TMUX_START" ] &&
+  [ "$TMUX_SESSION_COUNT" -eq 0 ] &&
+  [[ "$(tmux display-message -p -F '#{window_index}')" == 1 ]]; then
   if [[ -z "${TMUX_PARENT}" ]]; then
-    ~/.tmux.conf.d/nested-tmux/new-tmux
+    # Outer tmux: spawn new nested session
+    #~/.tmux.conf.d/nested-tmux/new-tmux
   elif [[ "$(tmux display-message -p -F '#{session_windows}')" == 1 ]]; then
-    source $TMUX_START
+    # Inside nested tmux with only one window: load pane/window setup
+    #source $TMUX_START
   fi
 fi
