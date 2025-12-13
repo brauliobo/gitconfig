@@ -101,5 +101,5 @@ if [ -n "$TMUX_START" ] &&
 fi
 
 export SSH_ASKPASS=/usr/bin/ksshaskpass
-export SSH_ASKPASS_REQUIRE=force
+export SSH_ASKPASS_REQUIRE=prefer
 unset SSH_AUTH_SOCK
