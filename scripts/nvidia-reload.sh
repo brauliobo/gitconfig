@@ -131,7 +131,12 @@ $SUDO modprobe nvidia_drm
 if [[ "$PERSIST_ACTIVE" -eq 1 ]]; then
   echo "Restarting nvidia-persistenced..."
   $SUDO systemctl start nvidia-persistenced
-elif [[ "$PM_WAS_ON" -eq 1 ]]; then
+fi
+
+if [[ -x /etc/rc.local ]]; then
+  echo "Restoring host and GPU settings via /etc/rc.local..."
+  $SUDO /etc/rc.local
+elif [[ "$PERSIST_ACTIVE" -eq 0 && "$PM_WAS_ON" -eq 1 ]]; then
   echo "Re-enabling persistence mode..."
   $SUDO nvidia-smi -pm 1 >/dev/null || true
 fi
