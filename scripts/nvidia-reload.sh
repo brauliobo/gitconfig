@@ -133,9 +133,12 @@ if [[ "$PERSIST_ACTIVE" -eq 1 ]]; then
   $SUDO systemctl start nvidia-persistenced
 fi
 
-if [[ -x /etc/rc.local ]]; then
-  echo "Restoring host and GPU settings via /etc/rc.local..."
-  $SUDO /etc/rc.local
+if [[ -x /etc/nvidia-setup.sh ]]; then
+  echo "Restoring GPU settings via /etc/nvidia-setup.sh..."
+  $SUDO /etc/nvidia-setup.sh
+elif [[ -r /etc/rc.local ]] && grep -qE '^[[:space:]]*(sudo[[:space:]]+)?nvidia-smi([[:space:]]|$)' /etc/rc.local; then
+  echo "Restoring GPU settings from /etc/rc.local (nvidia-smi lines only)..."
+  grep -E '^[[:space:]]*(sudo[[:space:]]+)?nvidia-smi([[:space:]]|$)' /etc/rc.local | $SUDO sh -e
 elif [[ "$PERSIST_ACTIVE" -eq 0 && "$PM_WAS_ON" -eq 1 ]]; then
   echo "Re-enabling persistence mode..."
   $SUDO nvidia-smi -pm 1 >/dev/null || true
